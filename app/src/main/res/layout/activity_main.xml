@@ -8,12 +8,7 @@
     tools:context=".ui.MainActivity">
 
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/splash"
-        android:name="com.insurance.assured.ui.splashscreen.SplashScreen"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textAlignment="center" />
+
 
 
     <TextView
@@ -21,6 +16,6 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="Hello World!"
-        android:textColor="@color/black" />
+         />
 
 </LinearLayout>
