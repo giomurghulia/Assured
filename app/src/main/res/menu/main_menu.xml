@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@id/profileFragment"
+        android:icon="@drawable/ic_user_icon"
+        android:title="" />
+    <item
+        android:id="@+id/transactionFragment"
+        android:icon="@drawable/ic_plans_icon"
+        android:title="" />
+    <item
+        android:id="@+id/homeFragment"
+        android:title="" />
+    <item
+        android:id="@+id/QuestionFragment"
+        android:icon="@drawable/ic_question_icon"
+        android:title="" />
+    <item
+        android:id="@+id/NotificationFragment"
+        android:icon="@drawable/ic_notification_icon"
+        android:title="" />
+
+</menu>
