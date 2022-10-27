@@ -5,7 +5,7 @@
         android:icon="@drawable/ic_user_icon"
         android:title="" />
     <item
-        android:id="@+id/transactionFragment"
+        android:id="@id/planListFragment"
         android:icon="@drawable/ic_plans_icon"
         android:title="" />
     <item
