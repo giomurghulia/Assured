@@ -9,6 +9,7 @@ import com.insurance.assured.di.datastore.AppConfigDataStore
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
@@ -27,7 +28,6 @@ class WelcomeViewModel @Inject constructor(
     )
     val action get() = _action.asSharedFlow()
 
-
     private val currentUser = Firebase.auth.currentUser
 
     private var passCode: String? = null
@@ -37,16 +37,19 @@ class WelcomeViewModel @Inject constructor(
     }
 
 
-     fun checkUser() {
-//        viewModelScope.launch {
-//            passCode = appConfigDataStore.getPassCode()
-//        }
+    fun checkUser() {
+        viewModelScope.launch {
+            passCode = appConfigDataStore.getPassCode()
 
-        if (passCode.isNullOrEmpty() && currentUser != null) {
-            _action.tryEmit(true)
-        } else {
-            _action.tryEmit(true)
+            delay(2000)
+            if (passCode.isNullOrEmpty() && currentUser != null) {
+                _action.tryEmit(true)
+            } else {
+                _action.tryEmit(true)
+            }
+
         }
+
     }
 
 }
