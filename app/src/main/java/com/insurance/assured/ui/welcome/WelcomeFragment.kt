@@ -1,6 +1,7 @@
 package com.insurance.assured.ui.welcome
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,13 +19,17 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class WelcomeFragment: Fragment() {
+class WelcomeFragment : Fragment() {
 
     private lateinit var binding: FragmentWelcomeBinding
     private val viewModel: WelcomeViewModel by viewModels()
 
     @Inject
     lateinit var appConfigDataStore: AppConfigDataStore
+
+    init {
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,8 +47,9 @@ class WelcomeFragment: Fragment() {
         findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToAuthorizedFragment())
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.action.collect { validUser ->
+                    Log.d("Welcome", "Invoke")
                     if (validUser) {
                         findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToPassCodeFragment())
                     }
@@ -51,7 +57,10 @@ class WelcomeFragment: Fragment() {
             }
         }
 
-        viewModel.checkUser()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.checkUser()
+        }
+
 
         binding.signUpButton.setOnClickListener {
             findNavController().navigate(R.id.signUpFragment)

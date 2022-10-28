@@ -16,9 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.insurance.assured.databinding.FragmentSignUpBinding
-import com.insurance.assured.toResult
 import kotlinx.coroutines.launch
-import com.insurance.assured.Result
 
 
 class SignUpFragment : Fragment() {

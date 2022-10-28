@@ -38,9 +38,9 @@ class WelcomeViewModel @Inject constructor(
 
 
      fun checkUser() {
-        viewModelScope.launch {
-            passCode = appConfigDataStore.getPassCode()
-        }
+//        viewModelScope.launch {
+//            passCode = appConfigDataStore.getPassCode()
+//        }
 
         if (passCode.isNullOrEmpty() && currentUser != null) {
             _action.tryEmit(true)

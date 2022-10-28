@@ -8,11 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import com.insurance.assured.R
 import com.insurance.assured.databinding.FragmentAuthorizedBinding
-import com.insurance.assured.ui.welcome.WelcomeFragmentDirections
 
 class AuthorizedFragment : Fragment() {
     private lateinit var binding: FragmentAuthorizedBinding

@@ -23,7 +23,7 @@
         android:label="ProfileFragment" />
     <fragment
         android:id="@+id/planListFragment"
-        android:name="com.insurance.assured.ui.planslist.PlanListFragment"
+        android:name="com.insurance.assured.ui.plansList.PlanListFragment"
         android:label="fragment_plan_list"
         tools:layout="@layout/fragment_plan_list" />
 
