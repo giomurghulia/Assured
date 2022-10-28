@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/authorized_nav_graph"
     app:startDestination="@id/homeFragment">
 
@@ -20,5 +21,10 @@
         android:id="@+id/profileFragment"
         android:name="com.insurance.assured.ui.profile.ProfileFragment"
         android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/planListFragment"
+        android:name="com.insurance.assured.ui.planslist.PlanListFragment"
+        android:label="fragment_plan_list"
+        tools:layout="@layout/fragment_plan_list" />
 
 </navigation>

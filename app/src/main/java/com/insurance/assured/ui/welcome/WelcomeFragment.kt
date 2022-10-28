@@ -9,14 +9,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.insurance.assured.R
 import com.insurance.assured.databinding.FragmentWelcomeBinding
 import com.insurance.assured.di.datastore.AppConfigDataStore
-import com.insurance.assured.ui.pascode.PassCodeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -42,22 +38,26 @@ class WelcomeFragment: Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToAuthorizedFragment())
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.action.collect {
-                    if (it) {
+                viewModel.action.collect { validUser ->
+                    if (validUser) {
                         findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToPassCodeFragment())
                     }
                 }
             }
         }
 
-            binding.signUpButton.setOnClickListener {
-                findNavController().navigate(R.id.signUpFragment)
-            }
-            binding.signInText.setOnClickListener {
-                findNavController().navigate(R.id.signInFragment)
-            }
+        viewModel.checkUser()
+
+        binding.signUpButton.setOnClickListener {
+            findNavController().navigate(R.id.signUpFragment)
         }
+        binding.signInText.setOnClickListener {
+            findNavController().navigate(R.id.signInFragment)
+        }
+    }
 }

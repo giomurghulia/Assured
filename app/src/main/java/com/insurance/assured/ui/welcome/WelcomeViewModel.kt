@@ -33,20 +33,19 @@ class WelcomeViewModel @Inject constructor(
     private var passCode: String? = null
 
     init {
+
+    }
+
+
+     fun checkUser() {
         viewModelScope.launch {
             passCode = appConfigDataStore.getPassCode()
         }
 
         if (passCode.isNullOrEmpty() && currentUser != null) {
-            _action.tryEmit(false)
+            _action.tryEmit(true)
         } else {
             _action.tryEmit(true)
-        }
-    }
-
-
-    private fun checkUser() {
-        if (currentUser != null) {
         }
     }
 }
