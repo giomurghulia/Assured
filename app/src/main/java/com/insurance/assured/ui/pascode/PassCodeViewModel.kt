@@ -33,6 +33,7 @@ class PassCodeViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
+            appConfigDataStore.setPassCode("1234")
             passCode = appConfigDataStore.getPassCode()
         }
         clearInputList()
@@ -79,7 +80,7 @@ class PassCodeViewModel @Inject constructor(
         inputPassCode = ""
         inputList.clear()
 
-        for (i in passCode!!){
+        for (i in 0..3){
             inputList.add(PassListItem(false))
         }
     }

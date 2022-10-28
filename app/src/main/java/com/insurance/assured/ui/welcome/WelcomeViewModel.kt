@@ -2,9 +2,11 @@ package com.insurance.assured.ui.welcome
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.insurance.assured.di.datastore.AppConfigDataStore
+import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -25,25 +27,26 @@ class WelcomeViewModel @Inject constructor(
     )
     val action get() = _action.asSharedFlow()
 
+
     private val currentUser = Firebase.auth.currentUser
 
     private var passCode: String? = null
 
     init {
 
-        viewModelScope.launch {
-            passCode = appConfigDataStore.getPassCode()
-        }
-        checkUser()
     }
 
 
-    private fun checkUser() {
+     fun checkUser() {
+        viewModelScope.launch {
+            passCode = appConfigDataStore.getPassCode()
+        }
 
         if (passCode.isNullOrEmpty() && currentUser != null) {
-            _action.tryEmit(false)
+            _action.tryEmit(true)
         } else {
             _action.tryEmit(true)
         }
     }
+
 }
