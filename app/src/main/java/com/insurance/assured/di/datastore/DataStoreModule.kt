@@ -1,8 +1,8 @@
 package com.insurance.assured.di.datastore
 
 import android.content.Context
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.DataStore
+import androidx.datastore.preferences.Preferences
 import androidx.datastore.preferences.createDataStore
 import dagger.Module
 import dagger.Provides

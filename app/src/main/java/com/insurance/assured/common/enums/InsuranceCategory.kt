@@ -47,7 +47,8 @@ enum class InsuranceCategory {
             "vehicle" -> VEHICLE
             "pet" -> PET
             "life" -> LIFE
-            else -> VehicleInsuranceType.DEFAULT
+            "house" -> HOUSE
+            else -> DEFAULT
         }
     }
 }
