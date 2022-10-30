@@ -23,9 +23,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 
     override fun init() {
         viewModel.getBanners()
+        binding.shimmerFrameLayout.startShimmerAnimation()
 
-        binding.bannerViewpager.adapter = bannersAdapter
-        binding.bannerViewpager.offscreenPageLimit = 1
+
+//        binding.bannerViewpager.adapter = bannersAdapter
+//        binding.bannerViewpager.offscreenPageLimit = 1
+
 // MyRecyclerViewAdapter is an standard RecyclerView.Adapter :)
 
 // You need to retain one page on each side so that the next and previous items are visible
@@ -33,7 +36,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 // Add a PageTransformer that translates the next and previous items horizontally
 // towards the center of the screen, which makes them visible
         val nextItemVisiblePx = resources.getDimension(R.dimen.viewpager_next_item_visible)
-        val currentItemHorizontalMarginPx = resources.getDimension(R.dimen.viewpager_current_item_horizontal_margin)
+        val currentItemHorizontalMarginPx =
+            resources.getDimension(R.dimen.viewpager_current_item_horizontal_margin)
         val pageTranslationX = nextItemVisiblePx + currentItemHorizontalMarginPx
         val pageTransformer = ViewPager2.PageTransformer { page: View, position: Float ->
             page.translationX = -pageTranslationX * position
@@ -42,7 +46,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
             // If you want a fading effect uncomment the next line:
             // page.alpha = 0.25f + (1 - abs(position))
         }
-        binding.bannerViewpager.setPageTransformer(pageTransformer)
+//        binding.bannerViewpager.setPageTransformer(pageTransformer)
 
 // The ItemDecoration gives the current (centered) item horizontal margin so that
 // it doesn't occupy the whole screen width. Without it the items overlap
@@ -50,7 +54,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
             requireContext(),
             R.dimen.viewpager_current_item_horizontal_margin
         )
-        binding.bannerViewpager.addItemDecoration(itemDecoration)
+//        binding.bannerViewpager.addItemDecoration(itemDecoration)
 
     }
 

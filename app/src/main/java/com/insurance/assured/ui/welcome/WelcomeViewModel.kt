@@ -21,34 +21,36 @@ class WelcomeViewModel @Inject constructor(
     private val appConfigDataStore: AppConfigDataStore
 ) : ViewModel() {
 
-    private val _action = MutableSharedFlow<Boolean>(
-        replay = 0,
+    private val _action = MutableSharedFlow<Boolean?>(
+        replay = 1,
         extraBufferCapacity = 1,
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
     val action get() = _action.asSharedFlow()
 
-    private val currentUser = Firebase.auth.currentUser
+    private val currentUser get() = Firebase.auth.currentUser
+
 
     private var passCode: String? = null
 
     init {
-
     }
 
 
     fun checkUser() {
         viewModelScope.launch {
+            appConfigDataStore.setPassCode("")
             passCode = appConfigDataStore.getPassCode()
 
-            delay(2000)
-            if (passCode.isNullOrEmpty() && currentUser != null) {
-                _action.tryEmit(true)
+            if (currentUser == null) {
+                _action.tryEmit(null)
+            } else if (!passCode.isNullOrEmpty()) {
+                _action.tryEmit(false)
             } else {
                 _action.tryEmit(true)
             }
-
         }
+
 
     }
 

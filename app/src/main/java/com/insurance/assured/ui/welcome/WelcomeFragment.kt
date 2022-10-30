@@ -19,7 +19,6 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(
     private val viewModel: WelcomeViewModel by viewModels()
 
     override fun init() {
-//        findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToAuthorizedFragment())
         viewModel.checkUser()
     }
 
@@ -27,9 +26,16 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.action.collect { validUser ->
-                    Log.d("Welcome", "Invoke")
-                    if (validUser) {
-                        findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToPassCodeFragment())
+
+                    when (validUser) {
+                        null -> {}
+                        true -> {
+                            findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToAuthorizedFragment())
+                        }
+                        false -> {
+                            findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToPassCodeFragment())
+
+                        }
                     }
                 }
             }

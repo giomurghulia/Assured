@@ -11,6 +11,7 @@ import com.insurance.assured.common.types.Inflater
 
 
 abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflater<VB>) : Fragment() {
+
     private var _binding: VB? = null
     val binding get() = _binding!!
 

@@ -3,15 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_marginEnd="16dp"
     android:layout_height="match_parent"
-    app:cardCornerRadius="12dp">
+    app:cardCornerRadius="12dp"
+    android:layout_marginHorizontal="30dp"
+    android:layout_marginTop="15dp">
 
     <ImageView
+        android:backgroundTint="@color/colorGrey"
         android:background="@drawable/shape_banner_item_background"
         android:id="@+id/banner_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="150dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,15 +23,15 @@
 
     <TextView
         android:id="@+id/title_text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:paddingEnd="100dp"
         android:textColor="@color/white"
-        android:gravity="center"
+        android:gravity="center_vertical"
         app:layout_constraintBottom_toBottomOf="@id/banner_image"
         app:layout_constraintEnd_toEndOf="@id/banner_image"
-        app:layout_constraintStart_toStartOf="@id/banner_image"
         app:layout_constraintTop_toTopOf="@id/banner_image"
-        tools:text="test" />
-
+        tools:text="test"
+        tools:ignore="RtlSymmetry" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
