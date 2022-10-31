@@ -5,7 +5,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.viewpager2.widget.MarginPageTransformer
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.insurance.assured.R
 import com.insurance.assured.databinding.FragmentHomeBinding
@@ -19,11 +19,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     FragmentHomeBinding::inflate
 ) {
     private val viewModel: HomeViewModel by viewModels()
-    private val bannersAdapter = BannersPagerAdapter()
+
+    private val homeAdapter = HomeAdapter()
 
     override fun init() {
-        viewModel.getBanners()
-        binding.shimmerFrameLayout.startShimmerAnimation()
+        viewModel.getDate()
+
+        binding.mainRecycler.layoutManager = LinearLayoutManager(requireContext())
+        binding.mainRecycler.adapter = homeAdapter
 
 
 //        binding.bannerViewpager.adapter = bannersAdapter
@@ -61,10 +64,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     override fun observe() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.banners.collect {
-                    bannersAdapter.submitList(it)
+                viewModel.stat.collect {
+                    homeAdapter.submitList(it.toList())
                 }
             }
         }
+    }
+
+    override fun listener() {
+
     }
 }

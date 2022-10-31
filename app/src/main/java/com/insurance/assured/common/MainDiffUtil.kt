@@ -1,4 +1,4 @@
-package com.insurance.assured.ui.pascode
+package com.insurance.assured.common
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil

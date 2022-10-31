@@ -2,19 +2,22 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="100dp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginHorizontal="30dp"
+    android:layout_marginTop="15dp"
     android:background="@drawable/shape_category_background"
     android:backgroundTint="@color/light_gray">
 
     <TextView
         android:id="@+id/title_text"
-        android:textColor="@color/white"
         android:layout_width="0dp"
-        android:gravity="center"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="5dp"
-        android:text="Tell us what needs protected"
+        android:layout_marginHorizontal="15dp"
+        android:padding="12dp"
+        android:gravity="center"
+        tools:text="Tell us what needs protected"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@id/find_button"
         app:layout_constraintEnd_toStartOf="@id/banner_image"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,6 +31,8 @@
         android:backgroundTint="@color/blue"
         android:text="@string/find_plans"
         android:textAllCaps="false"
+        android:paddingHorizontal="10dp"
+        android:gravity="center"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/banner_image"
@@ -36,10 +41,13 @@
 
     <ImageView
         android:id="@+id/banner_image"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:scaleType="centerInside"
-        android:src="@drawable/ic_auto_insurance_banner"
+        android:padding="10dp"
+        android:src="@drawable/img"
+        app:layout_constraintStart_toEndOf="@id/title_text"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
