@@ -2,136 +2,92 @@ package com.insurance.assured.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.insurance.assured.Result
+import com.insurance.assured.*
 import com.insurance.assured.domain.models.banner.BannersModel
 import com.insurance.assured.domain.usecases.bannerusecases.GetBannersUseCase
-import com.insurance.assured.toResult
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+fun onInit() = flow { emit(Unit) }
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getBannersUseCase: GetBannersUseCase
+    private val getBannersUseCase: GetBannersUseCase,
+    private val homePageListBuilder: HomePageListBuilder,
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(buildList())
-    val stat get() = _state.asStateFlow()
+    private val _payload = MutableStateFlow(HomePagePayload())
 
-    private val mainBanners = mutableListOf<Banner>()
+    private val _state = MutableStateFlow<List<HomeListItem>>(listOf())
+    val state get() = _state.asStateFlow()
 
-    private var carBanners: HomeListItem.CarBannerItem? = null
+    private val refreshData = MutableSharedFlow<Boolean>(
+        extraBufferCapacity = 1,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST
+    )
 
-    private var healthBanners: HomeListItem.HeathBannerItem? = null
+    private val refreshMainBanners = MutableSharedFlow<Boolean>(
+        extraBufferCapacity = 1,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST
+    )
 
-    fun getDate() {
-        getMainBanners()
-        getCarBanners()
-        getHealthBanners()
-    }
+    private val refreshCardBanners = MutableSharedFlow<Boolean>(
+        extraBufferCapacity = 1,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST
+    )
 
-    private fun getMainBanners() {
+    init {
         viewModelScope.launch {
-            getBannersUseCase.invoke().toResult().collect {
-                when (it) {
-                    is Result.Success -> {
-                        setMainBanners(it.data)
-                        _state.emit(buildList())
-                    }
-                    is Result.Loading -> {
-                    }
-                    is Result.Error -> {
-                    }
-                }
+            merge(
+                onInit().map { false },
+                refreshData,
+                refreshMainBanners
+            ).flatMapLatest { refresh ->
+                getBannersUseCase.invoke(refresh).toResult()
+            }.collectLatest {
+                _payload.value = _payload.value.copy(mainBanners = it)
+            }
+
+        }
+
+        viewModelScope.launch {
+            merge(
+                onInit().map { false },
+                refreshData,
+                refreshCardBanners
+            ).flatMapLatest { refresh ->
+                getBannersUseCase.invoke(refresh).toResult()
+            }.collectLatest {
+                _payload.value = _payload.value.copy(carBanners = it)
             }
         }
-    }
 
-    private fun getCarBanners() {
         viewModelScope.launch {
-            getBannersUseCase.invoke().toResult().collect {
-                when (it) {
-                    is Result.Success -> {
-                        setCarBanners(it.data)
-                        _state.emit(buildList())
-                    }
-                    is Result.Loading -> {
-                    }
-                    is Result.Error -> {
-                    }
-                }
+            _payload.collectLatest { data ->
+                _state.value = homePageListBuilder.buildList(data)
             }
         }
-    }
-
-    private fun getHealthBanners() {
-        viewModelScope.launch {
-            getBannersUseCase.invoke().toResult().collect {
-                when (it) {
-                    is Result.Success -> {
-                        setHeathBanners(it.data)
-                        _state.emit(buildList())
-                    }
-                    is Result.Loading -> {
-                    }
-                    is Result.Error -> {
-                    }
-                }
-            }
-        }
-    }
-
-    private fun setMainBanners(banners: List<BannersModel>) {
-        mainBanners.addAll(banners.map { Banner(it.id, it.banner, it.title) })
-
-        buildList()
-    }
-
-    private fun setCarBanners(banners: List<BannersModel>) {
-        val bannerModel = banners[0]
-        carBanners =
-            HomeListItem.CarBannerItem(bannerModel.id, bannerModel.banner, bannerModel.title)
-
-        buildList()
 
     }
 
-    private fun setHeathBanners(banners: List<BannersModel>) {
-        val bannerModel = banners[0]
-        healthBanners =
-            HomeListItem.HeathBannerItem(bannerModel.id, bannerModel.banner, bannerModel.title)
-
-        buildList()
+    fun refresh() {
+        refreshData.tryEmit(true)
     }
 
-    private fun buildList(): List<HomeListItem> {
-        val items = mutableListOf<HomeListItem>()
-
-        if (!mainBanners.isNullOrEmpty()) {
-            items.add(HomeListItem.MainBannersItem(mainBanners))
-        } else {
-            items.add(HomeListItem.ShimmerBannerItem)
-        }
-
-        items.add(HomeListItem.CategoriesItem)
-
-        if (carBanners != null) {
-            items.add(carBanners!!)
-        } else {
-            items.add(HomeListItem.ShimmerBannerItem)
-        }
-
-        if (healthBanners != null) {
-            items.add(healthBanners!!)
-        } else {
-            items.add(HomeListItem.ShimmerBannerItem)
-        }
-
-        return items
+    fun refreshMainBanners() {
+        refreshMainBanners.tryEmit(true)
     }
 
+    fun refreshCardBanners() {
+        refreshCardBanners.tryEmit(true)
+    }
 
+    data class HomePagePayload(
+        val mainBanners: Result<List<BannersModel>> = Result.Loading,
+        val carBanners: Result<List<BannersModel>> = Result.Loading,
+    )
 }

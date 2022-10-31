@@ -19,6 +19,7 @@ class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
 
     private val authorizedViewModel: AuthorizedViewModel by viewModels()
+    private val viewModel: ProfileViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -33,9 +34,17 @@ class ProfileFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         binding.logoutButton.setOnClickListener {
             Firebase.auth.signOut()
             authorizedViewModel.checkUser()
         }
+
+        binding.savePassCodeButton.setOnClickListener {
+            val passCode = binding.passCodeEdiText.text.toString()
+            viewModel.setPassCode(passCode)
+        }
+
     }
+
 }

@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:cardCornerRadius="12dp"
-    android:layout_marginHorizontal="30dp"
-    android:layout_marginTop="15dp">
+    android:layout_marginHorizontal="30dp">
 
     <ImageView
         android:background="@drawable/shape_banner_item_background"
         android:id="@+id/banner_image"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="200dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +29,5 @@
         app:layout_constraintBottom_toBottomOf="@id/banner_image"
         app:layout_constraintEnd_toEndOf="@id/banner_image"
         app:layout_constraintTop_toTopOf="@id/banner_image"
-        tools:text="test"
-        tools:ignore="RtlSymmetry" />
-
+        tools:text="test"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

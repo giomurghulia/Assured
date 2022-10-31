@@ -14,6 +14,8 @@ import com.insurance.assured.databinding.*
 class HomeAdapter :
     ListAdapter<HomeListItem, RecyclerView.ViewHolder>(MainDiffUtil()) {
 
+    private var callBack: CallBack? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
 
@@ -23,26 +25,43 @@ class HomeAdapter :
                     LayoutBannerPagerBinding.inflate(layoutInflater, parent, false)
                 )
             }
+
             HomeListItem.ViewType.CATEGORIES.ordinal -> {
                 CategoriesViewHolder(
                     LayoutCategoriesItemBinding.inflate(layoutInflater, parent, false)
                 )
             }
+
             HomeListItem.ViewType.CAR_BANNER.ordinal -> {
                 CarBannerViewHolder(
                     LayoutCarBannerBinding.inflate(layoutInflater, parent, false)
                 )
             }
+
             HomeListItem.ViewType.HEALTH_BANNER.ordinal -> {
                 HealthBannerViewHolder(
                     LayoutHealthBannerBinding.inflate(layoutInflater, parent, false)
                 )
             }
+
             HomeListItem.ViewType.SHIMMER_BANNER.ordinal -> {
                 ShimmerBannerViewHolder(
                     ShimmerBannerBinding.inflate(layoutInflater, parent, false)
                 )
             }
+
+            HomeListItem.ViewType.ERROR_MAIN_BANNER.ordinal -> {
+                ErrorMainBannerViewHolder(
+                    ErrorBannerBinding.inflate(layoutInflater, parent, false)
+                )
+            }
+
+            HomeListItem.ViewType.ERROR_CAR_BANNER.ordinal -> {
+                ErrorCarBannerViewHolder(
+                    ErrorBannerBinding.inflate(layoutInflater, parent, false)
+                )
+            }
+
             else -> throw IllegalStateException()
         }
 
@@ -52,9 +71,10 @@ class HomeAdapter :
         return getItem(position).viewType.ordinal
     }
 
-//    fun setCallBack(callBack: CallBack) {
-//        this.callBack = callBack
-//    }
+    fun setCallBack(callBack: CallBack) {
+        this.callBack = callBack
+    }
+
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = getItem(position)
@@ -64,6 +84,8 @@ class HomeAdapter :
             is CarBannerViewHolder -> holder.bind(item as HomeListItem.CarBannerItem)
             is HealthBannerViewHolder -> holder.bind(item as HomeListItem.HeathBannerItem)
             is ShimmerBannerViewHolder -> holder.bind(item as HomeListItem.ShimmerBannerItem)
+            is ErrorMainBannerViewHolder -> holder.bind(item as HomeListItem.ErrorMainBannerItem)
+            is ErrorCarBannerViewHolder -> holder.bind(item as HomeListItem.ErrorCarBannerItem)
         }
     }
 
@@ -78,13 +100,6 @@ class HomeAdapter :
             binding.bannerViewpager.adapter = bannersAdapter
             binding.bannerViewpager.offscreenPageLimit = 1
 
-            // MyRecyclerViewAdapter is an standard RecyclerView.Adapter :)
-
-            // You need to retain one page on each side so that the next and previous items are visible
-
-            // Add a PageTransformer that translates the next and previous items horizontally
-            // towards the center of the screen, which makes them visible
-
             val nextItemVisiblePx =
                 binding.root.context.resources.getDimension(R.dimen.viewpager_next_item_visible)
             val currentItemHorizontalMarginPx =
@@ -92,15 +107,10 @@ class HomeAdapter :
             val pageTranslationX = nextItemVisiblePx + currentItemHorizontalMarginPx
             val pageTransformer = ViewPager2.PageTransformer { page: View, position: Float ->
                 page.translationX = -pageTranslationX * position
-                // Next line scales the item's height. You can remove it if you don't want this effect
                 page.scaleY = 1 - (0.25f * Math.abs(position))
-                // If you want a fading effect uncomment the next line:
-                // page.alpha = 0.25f + (1 - abs(position))
             }
             binding.bannerViewpager.setPageTransformer(pageTransformer)
 
-            // The ItemDecoration gives the current (centered) item horizontal margin so that
-            // it doesn't occupy the whole screen width. Without it the items overlap
             val itemDecoration = HorizontalMarginItemDecoration(
                 binding.root.context,
                 R.dimen.viewpager_current_item_horizontal_margin
@@ -135,12 +145,29 @@ class HomeAdapter :
     inner class ShimmerBannerViewHolder(private val binding: ShimmerBannerBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: HomeListItem.ShimmerBannerItem) {
-            binding.shimmer.startShimmerAnimation()
         }
     }
 
-//    interface CallBack {
-//        fun onItemClick(itemId: QuickActionEnum)
-//        fun onTransactionClick(item: InnerModel)
-//    }
+    inner class ErrorMainBannerViewHolder(private val binding: ErrorBannerBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: HomeListItem.ErrorMainBannerItem) {
+            binding.root.setOnClickListener {
+                callBack?.onItemClick(HomeListItem.ViewType.ERROR_MAIN_BANNER)
+            }
+        }
+    }
+
+    inner class ErrorCarBannerViewHolder(private val binding: ErrorBannerBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: HomeListItem.ErrorCarBannerItem) {
+            binding.root.setOnClickListener {
+                callBack?.onItemClick(HomeListItem.ViewType.ERROR_CAR_BANNER)
+            }
+        }
+    }
+
+
+    interface CallBack {
+        fun onItemClick(item: HomeListItem.ViewType)
+    }
 }

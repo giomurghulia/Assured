@@ -6,7 +6,9 @@ sealed class HomeListItem(val viewType: ViewType) {
         CATEGORIES,
         CAR_BANNER,
         HEALTH_BANNER,
-        SHIMMER_BANNER
+        SHIMMER_BANNER,
+        ERROR_MAIN_BANNER,
+        ERROR_CAR_BANNER
     }
 
     data class MainBannersItem(
@@ -28,5 +30,9 @@ sealed class HomeListItem(val viewType: ViewType) {
     ) : HomeListItem(ViewType.HEALTH_BANNER)
 
     object ShimmerBannerItem : HomeListItem(ViewType.SHIMMER_BANNER)
+
+    object ErrorCarBannerItem : HomeListItem(ViewType.ERROR_CAR_BANNER)
+
+    object ErrorMainBannerItem : HomeListItem(ViewType.ERROR_MAIN_BANNER)
 
 }

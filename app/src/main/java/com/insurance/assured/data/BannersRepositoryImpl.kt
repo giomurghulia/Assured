@@ -17,18 +17,9 @@ class BannersRepositoryImpl @Inject constructor(
 
 
     override fun getBanners(refresh: Boolean): Flow<List<BannersModel>> = flow {
-
-        try {
-            Log.d("REPO", "before req")
-            val response = apiService.getBanner()
-            Log.d("REPO", "request")
-            if (response.isSuccessful) {
-                Log.d("REPO", "EMIT")
-                emit(response.body()!!)
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
+        val response = apiService.getBanner()
+        if (response.isSuccessful) {
+            emit(response.body()!!)
         }
-
     }
 }
