@@ -7,13 +7,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.insurance.assured.databinding.PlanItemBinding
+import com.insurance.assured.databinding.ShimmerPlanItemBinding
 import com.insurance.assured.ui.presentationmodels.planlist.PlanListItemModel
 
 class PlansAdapter : ListAdapter<PlanListItemModel, PlansAdapter.PlansViewHolder>(PlansDiffUtil()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = PlansViewHolder(
-        PlanItemBinding.inflate(
+        ShimmerPlanItemBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
     )
@@ -22,12 +23,12 @@ class PlansAdapter : ListAdapter<PlanListItemModel, PlansAdapter.PlansViewHolder
         holder.onBind(position)
     }
 
-    inner class PlansViewHolder(private val binding: PlanItemBinding) : ViewHolder(binding.root) {
+    inner class PlansViewHolder(private val binding: ShimmerPlanItemBinding) : ViewHolder(binding.root) {
         fun onBind(position: Int) {
             val model = getItem(position)
             with(binding) {
-                buyBtn.text = getItem(position).monthlyPayment.toString()
-                categoryIcon.setBackgroundResource(model.category.icon)
+//                buyBtn.text = getItem(position).monthlyPayment.toString()
+//                categoryIcon.setBackgroundResource(model.category.icon)
             }
         }
     }

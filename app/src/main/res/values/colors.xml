@@ -16,5 +16,13 @@
     <color name="light_gray">#BBBBBB</color>
     <color name="shimmer_color_Light_Grey">#dddddd</color>
     <color name="shimmer_color_Dark_Grey">#9E9999</color>
+    <color name="shape_circle_background_color">#17191F</color>
+    <color name="shape_rectangle_background_color">#1E2332</color>
+    <color name="light_gradient_first_color">#9796F0</color>
+    <color name="light_gradient_second_color">#9796F0</color>
+    <color name="dark_text_color">#333333</color>
+
+
+
 
 </resources>

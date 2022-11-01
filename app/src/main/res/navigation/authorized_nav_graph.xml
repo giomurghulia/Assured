@@ -38,5 +38,9 @@
         app:destination="@id/planListFragment"
         app:popUpTo="@id/authorized_nav_graph"
         app:popUpToInclusive="true" />
+    <fragment
+        android:id="@+id/questionFragment"
+        android:name="com.insurance.assured.ui.question.QuestionFragment"
+        android:label="QuestionFragment" />
 
 </navigation>

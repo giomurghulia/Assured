@@ -12,7 +12,7 @@
         android:id="@+id/homeFragment"
         android:title="" />
     <item
-        android:id="@+id/QuestionFragment"
+        android:id="@id/questionFragment"
         android:icon="@drawable/ic_question_icon"
         android:title="" />
     <item
