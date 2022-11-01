@@ -6,5 +6,15 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="blue">#0F49A3</color>
+    <color name="gmail_background">#EB4132</color>
+    <color name="gray">#9F9F9F</color>
+    <color name="blue_background">#17191F</color>
+    <color name="selected_option">#0F49A3</color>
+    <color name="not_selected_option">#4F4F4F</color>
+    <color name="light_gray">#BBBBBB</color>
+    <color name="shimmer_color_Light_Grey">#dddddd</color>
+    <color name="shimmer_color_Dark_Grey">#9E9999</color>
+
 </resources>

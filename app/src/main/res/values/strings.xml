@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Assured</string>
+    <string name="welcome">Welcome</string>
+    <string name="not_now"><u>Not now</u></string>
+    <string name="sign_in_under_line"><u>Sign in</u></string>
+    <string name="sign_in">Sign in</string>
+    <string name="f_continue_with_facebook">f Continue with Facebook</string>
+    <string name="g_continue_with_facebook">G Continue with Facebook</string>
+    <string name="sign_up_with_email">Sign up with email</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="welcome_back">Welcome back</string>
+    <string name="find_plans">Find Plans</string>
+    <string name="select_a_category">Select a category</string>
 </resources>

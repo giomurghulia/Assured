@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_authentication_background"
+    android:paddingHorizontal="30dp">
+
+    <ImageView
+        android:id="@+id/logo_image"
+        android:layout_width="34dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="62dp"
+        android:src="@drawable/ic_assured_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="124dp"
+        android:gravity="center"
+        android:paddingHorizontal="50dp"
+        android:text="Your smartphone number"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo_image" />
+
+    <EditText
+        android:id="@+id/mob_code_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:drawablePadding="20dp"
+        android:layout_marginStart="44dp"
+        android:hint="+995"
+        android:layout_marginTop="27dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:boxBackgroundColor="@android:color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_text" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="1px"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        android:background="@color/gray"
+        app:layout_constraintStart_toEndOf="@id/mob_code_input"
+        app:layout_constraintTop_toTopOf="@id/mob_code_input"
+        app:layout_constraintEnd_toStartOf="@id/mob_input"
+        app:layout_constraintBottom_toBottomOf="@id/mob_code_input"/>
+
+    <EditText
+        android:id="@+id/mob_input"
+        android:layout_width="0dp"
+        android:layout_marginTop="27dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:drawablePadding="20dp"
+        android:textColor="@color/white"
+        android:hint="599"
+        android:layout_marginEnd="44dp"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/line"
+        app:layout_constraintTop_toBottomOf="@id/title_text" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
