@@ -2,50 +2,88 @@ package com.insurance.assured.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.insurance.assured.Result
+import com.insurance.assured.*
+import com.insurance.assured.common.extensions.toResult
 import com.insurance.assured.domain.models.banner.BannersModel
 import com.insurance.assured.domain.usecases.bannerusecases.GetBannersUseCase
-import com.insurance.assured.toResult
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+fun onInit() = flow { emit(Unit) }
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getBannersUseCase: GetBannersUseCase
+    private val getBannersUseCase: GetBannersUseCase,
+    private val homePageListBuilder: HomePageListBuilder,
 ) : ViewModel() {
 
-    private val _banners = MutableStateFlow<List<Banners>>(emptyList())
-    val banners get() = _banners.asStateFlow()
+    private val _payload = MutableStateFlow(HomePagePayload())
 
-    fun getBanners() {
+    private val _state = MutableStateFlow<List<HomeListItem>>(listOf())
+    val state get() = _state.asStateFlow()
+
+    private val refreshData = MutableSharedFlow<Boolean>(
+        extraBufferCapacity = 1,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST
+    )
+
+    private val refreshMainBanners = MutableSharedFlow<Boolean>(
+        extraBufferCapacity = 1,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST
+    )
+
+    private val refreshCardBanners = MutableSharedFlow<Boolean>(
+        extraBufferCapacity = 1,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST
+    )
+
+    init {
         viewModelScope.launch {
-            getBannersUseCase.invoke()
-                .toResult()
-                .collect {
-                    when (it) {
-                        is Result.Success -> {
-                            _banners.emit(buildList(it.data))
-                        }
-                        is Result.Loading -> {
-                        }
-                        is Result.Error -> {
-                        }
-                    }
+            merge(
+                onInit().map { false },
+                refreshData,
+                refreshMainBanners
+            ).flatMapLatest { refresh ->
+                getBannersUseCase.invoke(refresh).toResult()
+            }.collectLatest {
+                _payload.value = _payload.value.copy(mainBanners = it)
+            }
 
-                }
         }
+
+        viewModelScope.launch {
+            merge(
+                onInit().map { false },
+                refreshData,
+                refreshCardBanners
+            ).flatMapLatest { refresh ->
+                getBannersUseCase.invoke(refresh).toResult()
+            }.collectLatest {
+                _payload.value = _payload.value.copy(carBanners = it)
+            }
+        }
+
+        viewModelScope.launch {
+            _payload.collectLatest { data ->
+                _state.value = homePageListBuilder.buildList(data)
+            }
+        }
+
     }
 
-    private fun buildList(products: List<BannersModel>): List<Banners> {
-        val items = mutableListOf<Banners>()
-
-        items.addAll(products.map { Banners(it.banner, it.title) })
-        return items
+    fun refresh() {
+        refreshData.tryEmit(true)
     }
 
+    fun refreshMainBanners() {
+        refreshMainBanners.tryEmit(true)
+    }
+
+    fun refreshCardBanners() {
+        refreshCardBanners.tryEmit(true)
+    }
 
 }

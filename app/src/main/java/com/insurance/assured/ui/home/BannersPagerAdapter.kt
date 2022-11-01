@@ -10,8 +10,7 @@ import com.insurance.assured.databinding.LayoutBannerItemBinding
 
 class BannersPagerAdapter : RecyclerView.Adapter<BannersPagerAdapter.ViewHolder>() {
 
-    private var banners = emptyList<Banners>()
-
+    private var banners = emptyList<Banner>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -33,7 +32,7 @@ class BannersPagerAdapter : RecyclerView.Adapter<BannersPagerAdapter.ViewHolder>
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun submitList(cards: List<Banners>) {
+    fun submitList(cards: List<Banner>) {
         this.banners = cards
         notifyDataSetChanged()
     }
@@ -41,7 +40,7 @@ class BannersPagerAdapter : RecyclerView.Adapter<BannersPagerAdapter.ViewHolder>
     inner class ViewHolder(
         private val binding: LayoutBannerItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Banners) {
+        fun bind(item: Banner) {
             binding.bannerImage.load(item.banner)
             binding.titleText.text = item.title
 

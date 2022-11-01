@@ -2,7 +2,9 @@ package com.insurance.assured.ui.plansList
 
 
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.*
 import com.insurance.assured.common.enums.InsuranceCategory
@@ -68,8 +70,10 @@ class PlanListFragment : BaseFragment<FragmentPlanListBinding>(FragmentPlanListB
 
     override fun observe() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.filterSelectState.collect {
-                (binding.categories.adapter as FiltersAdapter).submitList(it)
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.filterSelectState.collect {
+                    (binding.categories.adapter as FiltersAdapter).submitList(it)
+                }
             }
         }
     }

@@ -11,11 +11,14 @@ import com.insurance.assured.common.types.Inflater
 
 
 abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflater<VB>) : Fragment() {
+
     private var _binding: VB? = null
     val binding get() = _binding!!
 
     abstract fun init()
     open fun observe() {}
+    open fun listener() {}
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,8 +30,9 @@ abstract class BaseFragment<VB : ViewBinding>(private val inflate: Inflater<VB>)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        init()
         observe()
+        init()
+        listener()
     }
 
     override fun onDestroyView() {

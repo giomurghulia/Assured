@@ -1,4 +1,4 @@
-package com.insurance.assured.di.datastore
+package com.insurance.assured.data.local
 
 import androidx.datastore.DataStore
 
@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 class AppConfigDataStore @Inject constructor(private val dataStore: DataStore<Preferences>) {
-     suspend fun setPassCode(value: String?) {
+    suspend fun setPassCode(value: String?) {
         if (value.isNullOrEmpty()) {
             val dataStoreKey = preferencesKey<String>(passCodeKey)
             dataStore.edit { passCode ->
@@ -24,13 +24,14 @@ class AppConfigDataStore @Inject constructor(private val dataStore: DataStore<Pr
             }
         }
     }
-     suspend fun getPassCode(): String? {
+
+    suspend fun getPassCode(): String? {
         val dataStoreKey = preferencesKey<String>(passCodeKey)
         val preferences = dataStore.data.first()
         return preferences[dataStoreKey]
     }
-    
-    companion object{
+
+    companion object {
         const val passCodeKey = "pass_code"
     }
 }

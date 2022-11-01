@@ -21,10 +21,22 @@
         android:id="@+id/profileFragment"
         android:name="com.insurance.assured.ui.profile.ProfileFragment"
         android:label="ProfileFragment" />
+    <action
+        android:id="@+id/action_global_profileFragment"
+        app:destination="@id/profileFragment"
+        app:popUpTo="@id/authorized_nav_graph"
+        app:popUpToInclusive="true" />
+
     <fragment
         android:id="@+id/planListFragment"
         android:name="com.insurance.assured.ui.plansList.PlanListFragment"
         android:label="fragment_plan_list"
         tools:layout="@layout/fragment_plan_list" />
+
+    <action
+        android:id="@+id/action_global_planListFragment"
+        app:destination="@id/planListFragment"
+        app:popUpTo="@id/authorized_nav_graph"
+        app:popUpToInclusive="true" />
 
 </navigation>

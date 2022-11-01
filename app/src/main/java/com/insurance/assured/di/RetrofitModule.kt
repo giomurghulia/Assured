@@ -1,4 +1,4 @@
-package com.insurance.assured.networking.di
+package com.insurance.assured.di
 
 import com.insurance.assured.networking.RetrofitClient
 import dagger.Module

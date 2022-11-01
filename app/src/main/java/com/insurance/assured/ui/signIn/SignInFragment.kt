@@ -60,7 +60,9 @@ class SignInFragment : Fragment() {
                             Toast.makeText(context, "signInWithEmail:success", Toast.LENGTH_SHORT)
                                 .show()
 
-                            findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToAuthorizedFragment())
+                            requireActivity().onBackPressed()
+
+//                            findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToAuthorizedFragment())
 
                         }
                         is Resource.Error -> {

@@ -14,4 +14,7 @@
     <color name="selected_option">#0F49A3</color>
     <color name="not_selected_option">#4F4F4F</color>
     <color name="light_gray">#BBBBBB</color>
+    <color name="shimmer_color_Light_Grey">#dddddd</color>
+    <color name="shimmer_color_Dark_Grey">#9E9999</color>
+
 </resources>

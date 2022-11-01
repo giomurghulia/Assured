@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
  * Adapted from https://stackoverflow.com/a/27664023/4034572
  * @param horizontalMarginInDp the margin resource, in dp.
  */
+
 class HorizontalMarginItemDecoration(context: Context, @DimenRes horizontalMarginInDp: Int) :
     RecyclerView.ItemDecoration() {
 
