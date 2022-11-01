@@ -1,6 +1,6 @@
 package com.insurance.assured.di
 
-import com.insurance.assured.networking.ApiService
+import com.insurance.assured.data.remote.api.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

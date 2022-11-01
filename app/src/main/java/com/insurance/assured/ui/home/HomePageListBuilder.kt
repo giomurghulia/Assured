@@ -1,16 +1,16 @@
 package com.insurance.assured.ui.home
 
 import com.insurance.assured.domain.models.banner.BannersModel
-import com.insurance.assured.Result
-import com.insurance.assured.onError
-import com.insurance.assured.onLoading
-import com.insurance.assured.onSuccess
-import kotlinx.coroutines.delay
+import com.insurance.assured.common.resource.Result
+import com.insurance.assured.common.resource.onError
+import com.insurance.assured.common.resource.onLoading
+import com.insurance.assured.common.resource.onSuccess
+
 import javax.inject.Inject
 
 class HomePageListBuilder @Inject constructor() {
 
-    fun buildList(payload: HomeViewModel.HomePagePayload): List<HomeListItem> {
+    fun buildList(payload: HomePagePayload): List<HomeListItem> {
         return buildMainBannersList(payload.mainBanners)
             .plus(listOf(HomeListItem.CategoriesItem))
             .plus(buildCardBannersList(payload.carBanners))

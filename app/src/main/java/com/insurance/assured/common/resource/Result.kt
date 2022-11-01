@@ -1,4 +1,4 @@
-package com.insurance.assured
+package com.insurance.assured.common.resource
 
 sealed class Result<out T> {
     object Loading : Result<Nothing>()

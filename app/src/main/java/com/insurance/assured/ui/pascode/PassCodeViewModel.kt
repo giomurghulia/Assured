@@ -2,7 +2,7 @@ package com.insurance.assured.ui.pascode
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.insurance.assured.di.datastore.AppConfigDataStore
+import com.insurance.assured.data.local.AppConfigDataStore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow

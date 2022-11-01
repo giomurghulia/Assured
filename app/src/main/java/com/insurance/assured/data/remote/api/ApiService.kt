@@ -1,4 +1,4 @@
-package com.insurance.assured.networking
+package com.insurance.assured.data.remote.api
 
 import com.insurance.assured.domain.models.banner.BannersModel
 import retrofit2.Response

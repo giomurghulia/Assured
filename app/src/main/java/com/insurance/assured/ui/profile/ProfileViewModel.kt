@@ -2,7 +2,7 @@ package com.insurance.assured.ui.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.insurance.assured.di.datastore.AppConfigDataStore
+import com.insurance.assured.data.local.AppConfigDataStore
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
