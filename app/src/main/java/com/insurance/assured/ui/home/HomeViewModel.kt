@@ -3,11 +3,11 @@ package com.insurance.assured.ui.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.insurance.assured.*
+import com.insurance.assured.common.extensions.toResult
 import com.insurance.assured.domain.models.banner.BannersModel
 import com.insurance.assured.domain.usecases.bannerusecases.GetBannersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -86,8 +86,4 @@ class HomeViewModel @Inject constructor(
         refreshCardBanners.tryEmit(true)
     }
 
-    data class HomePagePayload(
-        val mainBanners: Result<List<BannersModel>> = Result.Loading,
-        val carBanners: Result<List<BannersModel>> = Result.Loading,
-    )
 }
