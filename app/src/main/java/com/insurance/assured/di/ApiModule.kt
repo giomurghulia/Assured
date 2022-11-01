@@ -1,7 +1,8 @@
 package com.insurance.assured.di
 
-import com.insurance.assured.networking.ApiService
+import com.insurance.assured.data.remote.api.ApiService
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
