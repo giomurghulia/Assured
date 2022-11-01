@@ -1,4 +1,4 @@
-package com.insurance.assured.ui.plansList
+package com.insurance.assured.ui.planslist
 
 
 import androidx.fragment.app.viewModels
@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView.*
 import com.insurance.assured.common.enums.InsuranceCategory
 import com.insurance.assured.databinding.FragmentPlanListBinding
 import com.insurance.assured.ui.basefragments.BaseFragment
-import com.insurance.assured.ui.planslist.PlanListViewModel
 import com.insurance.assured.ui.planslist.adapters.FiltersAdapter
 import com.insurance.assured.ui.planslist.adapters.PlansAdapter
 import com.insurance.assured.ui.presentationmodels.planlist.PlanListItemModel
@@ -46,7 +45,7 @@ class PlanListFragment : BaseFragment<FragmentPlanListBinding>(FragmentPlanListB
                     ),
                     PlanListItemModel(1, "", 1.0f, "", "", 1.0f, listOf(), InsuranceCategory.HOUSE),
                     PlanListItemModel(6, "", 1.0f, "", "", 1.0f, listOf(), InsuranceCategory.PET),
-                    PlanListItemModel(5, "", 1.0f, "", "", 1.0f, listOf(), InsuranceCategory.LIFE),
+                    PlanListItemModel(5, "", 1.0f, "", "", 1.0f, listOf(), InsuranceCategory.HEALTH),
                     PlanListItemModel(4, "", 1.0f, "", "", 1.0f, listOf(), InsuranceCategory.HOUSE),
                     PlanListItemModel(
                         3,
@@ -58,7 +57,7 @@ class PlanListFragment : BaseFragment<FragmentPlanListBinding>(FragmentPlanListB
                         listOf(),
                         InsuranceCategory.VEHICLE
                     ),
-                    PlanListItemModel(2, "", 1.0f, "", "", 100.0f, listOf(), InsuranceCategory.LIFE)
+                    PlanListItemModel(2, "", 1.0f, "", "", 100.0f, listOf(), InsuranceCategory.HEALTH)
                 )
             )
             toast(currentList.size.toString())

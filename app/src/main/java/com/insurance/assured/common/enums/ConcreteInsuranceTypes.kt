@@ -43,3 +43,17 @@ enum class VehicleInsuranceType {
         }
     }
 }
+
+enum class PetInsuranceType {
+    DOG {
+        override fun toString() = "dog"
+    },
+    DEFAULT;
+
+    companion object {
+        fun String.toPetInsuranceType() = when (this) {
+            "dog" -> DOG
+            else -> DEFAULT
+        }
+    }
+}

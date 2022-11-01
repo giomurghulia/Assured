@@ -15,7 +15,7 @@ class InitialFilterList @Inject constructor() {
         ),
         FilterItemModel(
             2,
-            InsuranceCategory.LIFE
+            InsuranceCategory.HEALTH
         ),
         FilterItemModel(
             3,

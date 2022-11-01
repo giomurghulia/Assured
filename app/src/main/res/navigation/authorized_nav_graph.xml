@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/planListFragment"
-        android:name="com.insurance.assured.ui.plansList.PlanListFragment"
+        android:name="com.insurance.assured.ui.planslist.PlanListFragment"
         android:label="fragment_plan_list"
         tools:layout="@layout/fragment_plan_list" />
 
@@ -42,5 +42,9 @@
         android:id="@+id/questionFragment"
         android:name="com.insurance.assured.ui.question.QuestionFragment"
         android:label="QuestionFragment" />
+    <fragment
+        android:id="@+id/userPolicyFragment"
+        android:name="com.insurance.assured.ui.policy.PolicyFragment"
+        android:label="UserPolicyFragment" />
 
 </navigation>
