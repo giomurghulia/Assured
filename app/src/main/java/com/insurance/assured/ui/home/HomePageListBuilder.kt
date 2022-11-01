@@ -60,4 +60,5 @@ class HomePageListBuilder @Inject constructor() {
 
         return list
     }
+
 }
