@@ -12,10 +12,10 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object RetrofitModule {
 
-    @Provides
+   /* @Provides
     @Singleton
     fun provideRetrofit(retrofitClient: RetrofitClient): Retrofit {
         return retrofitClient.retrofit
-    }
+    }*/
 
 }
