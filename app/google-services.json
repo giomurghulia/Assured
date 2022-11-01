@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "97182691832",
+    "project_id": "assured-e2af2",
+    "storage_bucket": "assured-e2af2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97182691832:android:001e825028148ee86f660d",
+        "android_client_info": {
+          "package_name": "com.insurance.assured"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "97182691832-i18njuf458kp8gop5lslphnirlsmuanb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2-t7Zq7RNxDFcRqDTfWL5-yNOU7C-iHw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "97182691832-i18njuf458kp8gop5lslphnirlsmuanb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
