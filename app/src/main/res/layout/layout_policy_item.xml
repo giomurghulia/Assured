@@ -6,15 +6,13 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="30dp"
     android:layout_marginTop="15dp"
-    android:background="@drawable/shape_button_background"
+    android:background="@drawable/shape_rectangle"
     android:padding="10dp">
 
     <ImageView
         android:id="@+id/icon_image"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@drawable/shape_circle"
-        android:scaleType="centerInside"
         android:src="@drawable/ic_baseline_pets_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,9 +21,9 @@
         android:id="@+id/title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:textColor="@color/gray"
-        android:textSize="22sp"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@id/icon_image"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="test" />
@@ -34,9 +32,9 @@
         android:id="@+id/type_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:textColor="@color/white"
-        android:textSize="16sp"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/gray"
+        android:textSize="13sp"
         app:layout_constraintStart_toEndOf="@id/icon_image"
         app:layout_constraintTop_toBottomOf="@id/title_text"
         tools:text="dog" />

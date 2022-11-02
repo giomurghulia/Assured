@@ -4,8 +4,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.insurance.assured.common.extensions.load
-import com.insurance.assured.common.resource.Result
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.insurance.assured.databinding.FragmentPolicyBinding
 import com.insurance.assured.ui.basefragments.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,33 +15,26 @@ class PolicyFragment : BaseFragment<FragmentPolicyBinding>(
     FragmentPolicyBinding::inflate
 ) {
     private val viewModel: PolicyViewModel by viewModels()
+    private val adapter = PolicyAdapter()
 
     override fun init() {
-        viewModel.getPolicy()
+        binding.mainRecycler.layoutManager = LinearLayoutManager(requireContext())
+        binding.mainRecycler.adapter = adapter
     }
 
     override fun observe() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect {
-                    when (it) {
-                        is Result.Success -> {
-                            binding.bannerImage.load(it.data.firstOrNull()?.health_insurance!![0].banner)
-                            binding.titleText.text = it.data.firstOrNull()?.pet_insurance!![0].title
-                        }
-                        is Result.Loading -> {
-                        }
-                        is Result.Error -> {
-                        }
-
-                    }
-
+                    adapter.submitList(it)
                 }
             }
         }
     }
 
     override fun listener() {
-        super.listener()
-    }
+        binding.root.setOnRefreshListener {
+            viewModel.refresh()
+            binding.root.isRefreshing = false
+        }    }
 }

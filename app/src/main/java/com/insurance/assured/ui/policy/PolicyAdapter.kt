@@ -1,0 +1,135 @@
+package com.insurance.assured.ui.policy
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.insurance.assured.common.MainDiffUtil
+import com.insurance.assured.common.extensions.load
+import com.insurance.assured.databinding.*
+
+
+class PolicyAdapter :
+    ListAdapter<PolicyListItem, RecyclerView.ViewHolder>(MainDiffUtil()) {
+
+    private var callBack: CallBack? = null
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+
+        return when (viewType) {
+            PolicyListItem.ViewType.NO_POLICY.ordinal -> {
+                NoPolicyViewHolder(
+                    LayoutNoPolicyBinding.inflate(layoutInflater, parent, false)
+                )
+            }
+            PolicyListItem.ViewType.USER_DATA.ordinal -> {
+                AccountDataViewHolder(
+                    LayoutUserDataBinding.inflate(layoutInflater, parent, false)
+                )
+            }
+            PolicyListItem.ViewType.POLICY.ordinal -> {
+                PolicyViewHolder(
+                    LayoutPolicyItemBinding.inflate(layoutInflater, parent, false)
+                )
+            }
+            PolicyListItem.ViewType.TITLE.ordinal -> {
+                TitleViewHolder(
+                    LayoutTitlteItemBinding.inflate(layoutInflater, parent, false)
+                )
+            }
+            PolicyListItem.ViewType.ERROR_USER_DATA.ordinal -> {
+                ErrorUserDataViewHolder(
+                    ShimmerUserDataBinding.inflate(layoutInflater, parent, false)
+                )
+            }
+            PolicyListItem.ViewType.ERROR_POLICY.ordinal -> {
+                ErrorPolicyViewHolder(
+                    ShimmerPolicyItemBinding.inflate(layoutInflater, parent, false)
+                )
+            }
+            else -> throw IllegalStateException()
+        }
+
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return getItem(position).viewType.ordinal
+    }
+
+    fun setCallBack(callBack: CallBack) {
+        this.callBack = callBack
+    }
+
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val item = getItem(position)
+        when (holder) {
+            is NoPolicyViewHolder -> holder.bind(item as PolicyListItem.NoPolicyItem)
+            is AccountDataViewHolder -> holder.bind(item as PolicyListItem.UserDataItem)
+            is PolicyViewHolder -> holder.bind(item as PolicyListItem.PolicyItem)
+            is TitleViewHolder -> holder.bind(item as PolicyListItem.TitleItem)
+            is ErrorUserDataViewHolder -> holder.bind(item as PolicyListItem.ErrorUserDataItem)
+            is ErrorPolicyViewHolder -> holder.bind(item as PolicyListItem.ErrorPolicyItem)
+        }
+    }
+
+
+    inner class NoPolicyViewHolder(private val binding: LayoutNoPolicyBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: PolicyListItem.NoPolicyItem) {}
+    }
+
+    inner class AccountDataViewHolder(private val binding: LayoutUserDataBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: PolicyListItem.UserDataItem) {
+
+            binding.fullAmountText.text = item.fullAmount
+
+            binding.policyNumText.text = item.all
+            binding.houseNumText.text = item.house
+            binding.healthNumText.text = item.health
+            binding.carNumText.text = item.car
+            binding.petNumText.text = item.pet
+        }
+    }
+
+    inner class PolicyViewHolder(private val binding: LayoutPolicyItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: PolicyListItem.PolicyItem) {
+            binding.titleText.text = item.title
+            binding.typeText.text = item.type
+
+            binding.iconImage.load(item.banner)
+        }
+    }
+
+    inner class TitleViewHolder(private val binding: LayoutTitlteItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: PolicyListItem.TitleItem) {
+            binding.titleText.text = item.title
+            binding.subTitleText.text = item.subTitle
+        }
+    }
+
+    inner class ErrorUserDataViewHolder(private val binding: ShimmerUserDataBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: PolicyListItem.ErrorUserDataItem) {}
+    }
+
+    inner class ErrorPolicyViewHolder(private val binding: ShimmerPolicyItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: PolicyListItem.ErrorPolicyItem) {}
+    }
+
+
+    interface CallBack {
+        fun onItemClick(item: PolicyListItem.ViewType)
+    }
+}

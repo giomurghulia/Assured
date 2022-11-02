@@ -6,10 +6,11 @@ sealed class PolicyListItem(val viewType: ViewType) {
         NO_POLICY,
         PET_BANNER,
         CASHLESS_BANNER,
-        FULL_AMOUNT,
-        POLICY_NUMBER,
+        USER_DATA,
         POLICY,
-        TITLE
+        TITLE,
+        ERROR_USER_DATA,
+        ERROR_POLICY
     }
 
     object NoPolicyItem : PolicyListItem(ViewType.NO_POLICY)
@@ -20,17 +21,15 @@ sealed class PolicyListItem(val viewType: ViewType) {
 
     object CashlessBannerItem : PolicyListItem(ViewType.CASHLESS_BANNER)
 
-    data class FullAmountItem(
-        val fullAmount: String
-    ) : PolicyListItem(ViewType.FULL_AMOUNT)
-
-    data class PolicyNumberItem(
+    data class UserDataItem(
+        val id: String,
+        val fullAmount: String,
         val all: String,
         val house: String,
         val health: String,
         val car: String,
         val pet: String
-    ) : PolicyListItem(ViewType.POLICY_NUMBER)
+    ) : PolicyListItem(ViewType.USER_DATA)
 
     data class PolicyItem(
         val id: String,
@@ -43,4 +42,9 @@ sealed class PolicyListItem(val viewType: ViewType) {
         val title: String,
         val subTitle: String
     ) : PolicyListItem(ViewType.TITLE)
+
+    object ErrorUserDataItem : PolicyListItem(ViewType.ERROR_USER_DATA)
+
+    object ErrorPolicyItem : PolicyListItem(ViewType.ERROR_POLICY)
+
 }

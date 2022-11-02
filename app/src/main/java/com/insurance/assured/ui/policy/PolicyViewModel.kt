@@ -2,48 +2,90 @@ package com.insurance.assured.ui.policy
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.insurance.assured.common.extensions.toResult
-import com.insurance.assured.common.resource.Result
-import com.insurance.assured.domain.models.user_policy.UserPolicyModel
-import com.insurance.assured.domain.usecases.policyusecases.GetPolicyUseCase
+import com.insurance.assured.domain.usecases.policyusecases.GetUserDataUseCase
+import com.insurance.assured.domain.usecases.policyusecases.GetUserPoliciesUseCase
+import com.insurance.assured.ui.home.HomeListItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+fun onInit() = flow { emit(Unit) }
 
 @HiltViewModel
 class PolicyViewModel @Inject constructor(
-    private val getPolicyUseCase: GetPolicyUseCase,
+    private val getUserDataUseCase: GetUserDataUseCase,
+    private val getUserPoliciesUseCase: GetUserPoliciesUseCase,
+    private val policyPageListBuilder: PolicyPageListBuilder
 ) : ViewModel() {
+    private val currentUser get() = Firebase.auth.currentUser
 
-    private val _state = MutableSharedFlow<Result<List<UserPolicyModel>>>(
-        replay = 1,
+    private val _payload = MutableStateFlow(PolicyPagePayload())
+
+    private val _state = MutableStateFlow<List<PolicyListItem>>(listOf())
+    val state get() = _state.asStateFlow()
+
+    private val refreshData = MutableSharedFlow<Boolean>(
         extraBufferCapacity = 1,
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
-    val state get() = _state.asSharedFlow()
+
+    private val refreshUserData = MutableSharedFlow<Boolean>(
+        extraBufferCapacity = 1,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST
+    )
+
+    private val refreshUserPolicies = MutableSharedFlow<Boolean>(
+        extraBufferCapacity = 1,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST
+    )
 
     init {
-
-    }
-
-    fun getPolicy() {
         viewModelScope.launch {
-            getPolicyUseCase.invoke().toResult().collect {
-                when (it) {
-                    is Result.Success -> {
-                        _state.tryEmit(Result.Success(it.data))
-                    }
-                    is Result.Loading -> {
-                        _state.tryEmit(Result.Loading)
-                    }
-                    is Result.Error -> {
-                        _state.tryEmit(Result.Error(it.throwable))
-                    }
-                }
+            merge(
+                onInit().map { false },
+                refreshData,
+                refreshUserData
+            ).flatMapLatest { refresh ->
+                getUserDataUseCase.invoke(refresh).toResult()
+            }.collectLatest {
+                _payload.value = _payload.value.copy(userData = it)
+            }
+
+        }
+
+        viewModelScope.launch {
+            merge(
+                onInit().map { false },
+                refreshData,
+                refreshUserPolicies
+            ).flatMapLatest { refresh ->
+                getUserPoliciesUseCase.invoke(refresh).toResult()
+            }.collectLatest {
+                _payload.value = _payload.value.copy(userPolicies = it)
             }
         }
+
+        viewModelScope.launch {
+            _payload.collectLatest { data ->
+                _state.value = policyPageListBuilder.buildList(data)
+            }
+        }
+    }
+
+    fun refresh() {
+        refreshData.tryEmit(true)
+    }
+
+    fun refreshUserData() {
+        refreshUserData.tryEmit(true)
+    }
+
+    fun refreshUserPolicies() {
+        refreshUserPolicies.tryEmit(true)
     }
 }

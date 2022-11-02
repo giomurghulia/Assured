@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.facebook.shimmer.ShimmerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="30dp"
+    android:layout_marginTop="15dp"
+    app:shimmer_auto_start="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/full_amount_layout"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/shape_button_background"
+            android:backgroundTint="@color/shimmer_color_Light_Grey"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <View
+                android:id="@+id/full_amount.text"
+                android:layout_width="100dp"
+                android:layout_height="10dp"
+                android:background="@color/shimmer_color_Dark_Grey" />
+
+            <View
+                android:layout_width="200dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/shimmer_color_Dark_Grey"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/num_background"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/shape_shimmer_num_background"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/full_amount_layout" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@id/num_background"
+            app:layout_constraintEnd_toEndOf="@id/num_background"
+            app:layout_constraintStart_toStartOf="@id/num_background"
+            app:layout_constraintTop_toTopOf="@id/num_background">
+
+            <View
+                android:id="@+id/policy_num_text"
+                android:layout_width="30dp"
+                android:layout_height="10dp"
+                android:background="@color/shimmer_color_Dark_Grey"
+                android:gravity="center" />
+
+            <View
+                android:id="@+id/policies_title_text"
+                android:layout_width="70dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/shimmer_color_Dark_Grey"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/house_num_text"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/shape_rectangle"
+            android:backgroundTint="@color/shimmer_color_Light_Grey"
+            app:layout_constraintBottom_toTopOf="@id/health_num_text"
+            app:layout_constraintStart_toEndOf="@id/num_background"
+            app:layout_constraintTop_toTopOf="@id/num_background" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@id/house_num_text"
+            app:layout_constraintStart_toEndOf="@id/house_num_text"
+            app:layout_constraintTop_toTopOf="@id/house_num_text">
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="7dp"
+                android:layout_marginStart="7dp"
+                android:background="@color/shimmer_color_Dark_Grey" />
+
+            <View
+                android:layout_width="70dp"
+                android:layout_height="7dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/shimmer_color_Dark_Grey" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/health_num_text"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/shape_rectangle"
+            android:backgroundTint="@color/shimmer_color_Light_Grey"
+            app:layout_constraintBottom_toTopOf="@id/car_num_text"
+            app:layout_constraintStart_toEndOf="@id/num_background"
+            app:layout_constraintTop_toBottomOf="@id/house_num_text" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@id/health_num_text"
+            app:layout_constraintStart_toEndOf="@id/health_num_text"
+            app:layout_constraintTop_toTopOf="@id/health_num_text">
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="7dp"
+                android:layout_marginStart="7dp"
+                android:background="@color/shimmer_color_Dark_Grey" />
+
+            <View
+                android:layout_width="70dp"
+                android:layout_height="7dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/shimmer_color_Dark_Grey" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/car_num_text"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/shape_rectangle"
+            android:backgroundTint="@color/shimmer_color_Light_Grey"
+            app:layout_constraintBottom_toTopOf="@id/pet_num_text"
+            app:layout_constraintStart_toEndOf="@id/num_background"
+            app:layout_constraintTop_toBottomOf="@id/health_num_text" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@id/car_num_text"
+            app:layout_constraintStart_toEndOf="@id/car_num_text"
+            app:layout_constraintTop_toTopOf="@id/car_num_text">
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="7dp"
+                android:layout_marginStart="7dp"
+                android:background="@color/shimmer_color_Dark_Grey" />
+
+            <View
+                android:layout_width="70dp"
+                android:layout_height="7dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/shimmer_color_Dark_Grey" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/pet_num_text"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/shape_rectangle"
+            android:backgroundTint="@color/shimmer_color_Light_Grey"
+            app:layout_constraintBottom_toBottomOf="@id/num_background"
+            app:layout_constraintStart_toEndOf="@id/num_background"
+            app:layout_constraintTop_toBottomOf="@id/car_num_text" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@id/pet_num_text"
+            app:layout_constraintStart_toEndOf="@id/pet_num_text"
+            app:layout_constraintTop_toTopOf="@id/pet_num_text">
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="7dp"
+                android:layout_marginStart="7dp"
+                android:background="@color/shimmer_color_Dark_Grey" />
+
+            <View
+                android:layout_width="70dp"
+                android:layout_height="7dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/shimmer_color_Dark_Grey" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.facebook.shimmer.ShimmerFrameLayout>

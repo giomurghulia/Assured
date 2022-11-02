@@ -17,7 +17,7 @@ fun onInit() = flow { emit(Unit) }
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getBannersUseCase: GetBannersUseCase,
-    private val homePageListBuilder: HomePageListBuilder,
+    private val homePageListBuilder: HomePageListBuilder
 ) : ViewModel() {
 
     private val _payload = MutableStateFlow(HomePagePayload())

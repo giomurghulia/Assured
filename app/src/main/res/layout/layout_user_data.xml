@@ -7,58 +7,93 @@
     android:layout_marginHorizontal="30dp"
     android:layout_marginTop="30dp">
 
+    <LinearLayout
+        android:id="@+id/full_amount_layout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/shape_button_background"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/full_amount.text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            tools:text="38.20302" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Total annual premium insurance"
+            android:textColor="@color/gray"
+            android:textSize="16sp" />
+    </LinearLayout>
+
     <View
         android:id="@+id/num_background"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:background="@drawable/shape_circle"
-        android:backgroundTint="@color/blue"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/shape_policies_num_background"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/full_amount_layout" />
 
-    <TextView
-        android:id="@+id/policy_num_text"
+    <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:gravity="center"
-        android:textColor="@color/white"
-        android:textSize="30sp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="@id/num_background"
         app:layout_constraintEnd_toEndOf="@id/num_background"
         app:layout_constraintStart_toStartOf="@id/num_background"
-        app:layout_constraintTop_toTopOf="@id/num_background"
-        tools:text="10" />
+        app:layout_constraintTop_toTopOf="@id/num_background">
 
-    <TextView
-        android:id="@+id/policies_title_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="policies"
-        android:textColor="@color/gray"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@id/num_background"
-        app:layout_constraintStart_toStartOf="@id/num_background"
-        app:layout_constraintTop_toBottomOf="@id/policy_num_text" />
+        <TextView
+            android:id="@+id/policy_num_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            tools:text="10" />
+
+        <TextView
+            android:id="@+id/policies_title_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.6"
+            android:gravity="center"
+            android:text="policies"
+            android:textColor="@color/gray"
+            android:textSize="20sp" />
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/house_num_text"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="30dp"
-        android:backgroundTint="#39A0B7"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="15dp"
+        android:alpha="0.5"
         android:background="@drawable/shape_rectangle"
+        android:backgroundTint="#39A0B7"
         android:gravity="center"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@id/health_num_text"
         app:layout_constraintStart_toEndOf="@id/num_background"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/num_background"
         tools:text="10" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="7dp"
         android:text="House Insurance"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@id/house_num_text"
@@ -67,11 +102,12 @@
 
     <TextView
         android:id="@+id/health_num_text"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="30dp"
-        android:backgroundTint="#3E3BC6"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="15dp"
+        android:alpha="0.5"
         android:background="@drawable/shape_rectangle"
+        android:backgroundTint="#3E3BC6"
         android:gravity="center"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@id/car_num_text"
@@ -80,9 +116,9 @@
         tools:text="10" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="7dp"
         android:text="Health Insurance"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@id/health_num_text"
@@ -91,11 +127,12 @@
 
     <TextView
         android:id="@+id/car_num_text"
-        android:layout_width="45dp"
-        android:backgroundTint="#0064FE"
-        android:layout_height="45dp"
-        android:layout_marginStart="30dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="15dp"
+        android:alpha="0.5"
         android:background="@drawable/shape_rectangle"
+        android:backgroundTint="#0064FE"
         android:gravity="center"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@id/pet_num_text"
@@ -104,9 +141,9 @@
         tools:text="10" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="7dp"
         android:text="Car Insurance"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@id/car_num_text"
@@ -115,22 +152,23 @@
 
     <TextView
         android:id="@+id/pet_num_text"
-        android:layout_width="45dp"
-        android:backgroundTint="#B4C988"
-        android:layout_height="45dp"
-        android:layout_marginStart="30dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="15dp"
+        android:alpha="0.5"
         android:background="@drawable/shape_rectangle"
+        android:backgroundTint="#B4C988"
         android:gravity="center"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/num_background"
         app:layout_constraintStart_toEndOf="@id/num_background"
         app:layout_constraintTop_toBottomOf="@id/car_num_text"
         tools:text="10" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="7dp"
         android:text="Pet Insurance"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@id/pet_num_text"
