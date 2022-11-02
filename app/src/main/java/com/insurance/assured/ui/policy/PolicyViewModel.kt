@@ -7,7 +7,6 @@ import com.google.firebase.ktx.Firebase
 import com.insurance.assured.common.extensions.toResult
 import com.insurance.assured.domain.usecases.policyusecases.GetUserDataUseCase
 import com.insurance.assured.domain.usecases.policyusecases.GetUserPoliciesUseCase
-import com.insurance.assured.ui.home.HomeListItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.*
