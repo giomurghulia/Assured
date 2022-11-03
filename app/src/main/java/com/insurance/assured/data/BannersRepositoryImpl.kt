@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
-
 @Singleton
 class BannersRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
@@ -20,8 +19,6 @@ class BannersRepositoryImpl @Inject constructor(
         if (!refresh && banners.isNotEmpty()) {
             emit(banners)
         } else {
-            banners = emptyList()
-
             val response = apiService.getBanner()
             if (response.isSuccessful) {
                 banners = response.body()!!

@@ -9,8 +9,10 @@ sealed class PolicyListItem(val viewType: ViewType) {
         USER_DATA,
         POLICY,
         TITLE,
+        SHIMMER_USER_DATA,
+        SHIMMER_POLICY,
         ERROR_USER_DATA,
-        ERROR_POLICY
+        ERROR_POLICY,
     }
 
     object NoPolicyItem : PolicyListItem(ViewType.NO_POLICY)
@@ -42,6 +44,10 @@ sealed class PolicyListItem(val viewType: ViewType) {
         val title: String,
         val subTitle: String
     ) : PolicyListItem(ViewType.TITLE)
+
+    object ShimmerUserDataItem : PolicyListItem(ViewType.SHIMMER_USER_DATA)
+
+    object ShimmerPolicyItem : PolicyListItem(ViewType.SHIMMER_POLICY)
 
     object ErrorUserDataItem : PolicyListItem(ViewType.ERROR_USER_DATA)
 

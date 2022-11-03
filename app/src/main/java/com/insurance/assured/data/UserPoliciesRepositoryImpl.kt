@@ -1,7 +1,6 @@
-package com.insurance.assured.data.remote
+package com.insurance.assured.data
 
 import com.insurance.assured.data.remote.api.ApiService
-import com.insurance.assured.domain.models.banner.BannersModel
 import com.insurance.assured.domain.models.user_policy.UserPolicyModel
 import com.insurance.assured.domain.repositorys.UserPoliciesRepository
 import kotlinx.coroutines.flow.Flow
@@ -16,13 +15,10 @@ class UserPoliciesRepositoryImpl @Inject constructor(
 
     private var policies: List<UserPolicyModel> = emptyList()
 
-
     override fun getUserPolicies(refresh: Boolean): Flow<List<UserPolicyModel>> = flow {
         if (!refresh && policies.isNotEmpty()) {
             emit(policies)
         } else {
-            policies = emptyList()
-
             val response = apiService.getUserPolicies()
             if (response.isSuccessful) {
                 policies = response.body()!!

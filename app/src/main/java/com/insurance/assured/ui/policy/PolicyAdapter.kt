@@ -23,6 +23,11 @@ class PolicyAdapter :
                     LayoutNoPolicyBinding.inflate(layoutInflater, parent, false)
                 )
             }
+            PolicyListItem.ViewType.CASHLESS_BANNER.ordinal -> {
+                CashlessViewHolder(
+                    LayoutCashlessBannerBinding.inflate(layoutInflater, parent, false)
+                )
+            }
             PolicyListItem.ViewType.USER_DATA.ordinal -> {
                 AccountDataViewHolder(
                     LayoutUserDataBinding.inflate(layoutInflater, parent, false)
@@ -38,14 +43,24 @@ class PolicyAdapter :
                     LayoutTitlteItemBinding.inflate(layoutInflater, parent, false)
                 )
             }
+            PolicyListItem.ViewType.SHIMMER_USER_DATA.ordinal -> {
+                ShimmerUserDataViewHolder(
+                    ShimmerUserDataBinding.inflate(layoutInflater, parent, false)
+                )
+            }
+            PolicyListItem.ViewType.SHIMMER_POLICY.ordinal -> {
+                ShimmerPolicyViewHolder(
+                    ShimmerPolicyItemBinding.inflate(layoutInflater, parent, false)
+                )
+            }
             PolicyListItem.ViewType.ERROR_USER_DATA.ordinal -> {
                 ErrorUserDataViewHolder(
-                    ShimmerUserDataBinding.inflate(layoutInflater, parent, false)
+                    ErrorBannerBinding.inflate(layoutInflater, parent, false)
                 )
             }
             PolicyListItem.ViewType.ERROR_POLICY.ordinal -> {
                 ErrorPolicyViewHolder(
-                    ShimmerPolicyItemBinding.inflate(layoutInflater, parent, false)
+                    ErrorBannerBinding.inflate(layoutInflater, parent, false)
                 )
             }
             else -> throw IllegalStateException()
@@ -66,9 +81,12 @@ class PolicyAdapter :
         val item = getItem(position)
         when (holder) {
             is NoPolicyViewHolder -> holder.bind(item as PolicyListItem.NoPolicyItem)
+            is CashlessViewHolder -> holder.bind(item as PolicyListItem.CashlessBannerItem)
             is AccountDataViewHolder -> holder.bind(item as PolicyListItem.UserDataItem)
             is PolicyViewHolder -> holder.bind(item as PolicyListItem.PolicyItem)
             is TitleViewHolder -> holder.bind(item as PolicyListItem.TitleItem)
+            is ShimmerUserDataViewHolder -> holder.bind(item as PolicyListItem.ShimmerUserDataItem)
+            is ShimmerPolicyViewHolder -> holder.bind(item as PolicyListItem.ShimmerPolicyItem)
             is ErrorUserDataViewHolder -> holder.bind(item as PolicyListItem.ErrorUserDataItem)
             is ErrorPolicyViewHolder -> holder.bind(item as PolicyListItem.ErrorPolicyItem)
         }
@@ -79,6 +97,12 @@ class PolicyAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: PolicyListItem.NoPolicyItem) {}
+    }
+
+    inner class CashlessViewHolder(private val binding: LayoutCashlessBannerBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: PolicyListItem.CashlessBannerItem) {}
     }
 
     inner class AccountDataViewHolder(private val binding: LayoutUserDataBinding) :
@@ -116,13 +140,25 @@ class PolicyAdapter :
         }
     }
 
-    inner class ErrorUserDataViewHolder(private val binding: ShimmerUserDataBinding) :
+    inner class ShimmerUserDataViewHolder(private val binding: ShimmerUserDataBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: PolicyListItem.ShimmerUserDataItem) {}
+    }
+
+    inner class ShimmerPolicyViewHolder(private val binding: ShimmerPolicyItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: PolicyListItem.ShimmerPolicyItem) {}
+    }
+
+    inner class ErrorUserDataViewHolder(private val binding: ErrorBannerBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: PolicyListItem.ErrorUserDataItem) {}
     }
 
-    inner class ErrorPolicyViewHolder(private val binding: ShimmerPolicyItemBinding) :
+    inner class ErrorPolicyViewHolder(private val binding: ErrorBannerBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: PolicyListItem.ErrorPolicyItem) {}

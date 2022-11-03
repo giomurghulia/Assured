@@ -20,7 +20,6 @@ class UserDataRepositoryImpl @Inject constructor(
         if (!refresh && userData != null) {
             emit(userData!!)
         } else {
-            userData = null
             val response = apiService.getUserData()
             if (response.isSuccessful) {
                 userData = response.body()!!
