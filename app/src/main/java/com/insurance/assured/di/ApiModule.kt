@@ -1,6 +1,7 @@
 package com.insurance.assured.di
 
 import com.insurance.assured.data.remote.api.ApiService
+import com.insurance.assured.data.remote.api.InsurancePacketsApi
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -9,6 +10,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.create
 import javax.inject.Singleton
 
 @Module
@@ -32,5 +34,11 @@ object ApiModule {
             )
         )
         .build()
+
+    @Provides
+    @Singleton
+    fun getPlansApi(retrofit: Retrofit): InsurancePacketsApi =
+        retrofit.create(InsurancePacketsApi::class.java)
+
 
 }

@@ -3,11 +3,12 @@ package com.insurance.assured.ui.planslist
 import com.insurance.assured.common.enums.InsuranceCategory
 import com.insurance.assured.ui.enums.SelectState
 import com.insurance.assured.ui.presentationmodels.planlist.FilterItemModel
+import com.insurance.assured.ui.presentationmodels.planlist.PlanListItemModel
 import javax.inject.Inject
 
 
-class InitialFilterList @Inject constructor() {
-    operator fun invoke() = listOf(
+class InitialListsProvider @Inject constructor() {
+    fun getFilterList() = listOf(
         FilterItemModel(
             1,
             InsuranceCategory.HOT_OFFERS,
@@ -29,4 +30,21 @@ class InitialFilterList @Inject constructor() {
             5, InsuranceCategory.VEHICLE,
         )
     )
+
+    fun getShimmerList() = listOf(
+        PlanListItemModel(),
+        PlanListItemModel(),
+        PlanListItemModel(),
+        PlanListItemModel(),
+        PlanListItemModel()
+    )
+
+    fun getHouseItems() = listOf("All", "House", "Country House", "Apartment")
+
+    fun getVehicleItems() = listOf("All", "Car", "Moto", "Truck")
+
+    fun getPetItems() = listOf("All", "Cat", "Mouse", "Dog")
+
+    fun getLifeItems() = listOf("All", "1", "2", "3", "4", "5+")
+
 }

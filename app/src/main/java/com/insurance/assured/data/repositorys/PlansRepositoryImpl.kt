@@ -14,11 +14,20 @@ class PlansRepositoryImpl @Inject constructor(
     private val dao: Dao,
     private val api: InsurancePacketsApi
 ) : PlansRepository {
-    override suspend fun getLifeInsurances(): Resource<List<PlansModel<LifeSpec>>> =
-        try {
+    private var lifeIsTaken: Boolean = false
+    private var houseIsTaken: Boolean = false
+    private var petIsTaken: Boolean = false
+    private var vehicleIsTaken: Boolean = false
+
+    override suspend fun getLifeInsurances(forceReset: Boolean): Resource<List<PlansModel<LifeSpec>>> =
+        if (lifeIsTaken && !forceReset) {
+            Resource.Success(dao.getLifeInsurances().map { it.toDomain() })
+        } else try {
             val response = api.getLifePlans()
             if (response.isSuccessful) {
+                dao.deleteAllLifeInsurances()
                 dao.insertAll(*(response.body()!!.map { it.toLifeEntity() }.toTypedArray()))
+                lifeIsTaken = true
                 Resource.Success(dao.getLifeInsurances().map { it.toDomain() })
             } else {
                 Resource.Error(
@@ -32,11 +41,15 @@ class PlansRepositoryImpl @Inject constructor(
         }
 
 
-    override suspend fun getHouseInsurances(): Resource<List<PlansModel<HouseSpecs>>> =
-        try {
-            val response = api.getHotPlans()
+    override suspend fun getHouseInsurances(forceReset: Boolean): Resource<List<PlansModel<HouseSpecs>>> =
+        if (houseIsTaken && !forceReset) {
+            Resource.Success(dao.getHouseInsurances().map { it.toDomain() })
+        } else try {
+            val response = api.getHousePlans()
             if (response.isSuccessful) {
+                dao.deleteAllHouseInsurances()
                 dao.insertAll(*(response.body()!!.map { it.toHouseEntity() }.toTypedArray()))
+                houseIsTaken = true
                 Resource.Success(dao.getHouseInsurances().map { it.toDomain() })
             } else {
                 Resource.Error(
@@ -76,11 +89,15 @@ class PlansRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getPetInsurances(): Resource<List<PlansModel<PetSpec>>> =
-        try {
+    override suspend fun getPetInsurances(forceReset: Boolean): Resource<List<PlansModel<PetSpec>>> =
+        if (petIsTaken && !forceReset) {
+            Resource.Success(dao.getPetInsurances().map { it.toDomain() })
+        } else try {
             val response = api.getPetPlans()
             if (response.isSuccessful) {
+                dao.deleteAllPetInsurances()
                 dao.insertAll(*(response.body()!!.map { it.toPetEntity() }.toTypedArray()))
+                petIsTaken = true
                 Resource.Success(dao.getPetInsurances().map { it.toDomain() })
             } else {
                 Resource.Error(
@@ -93,11 +110,15 @@ class PlansRepositoryImpl @Inject constructor(
                 dao.getPetInsurances().map { it.toDomain() })
         }
 
-    override suspend fun getVehicleInsurances(): Resource<List<PlansModel<VehicleSpecs>>> =
-        try {
+    override suspend fun getVehicleInsurances(forceReset: Boolean): Resource<List<PlansModel<VehicleSpecs>>> =
+        if (vehicleIsTaken && !forceReset) {
+            Resource.Success(dao.getVehicleInsurances().map { it.toDomain() })
+        } else try {
             val response = api.getVehiclePlans()
             if (response.isSuccessful) {
-                dao.insertAll(*(response.body()!!.map { it.toLifeEntity() }.toTypedArray()))
+                dao.deleteAllVehicleInsurances()
+                dao.insertAll(*(response.body()!!.map { it.toVehicleEntity() }.toTypedArray()))
+                vehicleIsTaken = true
                 Resource.Success(dao.getVehicleInsurances().map { it.toDomain() })
             } else {
                 Resource.Error(

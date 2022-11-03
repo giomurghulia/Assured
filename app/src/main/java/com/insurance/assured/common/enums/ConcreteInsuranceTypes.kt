@@ -38,7 +38,7 @@ enum class VehicleInsuranceType {
         fun String.toVehicleInsuranceType() = when (this) {
             "moto" -> MOTO
             "car" -> CAR
-            "TRUCK" -> TRUCK
+            "truck" -> TRUCK
             else -> DEFAULT
         }
     }

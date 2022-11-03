@@ -6,7 +6,8 @@ import com.squareup.moshi.Json
 data class PlansDto(
     val id: Int,
     val title: String,
-    @Json(name = "max_amount") val maxAmount: Float,
+    @Json(name = "max_amount")
+    val maxAmount: Float = 0f,
     @Json(name = "month_price")
     val monthPrice: Float,
     @Json(name = "inner_type")

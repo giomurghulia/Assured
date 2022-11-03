@@ -9,5 +9,7 @@ data class PlansModel<T : Spec>(
     val monthlyPayment: Float,
     val feats: List<String>,
     val category: InsuranceCategory,
+    val durationMonth: Int,
+    val icon: String,
     val typeSpecs: T
 )

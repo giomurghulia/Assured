@@ -4,5 +4,5 @@ import com.insurance.assured.domain.repositorys.PlansRepository
 import javax.inject.Inject
 
 class GetVehiclePlansUseCase @Inject constructor(private val repo: PlansRepository) {
-    suspend operator fun invoke() = repo.getVehicleInsurances()
+    suspend operator fun invoke(forceReset: Boolean = false) = repo.getVehicleInsurances(forceReset)
 }

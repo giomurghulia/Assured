@@ -1,7 +1,9 @@
 package com.insurance.assured.domain.usecases.plansusecases.getdata
 
-data class GetDataUseCase(
-    val hotPlansUseCase: GetHotPlansUseCase,
+import javax.inject.Inject
+
+data class GetDataUseCase @Inject constructor(
+    val getHotPlans: GetHotPlansUseCase,
     val getHousePlans: GetHousePlansUseCase,
     val getPetPlans: GetPetPlansUseCase,
     val getLifePlans: GetLifePlansUseCase,

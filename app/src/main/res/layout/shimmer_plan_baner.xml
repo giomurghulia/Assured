@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.facebook.shimmer.ShimmerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="130dp"
+    android:layout_marginVertical="15dp"
+    app:shimmer_auto_start="true"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:backgroundTint="#22293E"
+        app:cardCornerRadius="10dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:backgroundTint="#1E2332"
+            app:cardCornerRadius="10dp">
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="10dp">
+
+                <View
+                    android:layout_width="53dp"
+                    android:layout_height="56dp"
+                    android:background="@color/shimmer_color_Light_Grey" />
+
+            </androidx.cardview.widget.CardView>
+
+
+            <View
+                android:id="@+id/title"
+                android:layout_width="100dp"
+                android:layout_height="10dp"
+                android:layout_marginStart="79dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/shimmer_color_Dark_Grey" />
+
+            <View
+                android:id="@+id/max_money"
+                android:layout_width="150dp"
+                android:layout_height="8dp"
+                android:layout_marginStart="79dp"
+                android:layout_marginTop="31dp"
+                android:background="@color/shimmer_color_Dark_Grey" />
+
+            <View
+                android:id="@+id/slogan"
+                android:layout_width="150dp"
+                android:layout_height="8dp"
+                android:layout_marginStart="79dp"
+                android:layout_marginTop="45dp"
+                android:background="@color/shimmer_color_Dark_Grey" />
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_gravity="bottom|center"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/shimmer_color_Dark_Grey" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/category_icon"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:background="@drawable/ic_baseline_house_24"
+        android:clickable="false" />
+</com.facebook.shimmer.ShimmerFrameLayout>

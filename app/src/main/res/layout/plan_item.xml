@@ -32,6 +32,7 @@
                 app:cardCornerRadius="10dp">
 
                 <ImageView
+                    android:id="@+id/icon"
                     android:layout_width="53dp"
                     android:layout_height="56dp"
                     android:scaleType="centerCrop"
@@ -95,14 +96,23 @@
                 android:background="@drawable/ic_baseline_download_24"
                 android:gravity="center"
                 android:padding="10dp"
-                android:text="₹ 575/month*"
+             />
+            <TextView
+                android:id="@+id/info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="57dp"
+                android:layout_marginEnd="45dp"
+                android:gravity="center"
+                android:text="@string/info"
                 android:textColor="@color/white"
                 android:textSize="12sp" />
-
         </androidx.cardview.widget.CardView>
 
 
         <TextView
+            android:id="@+id/features"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_gravity="bottom|center"

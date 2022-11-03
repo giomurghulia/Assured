@@ -1,6 +1,6 @@
 package com.insurance.assured.data.mappers
 
-import com.insurance.assured.common.enums.HouseInsuranceType
+
 import com.insurance.assured.common.enums.HouseInsuranceType.Companion.toHouseInsuranceType
 import com.insurance.assured.common.enums.InsuranceCategory
 import com.insurance.assured.common.enums.InsuranceCategory.Companion.insuranceCategory
@@ -19,6 +19,8 @@ fun PlansDto.toDomainLife(): PlansModel<LifeSpec> = PlansModel(
     monthPrice,
     features,
     InsuranceCategory.LIFE,
+    periodMonth,
+    icon,
     LifeSpec(personCount ?: 0)
 )
 
@@ -29,6 +31,8 @@ fun PlansDto.toDomainHouse(): PlansModel<HouseSpecs> = PlansModel(
     monthPrice,
     features,
     InsuranceCategory.HOUSE,
+    periodMonth,
+    icon,
     HouseSpecs(innerType!!.toHouseInsuranceType())
 )
 
@@ -39,6 +43,8 @@ fun PlansDto.toDomainPet(): PlansModel<PetSpec> = PlansModel(
     monthPrice,
     features,
     InsuranceCategory.PET,
+    periodMonth,
+    icon,
     PetSpec(innerType!!)
 )
 
@@ -49,6 +55,8 @@ fun PlansDto.toDomainVehicle(): PlansModel<VehicleSpecs> = PlansModel(
     monthPrice,
     features,
     InsuranceCategory.VEHICLE,
+    periodMonth,
+    icon,
     VehicleSpecs(innerType!!.toVehicleInsuranceType())
 )
 
@@ -117,6 +125,8 @@ fun LifePlansEntity.toDomain() = PlansModel(
     monthPrice,
     features,
     InsuranceCategory.LIFE,
+    periodMonth,
+    icon,
     LifeSpec(personCount)
 )
 
@@ -127,6 +137,8 @@ fun HousePlansEntity.toDomain(): PlansModel<HouseSpecs> = PlansModel(
     monthPrice,
     features,
     InsuranceCategory.HOUSE,
+    periodMonth,
+    icon,
     HouseSpecs(innerType.toHouseInsuranceType())
 )
 
@@ -137,6 +149,8 @@ fun PetPlansEntity.toDomain(): PlansModel<PetSpec> = PlansModel(
     monthPrice,
     features,
     InsuranceCategory.PET,
+    periodMonth,
+    icon,
     PetSpec(innerType)
 )
 
@@ -147,5 +161,7 @@ fun VehiclePlansEntity.toDomain(): PlansModel<VehicleSpecs> = PlansModel(
     monthPrice,
     features,
     InsuranceCategory.VEHICLE,
+    periodMonth,
+    icon,
     VehicleSpecs(innerType.toVehicleInsuranceType())
 )
