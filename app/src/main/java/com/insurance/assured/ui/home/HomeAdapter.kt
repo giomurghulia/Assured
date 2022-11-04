@@ -100,6 +100,7 @@ class HomeAdapter :
         }
 
         fun bind(item: HomeListItem.MainBannersItem) {
+
             if (binding.bannerViewpager.itemDecorationCount > 0)
                 binding.bannerViewpager.removeItemDecorationAt(0)
 

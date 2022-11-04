@@ -13,32 +13,26 @@ class PolicyPageListBuilder @Inject constructor() {
     fun buildList(payload: PolicyPagePayload): List<PolicyListItem> {
         return buildUserData(payload.userData)
             .plus(buildPoliciesList(payload.userPolicies))
+            .plus(PolicyListItem.SpaceItem)
     }
 
     private fun buildUserData(userData: Result<UserDataModel>): List<PolicyListItem> {
         val list = mutableListOf<PolicyListItem>()
 
             userData.onSuccess { data ->
-                if (data.id != null) {
-                    list.add(
-                        PolicyListItem.UserDataItem(
-                            data.id,
-                            data.full_amount.toString(),
-                            data.all_policy_number.toString(),
-                            data.health_insurance.toString(),
-                            data.house_insurance.toString(),
-                            data.vehicle_insurance.toString(),
-                            data.pet_insurance.toString()
-                        )
+                list.add(
+                    PolicyListItem.UserDataItem(
+                        data.id,
+                        data.full_amount.toString(),
+                        data.all_policy_number.toString(),
+                        data.health_insurance.toString(),
+                        data.house_insurance.toString(),
+                        data.vehicle_insurance.toString(),
+                        data.pet_insurance.toString()
                     )
-                }else{
-                    list.add(PolicyListItem.NoPolicyItem)
-                    list.add(PolicyListItem.CashlessBannerItem)
-                }
+                )
 
             }
-
-
 
         userData.onError {
             list.add(PolicyListItem.ErrorUserDataItem)

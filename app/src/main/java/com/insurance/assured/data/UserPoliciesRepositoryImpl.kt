@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import java.util.concurrent.atomic.AtomicReference
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -15,16 +16,16 @@ class UserPoliciesRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
 ) : UserPoliciesRepository {
 
-    private var policies: List<UserPolicyModel> = emptyList()
+    private var policies: AtomicReference<List<UserPolicyModel>> = AtomicReference(emptyList())
 
     override fun getUserPolicies(refresh: Boolean): Flow<List<UserPolicyModel>> = flow {
-        if (!refresh && policies.isNotEmpty()) {
-            emit(policies)
+        if (!refresh && policies.get().isNotEmpty()) {
+            emit(policies.get())
         } else {
             val response = apiService.getUserPolicies()
             if (response.isSuccessful) {
-                policies = response.body()!!
-                emit(policies)
+                policies.set(response.body()!!)
+                emit(policies.get())
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.insurance.assured.ui.policy
 
+import android.os.Handler
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -17,6 +18,11 @@ class PolicyFragment : BaseFragment<FragmentPolicyBinding>(
     private val viewModel: PolicyViewModel by viewModels()
     private val adapter = PolicyAdapter()
 
+    private val handler = Handler()
+    private val recyclerScrollRunnable = Runnable {
+        binding.mainRecycler.smoothScrollToPosition(0)
+    }
+
     override fun init() {
         binding.mainRecycler.layoutManager = LinearLayoutManager(requireContext())
         binding.mainRecycler.adapter = adapter
@@ -27,6 +33,7 @@ class PolicyFragment : BaseFragment<FragmentPolicyBinding>(
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect {
                     adapter.submitList(it)
+                    scrollToTop()
                 }
             }
         }
@@ -36,5 +43,16 @@ class PolicyFragment : BaseFragment<FragmentPolicyBinding>(
         binding.root.setOnRefreshListener {
             viewModel.refresh()
             binding.root.isRefreshing = false
-        }    }
+        }
+    }
+
+    private fun scrollToTop() {
+        handler.postDelayed(recyclerScrollRunnable, 300)
+    }
+
+    override fun onDestroyView() {
+        handler.removeCallbacks(recyclerScrollRunnable)
+        super.onDestroyView()
+    }
+
 }

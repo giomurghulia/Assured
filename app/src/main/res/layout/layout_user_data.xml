@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="30dp"
-    android:layout_marginTop="30dp">
+    android:layout_marginTop="15dp">
 
     <LinearLayout
         android:id="@+id/full_amount_layout"
@@ -33,6 +33,7 @@
             android:text="Total annual premium insurance"
             android:textColor="@color/gray"
             android:textSize="16sp" />
+
     </LinearLayout>
 
     <View
@@ -89,7 +90,6 @@
         app:layout_constraintStart_toEndOf="@id/num_background"
         app:layout_constraintTop_toTopOf="@id/num_background"
         tools:text="10" />
-
     <TextView
         android:layout_width="70dp"
         android:layout_height="wrap_content"
@@ -114,7 +114,6 @@
         app:layout_constraintStart_toEndOf="@id/num_background"
         app:layout_constraintTop_toBottomOf="@id/house_num_text"
         tools:text="10" />
-
     <TextView
         android:layout_width="70dp"
         android:layout_height="wrap_content"
@@ -139,7 +138,6 @@
         app:layout_constraintStart_toEndOf="@id/num_background"
         app:layout_constraintTop_toBottomOf="@id/health_num_text"
         tools:text="10" />
-
     <TextView
         android:layout_width="70dp"
         android:layout_height="wrap_content"
@@ -164,7 +162,6 @@
         app:layout_constraintStart_toEndOf="@id/num_background"
         app:layout_constraintTop_toBottomOf="@id/car_num_text"
         tools:text="10" />
-
     <TextView
         android:layout_width="70dp"
         android:layout_height="wrap_content"

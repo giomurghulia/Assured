@@ -13,6 +13,7 @@ sealed class PolicyListItem(val viewType: ViewType) {
         SHIMMER_POLICY,
         ERROR_USER_DATA,
         ERROR_POLICY,
+        SPACE
     }
 
     object NoPolicyItem : PolicyListItem(ViewType.NO_POLICY)
@@ -52,5 +53,8 @@ sealed class PolicyListItem(val viewType: ViewType) {
     object ErrorUserDataItem : PolicyListItem(ViewType.ERROR_USER_DATA)
 
     object ErrorPolicyItem : PolicyListItem(ViewType.ERROR_POLICY)
+
+    object SpaceItem : PolicyListItem(ViewType.SPACE)
+
 
 }

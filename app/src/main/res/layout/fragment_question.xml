@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:text="Have any question?"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
         <TextView
@@ -40,7 +40,7 @@
                 android:layout_height="55dp"
                 android:background="@drawable/shape_circle"
                 android:padding="15dp"
-                android:src="@drawable/ic_chat2_icon" />
+                android:src="@drawable/ic_chat_icon" />
 
             <TextView
                 android:layout_width="match_parent"

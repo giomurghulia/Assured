@@ -63,6 +63,11 @@ class PolicyAdapter :
                     ErrorBannerBinding.inflate(layoutInflater, parent, false)
                 )
             }
+            PolicyListItem.ViewType.SPACE.ordinal -> {
+                SpaceViewHolder(
+                    LayoutSpaceItemBinding.inflate(layoutInflater, parent, false)
+                )
+            }
             else -> throw IllegalStateException()
         }
 
@@ -89,6 +94,7 @@ class PolicyAdapter :
             is ShimmerPolicyViewHolder -> holder.bind(item as PolicyListItem.ShimmerPolicyItem)
             is ErrorUserDataViewHolder -> holder.bind(item as PolicyListItem.ErrorUserDataItem)
             is ErrorPolicyViewHolder -> holder.bind(item as PolicyListItem.ErrorPolicyItem)
+            is SpaceViewHolder -> holder.bind(item as PolicyListItem.SpaceItem)
         }
     }
 
@@ -162,6 +168,12 @@ class PolicyAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: PolicyListItem.ErrorPolicyItem) {}
+    }
+
+    inner class SpaceViewHolder(private val binding: LayoutSpaceItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: PolicyListItem.SpaceItem) {}
     }
 
 

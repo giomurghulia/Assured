@@ -48,6 +48,7 @@ class BannersPagerAdapter : RecyclerView.Adapter<BannersPagerAdapter.ViewHolder>
     ) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("CheckResult")
         fun bind(item: Banner) {
+
             Glide.with(binding.root.context)
                 .load(item.banner)
                 .transform(CenterInside(), RoundedCorners(25))
