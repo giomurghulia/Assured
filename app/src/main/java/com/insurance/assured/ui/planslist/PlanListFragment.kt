@@ -1,10 +1,8 @@
-package com.insurance.assured.ui.plansList
+package com.insurance.assured.ui.planslist
 
 
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -14,18 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.*
 import com.insurance.assured.R
 import com.insurance.assured.common.enums.InsuranceCategory
-import com.insurance.assured.databinding.FilterLayoutBinding
 import com.insurance.assured.databinding.FragmentPlanListBinding
 import com.insurance.assured.ui.basefragments.BaseFragment
-import com.insurance.assured.ui.planslist.FilterViewBinder
-import com.insurance.assured.ui.planslist.PlanListViewModel
 import com.insurance.assured.ui.planslist.adapters.FiltersAdapter
 import com.insurance.assured.ui.planslist.adapters.PlansAdapter
-import com.insurance.assured.ui.presentationmodels.planlist.PlanListItemModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import okhttp3.internal.notifyAll
 import java.text.SimpleDateFormat
 
 @AndroidEntryPoint

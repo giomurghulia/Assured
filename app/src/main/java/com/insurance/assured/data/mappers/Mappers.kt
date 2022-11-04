@@ -18,7 +18,7 @@ fun PlansDto.toDomainLife(): PlansModel<LifeSpec> = PlansModel(
     maxAmount,
     monthPrice,
     features,
-    InsuranceCategory.LIFE,
+    InsuranceCategory.HEALTH,
     periodMonth,
     icon,
     LifeSpec(personCount ?: 0)
@@ -124,7 +124,7 @@ fun LifePlansEntity.toDomain() = PlansModel(
     maxAmount,
     monthPrice,
     features,
-    InsuranceCategory.LIFE,
+    InsuranceCategory.HEALTH,
     periodMonth,
     icon,
     LifeSpec(personCount)

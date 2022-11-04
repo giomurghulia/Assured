@@ -61,7 +61,7 @@ class PlanListViewModel @Inject constructor(
             when(categorySelected){
                 InsuranceCategory.VEHICLE -> _filterViewState.value = listsProvider.getVehicleItems()
                 InsuranceCategory.PET -> _filterViewState.value = listsProvider.getPetItems()
-                InsuranceCategory.LIFE -> _filterViewState.value = listsProvider.getLifeItems()
+                InsuranceCategory.HEALTH -> _filterViewState.value = listsProvider.getLifeItems()
                 InsuranceCategory.HOUSE -> _filterViewState.value = listsProvider.getHouseItems()
                 else -> {}
             }
@@ -89,7 +89,7 @@ class PlanListViewModel @Inject constructor(
                         }, category
                     )
                 }
-                InsuranceCategory.LIFE -> {
+                InsuranceCategory.HEALTH -> {
                     getDataGlobal(
                         { useCase.getLifePlans(forceReset) },
                         {
@@ -222,7 +222,7 @@ class PlanListViewModel @Inject constructor(
                             load = false
                         )
                     }
-                    InsuranceCategory.LIFE -> {
+                    InsuranceCategory.HEALTH -> {
                         var personCountFrom: Int = 0
                         var personCountTo: Int = Int.MAX_VALUE
 

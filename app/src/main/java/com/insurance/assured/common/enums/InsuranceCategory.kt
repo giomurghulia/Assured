@@ -10,7 +10,7 @@ enum class InsuranceCategory {
 
         override fun toString() = "Hot Offers"
     },
-    LIFE {
+    HEALTH {
         override val icon: Int
             get() = R.drawable.life
 
@@ -46,7 +46,7 @@ enum class InsuranceCategory {
         fun String.insuranceCategory() = when (this) {
             "vehicle" -> VEHICLE
             "pet" -> PET
-            "life" -> LIFE
+            "life" -> HEALTH
             "house" -> HOUSE
             else -> DEFAULT
         }

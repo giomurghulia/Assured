@@ -72,7 +72,7 @@ class PlansRepositoryImpl @Inject constructor(
                         InsuranceCategory.HOUSE -> dao.insertAll(it.toHouseEntity())
                         InsuranceCategory.PET -> dao.insertAll(it.toPetEntity())
                         InsuranceCategory.VEHICLE -> dao.insertAll(it.toVehicleEntity())
-                        InsuranceCategory.LIFE -> dao.insertAll(it.toLifeEntity())
+                        InsuranceCategory.HEALTH -> dao.insertAll(it.toLifeEntity())
                         else -> {}
                     }
                 }
