@@ -4,7 +4,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.insurance.assured.R
 import com.insurance.assured.databinding.FragmentHomeBinding
 import com.insurance.assured.ui.basefragments.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,7 +29,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
             override fun onItemClick(item: HomeListItem.ViewType) {
                 when (item) {
                     HomeListItem.ViewType.MAIN_BANNERS -> {}
-                    HomeListItem.ViewType.CATEGORIES -> {}
+                    HomeListItem.ViewType.CATEGORIES -> {
+                        findNavController().navigate(HomeFragmentDirections.actionGlobalPlanListFragment(null))
+                    }
                     HomeListItem.ViewType.CAR_BANNER -> {}
                     HomeListItem.ViewType.HEALTH_BANNER -> {}
                     HomeListItem.ViewType.SHIMMER_BANNER -> {}

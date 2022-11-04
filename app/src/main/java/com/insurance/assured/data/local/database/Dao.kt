@@ -58,12 +58,12 @@ interface Dao {
     suspend fun insertAll(vararg plans: VehiclePlansEntity)
 
 
-    @Insert(onConflict = REPLACE)
-    suspend fun insertUnfinishedCheckout(vararg plans: UnfinishedCheckoutEntity)
-
-    @Query ("select * from unfinished_checkout")
-    suspend fun getAllUnfinishedCheckout(): List<UnfinishedCheckoutEntity>
-
-    @Query("delete from unfinished_checkout where id = :id")
-    suspend fun deleteUnfinishedCheckout(databaseId)
+//    @Insert(onConflict = REPLACE)
+//    suspend fun insertUnfinishedCheckout(vararg plans: UnfinishedCheckoutEntity)
+//
+//    @Query ("select * from unfinished_checkout")
+//    suspend fun getAllUnfinishedCheckout(): List<UnfinishedCheckoutEntity>
+//
+//    @Query("delete from unfinished_checkout where id = :id")
+//    suspend fun deleteUnfinishedCheckout(databaseId)
 }

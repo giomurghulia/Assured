@@ -1,4 +1,4 @@
-package com.insurance.assured.ui.pascode
+package com.insurance.assured.ui.passcode
 
 sealed class PassNumberListItem(val viewType: ViewType) {
     enum class ViewType {

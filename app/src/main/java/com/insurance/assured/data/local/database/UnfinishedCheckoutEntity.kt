@@ -10,6 +10,6 @@ data class UnfinishedCheckoutEntity(
     val id: Int?,
     val type: String?,
     val userId: String?,
-    val itemIds: List<String>?,
+//    val itemIds: List<String>?,
     val processStep: Int?
 )

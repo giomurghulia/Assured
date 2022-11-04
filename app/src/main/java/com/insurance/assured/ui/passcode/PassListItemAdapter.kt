@@ -1,4 +1,4 @@
-package com.insurance.assured.ui.pascode
+package com.insurance.assured.ui.passcode
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -1,4 +1,4 @@
-package com.insurance.assured.ui.pascode
+package com.insurance.assured.ui.passcode
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.insurance.assured.databinding.FragmentPassCodeBinding
 import dagger.hilt.android.AndroidEntryPoint

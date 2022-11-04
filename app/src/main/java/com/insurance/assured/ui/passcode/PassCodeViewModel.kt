@@ -1,4 +1,4 @@
-package com.insurance.assured.ui.pascode
+package com.insurance.assured.ui.passcode
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

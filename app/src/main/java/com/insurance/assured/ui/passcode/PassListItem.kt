@@ -1,4 +1,4 @@
-package com.insurance.assured.ui.pascode
+package com.insurance.assured.ui.passcode
 
 data class PassListItem(
     val isChecked: Boolean
