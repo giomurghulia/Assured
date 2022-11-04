@@ -61,7 +61,7 @@ class SignUpFragment : Fragment() {
                                 "signInWithEmail:success",
                                 Toast.LENGTH_SHORT
                             ).show()
-                            findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToAuthorizedFragment())
+//                            findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToAuthorizedFragment())
 
                         }
                         is Resource.Error -> {

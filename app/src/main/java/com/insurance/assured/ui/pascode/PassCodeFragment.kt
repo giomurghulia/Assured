@@ -60,7 +60,7 @@ class PassCodeFragment : Fragment() {
                 viewModel.action.collect {
                     if (it) {
                         Toast.makeText(context, "Success PassCode", Toast.LENGTH_SHORT).show()
-                        findNavController().navigate(PassCodeFragmentDirections.actionPassCodeFragmentToAuthorizedFragment())
+//                        findNavController().navigate(PassCodeFragmentDirections.actionPassCodeFragmentToAuthorizedFragment())
                     } else {
                         Toast.makeText(context, "InCorrect PassCode", Toast.LENGTH_SHORT).show()
                     }

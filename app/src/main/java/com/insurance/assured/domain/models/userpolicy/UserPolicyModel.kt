@@ -1,4 +1,4 @@
-package com.insurance.assured.domain.models.user_policy
+package com.insurance.assured.domain.models.userpolicy
 
 data class UserPolicyModel(
     val id: String,

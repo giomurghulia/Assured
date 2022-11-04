@@ -92,13 +92,16 @@ class HomeAdapter :
 
     inner class MainBannerViewHolder(private val binding: LayoutBannerPagerBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        private val bannersAdapter = BannersPagerAdapter()
 
-        fun bind(item: HomeListItem.MainBannersItem) {
-
-            val bannersAdapter = BannersPagerAdapter()
-
+        init {
             binding.bannerViewpager.adapter = bannersAdapter
             binding.bannerViewpager.offscreenPageLimit = 1
+        }
+
+        fun bind(item: HomeListItem.MainBannersItem) {
+            if (binding.bannerViewpager.itemDecorationCount > 0)
+                binding.bannerViewpager.removeItemDecorationAt(0)
 
             val nextItemVisiblePx =
                 binding.root.context.resources.getDimension(R.dimen.viewpager_next_item_visible)
@@ -116,7 +119,6 @@ class HomeAdapter :
                 R.dimen.viewpager_current_item_horizontal_margin
             )
             binding.bannerViewpager.addItemDecoration(itemDecoration)
-
             bannersAdapter.submitList(item.banners)
         }
     }

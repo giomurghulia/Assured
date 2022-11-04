@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.insurance.assured.common.extensions.toResult
+import com.insurance.assured.common.utils.onInit
 import com.insurance.assured.domain.usecases.policyusecases.GetUserDataUseCase
 import com.insurance.assured.domain.usecases.policyusecases.GetUserPoliciesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +14,6 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-fun onInit() = flow { emit(Unit) }
 
 @HiltViewModel
 class PolicyViewModel @Inject constructor(
@@ -54,7 +54,6 @@ class PolicyViewModel @Inject constructor(
             }.collectLatest {
                 _payload.value = _payload.value.copy(userData = it)
             }
-
         }
 
         viewModelScope.launch {
@@ -69,22 +68,23 @@ class PolicyViewModel @Inject constructor(
             }
         }
 
-        viewModelScope.launch {
-            _payload.collectLatest { data ->
-                _state.value = policyPageListBuilder.buildList(data)
+            viewModelScope.launch {
+                _payload.collectLatest { data ->
+                    _state.value = policyPageListBuilder.buildList(data)
+                }
             }
+        }
+
+        fun refresh() {
+            refreshData.tryEmit(true)
+        }
+
+        fun refreshUserData() {
+            refreshUserData.tryEmit(true)
+        }
+
+        fun refreshUserPolicies() {
+            refreshUserPolicies.tryEmit(true)
         }
     }
 
-    fun refresh() {
-        refreshData.tryEmit(true)
-    }
-
-    fun refreshUserData() {
-        refreshUserData.tryEmit(true)
-    }
-
-    fun refreshUserPolicies() {
-        refreshUserPolicies.tryEmit(true)
-    }
-}

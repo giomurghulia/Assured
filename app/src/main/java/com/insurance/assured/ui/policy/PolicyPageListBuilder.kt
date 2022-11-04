@@ -4,8 +4,8 @@ import com.insurance.assured.common.resource.Result
 import com.insurance.assured.common.resource.onError
 import com.insurance.assured.common.resource.onLoading
 import com.insurance.assured.common.resource.onSuccess
-import com.insurance.assured.domain.models.user_policy.UserDataModel
-import com.insurance.assured.domain.models.user_policy.UserPolicyModel
+import com.insurance.assured.domain.models.userpolicy.UserDataModel
+import com.insurance.assured.domain.models.userpolicy.UserPolicyModel
 import javax.inject.Inject
 
 class PolicyPageListBuilder @Inject constructor() {

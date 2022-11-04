@@ -27,9 +27,7 @@ class HomePageListBuilder @Inject constructor() {
                     )
                 )
             )
-
         }
-
         banners.onError {
             list.addAll(listOf(HomeListItem.ErrorMainBannerItem))
         }

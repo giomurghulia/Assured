@@ -1,6 +1,6 @@
 package com.insurance.assured.domain.repositorys
 
-import com.insurance.assured.domain.models.user_policy.UserDataModel
+import com.insurance.assured.domain.models.userpolicy.UserDataModel
 import kotlinx.coroutines.flow.Flow
 
 
