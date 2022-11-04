@@ -3,63 +3,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/welcomeFragment">
-
+    app:startDestination="@id/homeFragment">
     <fragment
-        android:id="@+id/welcomeFragment"
-        android:name="com.insurance.assured.ui.welcome.WelcomeFragment"
-        android:label="WelcomeFragment" >
-        <action
-            android:id="@+id/action_welcomeFragment_to_authorizedFragment"
-            app:destination="@id/authorizedFragment" />
-        <action
-            android:id="@+id/action_welcomeFragment_to_passCodeFragment"
-            app:destination="@id/passCodeFragment" />
-    </fragment>
-    <action
-        android:id="@+id/action_global_welcomeFragment"
-        app:destination="@id/welcomeFragment"
-        app:popUpTo="@id/main_nav_graph"
-        app:popUpToInclusive="true" />
+        android:id="@+id/homeFragment"
+        android:name="com.insurance.assured.ui.home.HomeFragment"
+        android:label="HomeFragment" />
     <fragment
-        android:id="@+id/authorizedFragment"
-        android:name="com.insurance.assured.ui.authorized.AuthorizedFragment"
-        android:label="AuthorizedFragment" />
+        android:id="@+id/userPolicyFragment"
+        android:name="com.insurance.assured.ui.policy.PolicyFragment"
+        android:label="PolicyFragment" />
     <fragment
-        android:id="@+id/signInFragment"
-        android:name="com.insurance.assured.ui.signIn.SignInFragment"
-        android:label="SignInFragment" >
-        <action
-            android:id="@+id/action_signInFragment_to_authorizedFragment"
-            app:destination="@id/authorizedFragment" />
-    </fragment>
+        android:id="@+id/questionFragment"
+        android:name="com.insurance.assured.ui.question.QuestionFragment"
+        android:label="QuestionFragment" />
     <fragment
-        android:id="@+id/signUpFragment"
-        android:name="com.insurance.assured.ui.signUp.SignUpFragment"
-        android:label="SignUpFragment" >
-        <action
-            android:id="@+id/action_signUpFragment_to_authorizedFragment"
-            app:destination="@id/authorizedFragment" />
-    </fragment>
-
-    <action
-        android:id="@+id/action_global_signInFragment"
-        app:destination="@id/signInFragment"
-        app:popUpTo="@id/main_nav_graph"
-        app:popUpToInclusive="true" />
-
-    <action
-        android:id="@+id/action_global_signUpFragment"
-        app:destination="@id/signUpFragment"
-        app:popUpTo="@id/main_nav_graph"
-        app:popUpToInclusive="true" />
-
+        android:id="@+id/planListFragment"
+        android:name="com.insurance.assured.ui.planslist.PlanListFragment"
+        android:label="fragment_plan_list"
+        tools:layout="@layout/fragment_plan_list" />
     <fragment
         android:id="@+id/passCodeFragment"
         android:name="com.insurance.assured.ui.pascode.PassCodeFragment"
-        android:label="PassCodeFragment" >
-        <action
-            android:id="@+id/action_passCodeFragment_to_authorizedFragment"
-            app:destination="@id/authorizedFragment" />
-    </fragment>
+        android:label="PassCodeFragment" />
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.insurance.assured.ui.signIn.SignInFragment"
+        android:label="SignInFragment" />
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.insurance.assured.ui.signUp.SignUpFragment"
+        android:label="SignUpFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.insurance.assured.ui.profile.ProfileFragment"
+        android:label="ProfileFragment" />
 </navigation>

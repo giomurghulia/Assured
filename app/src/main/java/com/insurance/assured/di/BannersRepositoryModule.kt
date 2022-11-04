@@ -16,6 +16,7 @@ import javax.inject.Singleton
 abstract class BannersRepositoryModule {
 
     @Binds
+    @Singleton
     abstract fun bindBannersRepository(bannersRepositoryImpl: BannersRepositoryImpl): BannersRepository
 
     @Binds

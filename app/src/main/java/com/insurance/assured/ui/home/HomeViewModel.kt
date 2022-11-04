@@ -2,9 +2,8 @@ package com.insurance.assured.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.insurance.assured.*
 import com.insurance.assured.common.extensions.toResult
-import com.insurance.assured.domain.models.banner.BannersModel
+import com.insurance.assured.common.utils.onInit
 import com.insurance.assured.domain.usecases.bannerusecases.GetBannersUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
@@ -12,12 +11,11 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-fun onInit() = flow { emit(Unit) }
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getBannersUseCase: GetBannersUseCase,
-    private val homePageListBuilder: HomePageListBuilder,
+    private val homePageListBuilder: HomePageListBuilder
 ) : ViewModel() {
 
     private val _payload = MutableStateFlow(HomePagePayload())
