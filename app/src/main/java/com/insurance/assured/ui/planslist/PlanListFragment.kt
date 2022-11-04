@@ -26,6 +26,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import okhttp3.internal.notifyAll
+import java.text.SimpleDateFormat
 
 @AndroidEntryPoint
 class PlanListFragment : BaseFragment<FragmentPlanListBinding>(FragmentPlanListBinding::inflate) {
@@ -47,6 +48,8 @@ class PlanListFragment : BaseFragment<FragmentPlanListBinding>(FragmentPlanListB
     }
 
     override fun init() {
+        val formatter = SimpleDateFormat.getDateInstance()
+        toast(formatter.format(System.currentTimeMillis()).toString())
         filterBinding = FilterViewBinder(binding.filterView.getHeaderView(0))
         filterBinding!!.spinner.adapter = ArrayAdapter(
             requireContext(),
