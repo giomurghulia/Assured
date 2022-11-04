@@ -8,11 +8,12 @@ import androidx.room.*
         LifePlansEntity::class,
         PetPlansEntity::class,
         HousePlansEntity::class,
-        VehiclePlansEntity::class
+        VehiclePlansEntity::class,
+        UnfinishedCheckoutEntity::class
     ],
     version = 1
 )
 @TypeConverters(Converters::class)
-abstract class Database: RoomDatabase() {
+abstract class Database : RoomDatabase() {
     abstract fun getDao(): Dao
 }

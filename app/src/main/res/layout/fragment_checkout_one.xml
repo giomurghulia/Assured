@@ -86,8 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="230dp"
                 android:orientation="horizontal"
-                android:layout_marginStart="10dp"
-                >
+                android:layout_marginStart="10dp">
 
                 <TextView
                     android:id="@+id/start_date"
@@ -96,14 +95,15 @@
                     android:text="10 May 2021"
                     android:textColor="@color/white"
                     android:textSize="15sp" />
+
                 <View
                     android:layout_width="75dp"
                     android:layout_height="5dp"
                     android:background="@drawable/line"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_gravity="center"
-                    />
+                    android:layout_gravity="center" />
+
                 <TextView
                     android:id="@+id/end_date"
                     android:layout_width="wrap_content"
@@ -115,19 +115,20 @@
 
 
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="58dp"
             android:layout_marginTop="-30dp"
             android:backgroundTint="#133E81"
             app:cardCornerRadius="10dp">
+
             <View
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/ic_person_image"
-                android:layout_marginStart="26dp"
-                />
+                android:layout_marginStart="26dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -136,8 +137,8 @@
                 android:textColor="#808080"
                 android:layout_marginStart="58dp"
                 android:layout_marginTop="10dp"
-                android:textSize="12sp"
-                />
+                android:textSize="12sp" />
+
             <TextView
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
@@ -147,16 +148,14 @@
                 android:textColor="@color/white"
                 android:layout_marginStart="58dp"
                 android:layout_marginTop="28dp"
-                android:textSize="15sp"
-                />
+                android:textSize="15sp" />
 
             <View
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/dolar"
-                android:layout_marginStart="179dp"
-                />
+                android:layout_marginStart="179dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -165,8 +164,8 @@
                 android:textColor="#808080"
                 android:layout_marginStart="216dp"
                 android:layout_marginTop="10dp"
-                android:textSize="12sp"
-                />
+                android:textSize="12sp" />
+
             <TextView
                 android:id="@+id/money"
                 android:layout_width="wrap_content"
@@ -176,9 +175,9 @@
                 android:textColor="@color/white"
                 android:layout_marginStart="216dp"
                 android:layout_marginTop="28dp"
-                android:textSize="15sp"
-                />
+                android:textSize="15sp" />
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
+
 </LinearLayout>
