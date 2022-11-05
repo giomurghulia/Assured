@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="130dp"
     android:layout_marginVertical="15dp"
-    app:shimmer_auto_start="true"
-    >
+    app:shimmer_auto_start="true">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -13,13 +12,13 @@
         android:layout_gravity="bottom"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        android:backgroundTint="#22293E"
+        android:backgroundTint="@color/shimmer_color_Light_Grey"
         app:cardCornerRadius="10dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="90dp"
-            android:backgroundTint="#1E2332"
+            android:backgroundTint="#656464"
             app:cardCornerRadius="10dp">
 
 
@@ -80,6 +79,7 @@
         android:id="@+id/category_icon"
         android:layout_width="10dp"
         android:layout_height="10dp"
+        android:backgroundTint="@color/shimmer_color_Dark_Grey"
         android:background="@drawable/ic_baseline_house_24"
         android:clickable="false" />
 </com.facebook.shimmer.ShimmerFrameLayout>
