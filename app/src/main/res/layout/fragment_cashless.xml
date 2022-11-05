@@ -1,242 +1,273 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_background">
-
+    android:orientation="vertical">
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
-        android:orientation="vertical">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/back_image"
             android:layout_width="25dp"
             android:layout_height="25dp"
+            android:layout_gravity="start"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_back_icon" />
+            android:src="@drawable/ic_back_icon"
+            app:tint="@color/selector_bottom_nav_bar" />
 
-        <TextView
-            android:id="@+id/title_text"
-            android:layout_marginTop="30dp"
-            android:layout_width="300dp"
+        <ImageView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Compare our Best Health Insurance Plans"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Confirm all your details before you buy"
-            android:textColor="@color/gray"
-            android:textSize="18sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/shape_rectangle"
-            android:padding="15dp">
-
-            <ImageView
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:background="@drawable/shape_circle"
-                android:padding="15dp"
-                android:src="@drawable/ic_hospital_vector" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="7dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="10,000+ Cashless hospitals"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Dapibus! Pretium, scelerisque explicabo aliqua accusantium"
-                    android:textColor="@color/gray"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/shape_rectangle"
-            android:padding="15dp">
-
-            <ImageView
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:background="@drawable/shape_circle"
-                android:padding="15dp"
-                android:src="@drawable/ic_usd_vector" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="7dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Claims Settled in 20 Mins"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Tempor alias. Aliquip aspernatur pretium, nostra, fringilla "
-                    android:textColor="@color/gray"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/shape_rectangle"
-            android:padding="15dp">
-
-            <ImageView
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:background="@drawable/shape_circle"
-                android:padding="15dp"
-                android:src="@drawable/ic_bag_vector" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="7dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Free preventive check ups"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Dapibus! Pretium, scelerisque explicabo aliqua accusantium"
-                    android:textColor="@color/gray"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/shape_rectangle"
-            android:padding="15dp">
-
-            <ImageView
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:background="@drawable/shape_circle"
-                android:padding="15dp"
-                android:src="@drawable/ic_pdf_vector" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="7dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Higher cover at low premium"
-                    android:textColor="@color/white"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Tempor alias. Aliquip aspernatur pretium, nostra, fringilla "
-                    android:textColor="@color/gray"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="Key Features"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:src="@drawable/ic_header_logo" />
 
         <View
-            android:layout_width="200dp"
-            android:layout_height="3dp"
-            android:layout_marginVertical="10dp"
-            android:background="@color/blue" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="100% Restored Benefit: Get 100% of your cover restored instantly after your first claim."
-            android:textColor="@color/gray"
-            android:textSize="16sp" />
-
-        <View
-            android:layout_width="200dp"
-            android:layout_height="3dp"
-            android:layout_marginVertical="10dp"
-            android:background="@color/blue" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="2X Multiplier Benefit: Get up to 100% additional policy cover as no claim bonus."
-            android:textColor="@color/gray"
-            android:textSize="16sp" />
-
-        <View
-            android:layout_width="200dp"
-            android:layout_height="3dp"
-            android:layout_marginVertical="10dp"
-            android:background="@color/blue" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Complete coverage 60 days prior  180 days post your hospitalization. "
-            android:textColor="@color/gray"
-            android:textSize="16sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="200dp" />
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="end" />
     </LinearLayout>
-</ScrollView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title_text"
+                android:layout_width="300dp"
+                android:layout_marginTop="30dp"
+                android:layout_height="wrap_content"
+                android:text="Compare our Best Health Insurance Plans"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Confirm all your details before you buy"
+                android:textColor="@color/gray"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/shape_rectangle"
+                android:padding="15dp">
+
+                <ImageView
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:background="@drawable/shape_circle"
+                    android:padding="15dp"
+                    android:src="@drawable/ic_hospital_vector" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="7dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="10,000+ Cashless hospitals"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Dapibus! Pretium, scelerisque explicabo aliqua accusantium"
+                        android:textColor="@color/gray"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/shape_rectangle"
+                android:padding="15dp">
+
+                <ImageView
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:background="@drawable/shape_circle"
+                    android:padding="15dp"
+                    android:src="@drawable/ic_usd_vector" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="7dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Claims Settled in 20 Mins"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Tempor alias. Aliquip aspernatur pretium, nostra, fringilla "
+                        android:textColor="@color/gray"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/shape_rectangle"
+                android:padding="15dp">
+
+                <ImageView
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:background="@drawable/shape_circle"
+                    android:padding="15dp"
+                    android:src="@drawable/ic_bag_vector" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="7dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Free preventive check ups"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Dapibus! Pretium, scelerisque explicabo aliqua accusantium"
+                        android:textColor="@color/gray"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/shape_rectangle"
+                android:padding="15dp">
+
+                <ImageView
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:background="@drawable/shape_circle"
+                    android:padding="15dp"
+                    android:src="@drawable/ic_pdf_vector" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="7dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Higher cover at low premium"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Tempor alias. Aliquip aspernatur pretium, nostra, fringilla "
+                        android:textColor="@color/gray"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Key Features"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="200dp"
+                android:layout_height="3dp"
+                android:layout_marginVertical="10dp"
+                android:background="@color/blue" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="100% Restored Benefit: Get 100% of your cover restored instantly after your first claim."
+                android:textColor="@color/gray"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="200dp"
+                android:layout_height="3dp"
+                android:layout_marginVertical="10dp"
+                android:background="@color/blue" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2X Multiplier Benefit: Get up to 100% additional policy cover as no claim bonus."
+                android:textColor="@color/gray"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="200dp"
+                android:layout_height="3dp"
+                android:layout_marginVertical="10dp"
+                android:background="@color/blue" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Complete coverage 60 days prior  180 days post your hospitalization. "
+                android:textColor="@color/gray"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

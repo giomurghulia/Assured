@@ -32,6 +32,7 @@ class PolicyFragment : BaseFragment<FragmentPolicyBinding>(
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect {
+                    scrollToTop()
                     adapter.submitList(it)
                     scrollToTop()
                 }
@@ -47,7 +48,7 @@ class PolicyFragment : BaseFragment<FragmentPolicyBinding>(
     }
 
     private fun scrollToTop() {
-        handler.postDelayed(recyclerScrollRunnable, 300)
+        handler.postDelayed(recyclerScrollRunnable, 0)
     }
 
     override fun onDestroyView() {
