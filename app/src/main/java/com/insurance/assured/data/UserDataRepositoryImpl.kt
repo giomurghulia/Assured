@@ -27,4 +27,8 @@ class UserDataRepositoryImpl @Inject constructor(
             }
         }
     }
+
+    override fun clearUserData() {
+        userData.set(null)
+    }
 }

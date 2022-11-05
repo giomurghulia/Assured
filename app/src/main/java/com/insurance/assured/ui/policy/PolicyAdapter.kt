@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.insurance.assured.common.MainDiffUtil
+import com.insurance.assured.common.enums.AuthEnum
 import com.insurance.assured.common.extensions.load
 import com.insurance.assured.databinding.*
 
@@ -18,6 +19,11 @@ class PolicyAdapter :
         val layoutInflater = LayoutInflater.from(parent.context)
 
         return when (viewType) {
+            PolicyListItem.ViewType.NO_USER.ordinal -> {
+                NoUserViewHolder(
+                    LayoutRequireAuthBinding.inflate(layoutInflater, parent, false)
+                )
+            }
             PolicyListItem.ViewType.NO_POLICY.ordinal -> {
                 NoPolicyViewHolder(
                     LayoutNoPolicyBinding.inflate(layoutInflater, parent, false)
@@ -85,6 +91,7 @@ class PolicyAdapter :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = getItem(position)
         when (holder) {
+            is NoUserViewHolder -> holder.bind(item as PolicyListItem.NoUserItem)
             is NoPolicyViewHolder -> holder.bind(item as PolicyListItem.NoPolicyItem)
             is CashlessViewHolder -> holder.bind(item as PolicyListItem.CashlessBannerItem)
             is AccountDataViewHolder -> holder.bind(item as PolicyListItem.UserDataItem)
@@ -98,6 +105,23 @@ class PolicyAdapter :
         }
     }
 
+
+    inner class NoUserViewHolder(private val binding: LayoutRequireAuthBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: PolicyListItem.NoUserItem) {
+            binding.signIpnButton.setOnClickListener {
+                callBack?.onAuthClick(AuthEnum.SIGNE_IN)
+            }
+            binding.signUpButton.setOnClickListener {
+                callBack?.onAuthClick(AuthEnum.SIGNE_UP)
+            }
+            binding.cancelButton.setOnClickListener {
+                callBack?.onAuthClick(AuthEnum.CANCEL)
+            }
+        }
+
+    }
 
     inner class NoPolicyViewHolder(private val binding: LayoutNoPolicyBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -179,5 +203,6 @@ class PolicyAdapter :
 
     interface CallBack {
         fun onItemClick(item: PolicyListItem.ViewType)
+        fun onAuthClick(item: AuthEnum)
     }
 }

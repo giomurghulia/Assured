@@ -1,5 +1,6 @@
 package com.insurance.assured.ui.policy
 
+import android.annotation.SuppressLint
 import com.insurance.assured.common.resource.Result
 import com.insurance.assured.common.resource.onError
 import com.insurance.assured.common.resource.onLoading
@@ -19,20 +20,20 @@ class PolicyPageListBuilder @Inject constructor() {
     private fun buildUserData(userData: Result<UserDataModel>): List<PolicyListItem> {
         val list = mutableListOf<PolicyListItem>()
 
-            userData.onSuccess { data ->
-                list.add(
-                    PolicyListItem.UserDataItem(
-                        data.id,
-                        data.full_amount.toString(),
-                        data.all_policy_number.toString(),
-                        data.health_insurance.toString(),
-                        data.house_insurance.toString(),
-                        data.vehicle_insurance.toString(),
-                        data.pet_insurance.toString()
-                    )
+        userData.onSuccess { data ->
+            list.add(
+                PolicyListItem.UserDataItem(
+                    data.id,
+                    data.full_amount.toString(),
+                    data.all_policy_number.toString(),
+                    data.health_insurance.toString(),
+                    data.house_insurance.toString(),
+                    data.vehicle_insurance.toString(),
+                    data.pet_insurance.toString()
                 )
+            )
 
-            }
+        }
 
         userData.onError {
             list.add(PolicyListItem.ErrorUserDataItem)

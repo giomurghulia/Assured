@@ -8,6 +8,7 @@ import com.insurance.assured.common.extensions.toResult
 import com.insurance.assured.common.utils.onInit
 import com.insurance.assured.domain.usecases.policyusecases.GetUserDataUseCase
 import com.insurance.assured.domain.usecases.policyusecases.GetUserPoliciesUseCase
+import com.insurance.assured.ui.presentationmodels.planlist.PlanListItemModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.*
@@ -46,7 +47,6 @@ class PolicyViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             merge(
-                onInit().map { false },
                 refreshData,
                 refreshUserData
             ).flatMapLatest { refresh ->
@@ -58,7 +58,6 @@ class PolicyViewModel @Inject constructor(
 
         viewModelScope.launch {
             merge(
-                onInit().map { false },
                 refreshData,
                 refreshUserPolicies
             ).flatMapLatest { refresh ->
@@ -68,23 +67,50 @@ class PolicyViewModel @Inject constructor(
             }
         }
 
-            viewModelScope.launch {
-                _payload.collectLatest { data ->
+        viewModelScope.launch {
+            _payload.collectLatest { data ->
+
+                if (checkUser()) {
                     _state.value = policyPageListBuilder.buildList(data)
+                } else {
+                    _state.value = getNonUserData()
                 }
+
             }
         }
+    }
 
-        fun refresh() {
+    private fun checkUser(): Boolean {
+        return currentUser != null
+    }
+
+    private fun getNonUserData(): List<PolicyListItem> {
+        return listOf(PolicyListItem.NoUserItem)
+    }
+
+    fun refresh() {
+        if (checkUser()) {
             refreshData.tryEmit(true)
-        }
-
-        fun refreshUserData() {
-            refreshUserData.tryEmit(true)
-        }
-
-        fun refreshUserPolicies() {
-            refreshUserPolicies.tryEmit(true)
+        } else {
+            _payload.value = PolicyPagePayload()
         }
     }
+
+    fun refreshUserData() {
+        if (checkUser()) {
+            refreshUserData.tryEmit(true)
+        } else {
+            _payload.value = PolicyPagePayload()
+        }
+    }
+
+    fun refreshUserPolicies() {
+        if (checkUser()) {
+            refreshUserPolicies.tryEmit(true)
+        } else {
+            _payload.value = PolicyPagePayload()
+        }
+    }
+
+}
 

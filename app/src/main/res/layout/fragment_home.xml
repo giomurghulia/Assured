@@ -34,11 +34,12 @@
                 android:src="@drawable/ic_header_logo" />
 
             <ImageView
+                android:id="@+id/question_image"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="end"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_user_icon"
+                android:src="@drawable/ic_question_icon"
                 app:tint="@color/selector_bottom_nav_bar" />
 
         </LinearLayout>

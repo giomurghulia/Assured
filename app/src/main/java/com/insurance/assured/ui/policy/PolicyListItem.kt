@@ -3,6 +3,7 @@ package com.insurance.assured.ui.policy
 
 sealed class PolicyListItem(val viewType: ViewType) {
     enum class ViewType {
+        NO_USER,
         NO_POLICY,
         PET_BANNER,
         CASHLESS_BANNER,
@@ -15,6 +16,8 @@ sealed class PolicyListItem(val viewType: ViewType) {
         ERROR_POLICY,
         SPACE
     }
+
+    object NoUserItem : PolicyListItem(ViewType.NO_USER)
 
     object NoPolicyItem : PolicyListItem(ViewType.NO_POLICY)
 

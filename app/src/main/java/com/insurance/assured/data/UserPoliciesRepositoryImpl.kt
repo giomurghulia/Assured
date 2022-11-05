@@ -39,4 +39,8 @@ class UserPoliciesRepositoryImpl @Inject constructor(
                 }
             }
     }
+
+    override fun clearData() {
+        policies.set(emptyList())
+    }
 }

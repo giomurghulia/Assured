@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -51,6 +53,14 @@ class SignUpFragment : Fragment() {
             }
         }
 
+        binding.backImage.setOnClickListener {
+            val result = true
+            // Use the Kotlin extension in the fragment-ktx artifact
+            setFragmentResult("userAuthResult", bundleOf("result" to result))
+
+            requireActivity().onBackPressed()
+        }
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect {
@@ -61,8 +71,12 @@ class SignUpFragment : Fragment() {
                                 "signInWithEmail:success",
                                 Toast.LENGTH_SHORT
                             ).show()
-//                            findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToAuthorizedFragment())
 
+                            val result = true
+                            // Use the Kotlin extension in the fragment-ktx artifact
+                            setFragmentResult("userAuthResult", bundleOf("result" to result))
+
+                            requireActivity().onBackPressed()
                         }
                         is Resource.Error -> {
                             Toast.makeText(context, it.toString(), Toast.LENGTH_SHORT)

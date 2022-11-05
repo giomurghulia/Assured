@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface UserDataRepository {
     fun getUserData(refresh: Boolean): Flow<UserDataModel>
+    fun clearUserData()
 }

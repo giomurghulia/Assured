@@ -40,14 +40,23 @@
         android:id="@+id/signInFragment"
         android:name="com.insurance.assured.ui.signIn.SignInFragment"
         android:label="SignInFragment" />
+    <action
+        android:id="@+id/action_global_signInFragment"
+        app:destination="@id/signInFragment" />
+
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.insurance.assured.ui.signUp.SignUpFragment"
         android:label="SignUpFragment" />
+    <action
+        android:id="@+id/action_global_signUpFragment"
+        app:destination="@id/signUpFragment" />
+
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.insurance.assured.ui.profile.ProfileFragment"
         android:label="ProfileFragment" />
+
     <fragment
         android:id="@+id/cashlessFragment"
         android:name="com.insurance.assured.ui.cashless.CashlessFragment"
