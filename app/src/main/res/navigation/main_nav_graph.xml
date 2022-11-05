@@ -32,7 +32,6 @@
         android:id="@+id/action_global_planListFragment"
         app:destination="@id/planListFragment" />
 
-
     <fragment
         android:id="@+id/passCodeFragment"
         android:name="com.insurance.assured.ui.passcode.PassCodeFragment"
@@ -49,5 +48,12 @@
         android:id="@+id/profileFragment"
         android:name="com.insurance.assured.ui.profile.ProfileFragment"
         android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/cashlessFragment"
+        android:name="com.insurance.assured.ui.cashless.CashlessFragment"
+        android:label="CashlessFragment" />
+    <action
+        android:id="@+id/action_global_cashlessFragment"
+        app:destination="@id/cashlessFragment" />
 
 </navigation>

@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.insurance.assured.common.extensions.toResult
 import com.insurance.assured.common.utils.onInit
 import com.insurance.assured.domain.usecases.bannerusecases.GetBannersUseCase
+import com.insurance.assured.domain.usecases.plansusecases.getdata.GetHotPlansUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.*
@@ -15,6 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getBannersUseCase: GetBannersUseCase,
+    private val getHotPlansUseCase: GetHotPlansUseCase,
     private val homePageListBuilder: HomePageListBuilder
 ) : ViewModel() {
 

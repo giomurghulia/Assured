@@ -6,7 +6,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.insurance.assured.R
+import com.insurance.assured.common.enums.InsuranceCategory
 import com.insurance.assured.databinding.FragmentHomeBinding
 import com.insurance.assured.ui.basefragments.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,19 +29,26 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
             override fun onItemClick(item: HomeListItem.ViewType) {
                 when (item) {
                     HomeListItem.ViewType.MAIN_BANNERS -> {}
-                    HomeListItem.ViewType.CATEGORIES -> {
-                        findNavController().navigate(HomeFragmentDirections.actionGlobalPlanListFragment(null))
+                    HomeListItem.ViewType.HOT_BANNER -> {}
+                    HomeListItem.ViewType.CASHLESS_BANNER -> {
+                        findNavController().navigate(HomeFragmentDirections.actionGlobalCashlessFragment())
                     }
-                    HomeListItem.ViewType.CAR_BANNER -> {}
-                    HomeListItem.ViewType.HEALTH_BANNER -> {}
-                    HomeListItem.ViewType.SHIMMER_BANNER -> {}
                     HomeListItem.ViewType.ERROR_MAIN_BANNER -> {
                         viewModel.refreshMainBanners()
                     }
                     HomeListItem.ViewType.ERROR_CAR_BANNER -> {
                         viewModel.refreshCardBanners()
                     }
+                    else -> {}
                 }
+            }
+
+            override fun onCategoryItemClick(type: InsuranceCategory) {
+                findNavController().navigate(
+                    HomeFragmentDirections.actionGlobalPlanListFragment(
+                        type.toString()
+                    )
+                )
             }
 
         })

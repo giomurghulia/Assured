@@ -32,7 +32,6 @@ enum class InsuranceCategory {
         override val icon: Int
             get() = R.drawable.ic_baseline_pets_24
 
-
         override fun toString() = "Pet"
     },
     DEFAULT {

@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.insurance.assured.R
 import com.insurance.assured.common.MainDiffUtil
+import com.insurance.assured.common.enums.InsuranceCategory
 import com.insurance.assured.common.extensions.load
 import com.insurance.assured.databinding.*
+import kotlin.math.roundToInt
 
 class HomeAdapter :
     ListAdapter<HomeListItem, RecyclerView.ViewHolder>(MainDiffUtil()) {
@@ -32,15 +34,15 @@ class HomeAdapter :
                 )
             }
 
-            HomeListItem.ViewType.CAR_BANNER.ordinal -> {
-                CarBannerViewHolder(
-                    LayoutCarBannerBinding.inflate(layoutInflater, parent, false)
+            HomeListItem.ViewType.HOT_BANNER.ordinal -> {
+                HotBannerViewHolder(
+                    PlanItemBinding.inflate(layoutInflater, parent, false)
                 )
             }
 
-            HomeListItem.ViewType.HEALTH_BANNER.ordinal -> {
-                HealthBannerViewHolder(
-                    LayoutHealthBannerBinding.inflate(layoutInflater, parent, false)
+            HomeListItem.ViewType.CASHLESS_BANNER.ordinal -> {
+                CashlessBannerViewHolder(
+                    LayoutCashlessBannerBinding.inflate(layoutInflater, parent, false)
                 )
             }
 
@@ -81,8 +83,8 @@ class HomeAdapter :
         when (holder) {
             is MainBannerViewHolder -> holder.bind(item as HomeListItem.MainBannersItem)
             is CategoriesViewHolder -> holder.bind()
-            is CarBannerViewHolder -> holder.bind(item as HomeListItem.CarBannerItem)
-            is HealthBannerViewHolder -> holder.bind(item as HomeListItem.HeathBannerItem)
+            is HotBannerViewHolder -> holder.bind(item as HomeListItem.HotBannerItem)
+            is CashlessBannerViewHolder -> holder.bind(item as HomeListItem.CashlessItem)
             is ShimmerBannerViewHolder -> holder.bind(item as HomeListItem.ShimmerBannerItem)
             is ErrorMainBannerViewHolder -> holder.bind(item as HomeListItem.ErrorMainBannerItem)
             is ErrorCarBannerViewHolder -> holder.bind(item as HomeListItem.ErrorCarBannerItem)
@@ -127,22 +129,45 @@ class HomeAdapter :
     inner class CategoriesViewHolder(private val binding: LayoutCategoriesItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind() {}
-    }
-
-    inner class CarBannerViewHolder(private val binding: LayoutCarBannerBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(item: HomeListItem.CarBannerItem) {
-            binding.titleText.text = item.title
-
-            binding.bannerImage.load(item.banners)
+        fun bind() {
+            binding.houseLayout.setOnClickListener {
+                callBack?.onCategoryItemClick(InsuranceCategory.HOUSE)
+            }
+            binding.healthLayout.setOnClickListener {
+                callBack?.onCategoryItemClick(InsuranceCategory.HEALTH)
+            }
+            binding.vehicleLayout.setOnClickListener {
+                callBack?.onCategoryItemClick(InsuranceCategory.VEHICLE)
+            }
+            binding.petLayout.setOnClickListener {
+                callBack?.onCategoryItemClick(InsuranceCategory.PET)
+            }
         }
     }
 
-    inner class HealthBannerViewHolder(private val binding: LayoutHealthBannerBinding) :
+    inner class HotBannerViewHolder(private val binding: PlanItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: HomeListItem.HeathBannerItem) {}
+
+        fun bind(item: HomeListItem.HotBannerItem) {
+//            val model = getItem(position)
+//            with(binding) {
+//                buyBtn.text = "${getItem(position).monthlyPayment.roundToInt()}$/month"
+//                categoryIcon.setBackgroundResource(model.category.icon)
+//                slogan.text = model.slogan
+//                icon.load(model.image)
+//                title.text = model.title
+//                maxMoney.text = model.totalMoney.toString()
+//                features.text = model.feats.joinToString(" | ")
+        }
+    }
+
+    inner class CashlessBannerViewHolder(private val binding: LayoutCashlessBannerBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: HomeListItem.CashlessItem) {
+            binding.root.setOnClickListener {
+                callBack?.onItemClick(item.viewType)
+            }
+        }
     }
 
     inner class ShimmerBannerViewHolder(private val binding: ShimmerBannerBinding) :
@@ -155,7 +180,7 @@ class HomeAdapter :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: HomeListItem.ErrorMainBannerItem) {
             binding.root.setOnClickListener {
-                callBack?.onItemClick(HomeListItem.ViewType.ERROR_MAIN_BANNER)
+                callBack?.onItemClick(item.viewType)
             }
         }
     }
@@ -164,7 +189,7 @@ class HomeAdapter :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: HomeListItem.ErrorCarBannerItem) {
             binding.root.setOnClickListener {
-                callBack?.onItemClick(HomeListItem.ViewType.ERROR_CAR_BANNER)
+                callBack?.onItemClick(item.viewType)
             }
         }
     }
@@ -172,5 +197,6 @@ class HomeAdapter :
 
     interface CallBack {
         fun onItemClick(item: HomeListItem.ViewType)
+        fun onCategoryItemClick(type: InsuranceCategory)
     }
 }

@@ -4,8 +4,8 @@ sealed class HomeListItem(val viewType: ViewType) {
     enum class ViewType {
         MAIN_BANNERS,
         CATEGORIES,
-        CAR_BANNER,
-        HEALTH_BANNER,
+        HOT_BANNER,
+        CASHLESS_BANNER,
         SHIMMER_BANNER,
         ERROR_MAIN_BANNER,
         ERROR_CAR_BANNER
@@ -17,17 +17,13 @@ sealed class HomeListItem(val viewType: ViewType) {
 
     object CategoriesItem : HomeListItem(ViewType.CATEGORIES)
 
-    data class CarBannerItem(
+    data class HotBannerItem(
         val id: String,
         val banners: String,
         val title: String
-    ) : HomeListItem(ViewType.CAR_BANNER)
+    ) : HomeListItem(ViewType.HOT_BANNER)
 
-    data class HeathBannerItem(
-        val id: String,
-        val banners: String,
-        val title: String
-    ) : HomeListItem(ViewType.HEALTH_BANNER)
+    object CashlessItem : HomeListItem(ViewType.CASHLESS_BANNER)
 
     object ShimmerBannerItem : HomeListItem(ViewType.SHIMMER_BANNER)
 

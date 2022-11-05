@@ -2,6 +2,7 @@ package com.insurance.assured.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.insurance.assured.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -43,6 +44,19 @@ class MainActivity : AppCompatActivity() {
 
         binding.homeButton.setOnClickListener {
             navController.navigate(R.id.homeFragment)
+        }
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.cashlessFragment -> {
+                    binding.bottomAppBar.visibility = View.GONE
+                    binding.homeButton.visibility = View.GONE
+                }
+                else -> {
+                    binding.bottomAppBar.visibility = View.VISIBLE
+                    binding.homeButton.visibility = View.VISIBLE
+                }
+            }
         }
 
     }

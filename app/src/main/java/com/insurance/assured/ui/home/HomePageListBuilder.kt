@@ -13,6 +13,7 @@ class HomePageListBuilder @Inject constructor() {
     fun buildList(payload: HomePagePayload): List<HomeListItem> {
         return buildMainBannersList(payload.mainBanners)
             .plus(listOf(HomeListItem.CategoriesItem))
+            .plus(HomeListItem.CashlessItem)
             .plus(buildCardBannersList(payload.carBanners))
     }
 
@@ -44,7 +45,7 @@ class HomePageListBuilder @Inject constructor() {
 
         banners.onSuccess { data ->
             list.addAll(listOfNotNull(data.firstOrNull()?.let { banner ->
-                HomeListItem.HeathBannerItem(banner.id, banner.banner, banner.title)
+                HomeListItem.HotBannerItem(banner.id, banner.banner, banner.title)
             }))
         }
 
