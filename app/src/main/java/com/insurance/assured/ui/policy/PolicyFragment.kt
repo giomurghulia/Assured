@@ -13,6 +13,7 @@ import com.insurance.assured.databinding.FragmentPolicyBinding
 import com.insurance.assured.ui.basefragments.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class PolicyFragment : BaseFragment<FragmentPolicyBinding>(

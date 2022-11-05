@@ -33,7 +33,6 @@ class PassCodeViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            appConfigDataStore.setPassCode("1234")
             passCode = appConfigDataStore.getPassCode()
         }
         clearInputList()
