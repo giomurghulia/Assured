@@ -31,10 +31,10 @@ class UserPoliciesRepositoryImpl @Inject constructor(
     }
 
 
-    override fun getUserPolicyById(id: String): Flow<UserPolicyModel?> {
+    override fun getUserPolicyById(id: String): Flow<UserPolicyModel> {
         return getUserPolicies(false)
             .map { policies ->
-                policies.firstOrNull {
+                policies.first {
                     id == it.id
                 }
             }

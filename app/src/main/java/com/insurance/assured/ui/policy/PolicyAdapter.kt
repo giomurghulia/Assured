@@ -158,6 +158,10 @@ class PolicyAdapter :
             binding.typeText.text = item.type
 
             binding.iconImage.load(item.banner)
+            binding.root.setOnClickListener {
+                callBack?.onPolicyClick(item.id)
+            }
+
         }
     }
 
@@ -202,7 +206,8 @@ class PolicyAdapter :
 
 
     interface CallBack {
-        fun onItemClick(item: PolicyListItem.ViewType)
+        fun onCategoryClick(item: PolicyListItem.ViewType)
         fun onAuthClick(item: AuthEnum)
+        fun onPolicyClick(itemId: String)
     }
 }

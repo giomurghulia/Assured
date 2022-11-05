@@ -56,6 +56,10 @@ class MainActivity : AppCompatActivity() {
                     binding.bottomAppBar.visibility = View.GONE
                     binding.homeButton.visibility = View.GONE
                 }
+                R.id.policyItemFragment -> {
+                    binding.bottomAppBar.visibility = View.GONE
+                    binding.homeButton.visibility = View.GONE
+                }
                 else -> {
                     binding.bottomAppBar.visibility = View.VISIBLE
                     binding.homeButton.visibility = View.VISIBLE

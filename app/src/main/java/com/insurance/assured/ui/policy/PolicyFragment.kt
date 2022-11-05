@@ -13,6 +13,8 @@ import com.insurance.assured.databinding.FragmentPolicyBinding
 import com.insurance.assured.ui.basefragments.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -34,7 +36,7 @@ class PolicyFragment : BaseFragment<FragmentPolicyBinding>(
         binding.mainRecycler.adapter = adapter
 
         adapter.setCallBack(object : PolicyAdapter.CallBack {
-            override fun onItemClick(item: PolicyListItem.ViewType) {
+            override fun onCategoryClick(item: PolicyListItem.ViewType) {
                 TODO("Not yet implemented")
             }
 
@@ -49,6 +51,14 @@ class PolicyFragment : BaseFragment<FragmentPolicyBinding>(
                     AuthEnum.CANCEL -> {}
                 }
             }
+
+            override fun onPolicyClick(itemId: String) {
+                findNavController().navigate(
+                    PolicyFragmentDirections.actionGlobalPolicyItemFragment(
+                        itemId
+                    )
+                )
+            }
         })
     }
 
@@ -62,7 +72,6 @@ class PolicyFragment : BaseFragment<FragmentPolicyBinding>(
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect {
-                    scrollToTop()
                     adapter.submitList(it)
                     scrollToTop()
                 }
@@ -78,8 +87,9 @@ class PolicyFragment : BaseFragment<FragmentPolicyBinding>(
     }
 
     private fun scrollToTop() {
-        handler.postDelayed(recyclerScrollRunnable, 0)
+        handler.postDelayed(recyclerScrollRunnable, 300)
     }
+
 
     override fun onDestroyView() {
         handler.removeCallbacks(recyclerScrollRunnable)

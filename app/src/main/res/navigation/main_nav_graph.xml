@@ -65,4 +65,18 @@
         android:id="@+id/action_global_cashlessFragment"
         app:destination="@id/cashlessFragment" />
 
+    <fragment
+        android:id="@+id/policyItemFragment"
+        android:name="com.insurance.assured.ui.policyitem.PolicyItemFragment"
+        android:label="PolicyItemFragment" >
+        <argument
+            android:name="policyId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_policyItemFragment"
+        app:destination="@id/policyItemFragment" />
+
 </navigation>

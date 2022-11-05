@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 interface UserPoliciesRepository {
     fun getUserPolicies(refresh: Boolean): Flow<List<UserPolicyModel>>
 
-    fun getUserPolicyById(id: String): Flow<UserPolicyModel?>
+    fun getUserPolicyById(id: String): Flow<UserPolicyModel>
 
     fun clearData()
 }

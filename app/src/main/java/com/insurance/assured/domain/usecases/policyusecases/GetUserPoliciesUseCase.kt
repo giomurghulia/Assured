@@ -8,4 +8,6 @@ class GetUserPoliciesUseCase @Inject constructor(private val userPoliciesReposit
 
     fun invoke(refresh: Boolean = false) = userPoliciesRepository.getUserPolicies(refresh)
 
+    fun getPolicyById(id: String) = userPoliciesRepository.getUserPolicyById(id)
+
 }
