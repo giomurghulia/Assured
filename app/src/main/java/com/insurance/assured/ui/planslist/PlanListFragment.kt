@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.*
 import com.insurance.assured.R
@@ -26,13 +27,14 @@ class PlanListFragment : BaseFragment<FragmentPlanListBinding>(FragmentPlanListB
     private val viewModel: PlanListViewModel by viewModels()
     private var type = "All"
     private val plansListAdapter: PlansAdapter by lazy {
-        PlansAdapter()
+        PlansAdapter { _ -> viewModel.getData(true) }
     }
+
     private var filterBinding: FilterViewBinder? = null
     private val filtersAdapter: FiltersAdapter by lazy {
         FiltersAdapter {
-            viewModel.onFilterSelected(position = it)
-            if (viewModel.filterSelectState.value[it].category == InsuranceCategory.HOT_OFFERS)
+            viewModel.onFilterSelected(model = it)
+            if (it.category == InsuranceCategory.HOT_OFFERS)
                 binding.filter.visibility = GONE
             else
                 binding.filter.visibility = VISIBLE
@@ -41,15 +43,29 @@ class PlanListFragment : BaseFragment<FragmentPlanListBinding>(FragmentPlanListB
     }
 
     override fun init() {
+        val args: PlanListFragmentArgs by navArgs()
         val formatter = SimpleDateFormat.getDateInstance()
-        toast(formatter.format(System.currentTimeMillis()).toString())
+        //toast(formatter.format(System.currentTimeMillis()).toString())
         filterBinding = FilterViewBinder(binding.filterView.getHeaderView(0))
         filterBinding!!.spinner.adapter = ArrayAdapter(
             requireContext(),
             R.layout.soinner_item,
             listOf("All", "Car", "Truck", "Moto")
         )
-        viewModel.onFilterSelected(0)
+        var position: Int = 0
+        if (args.type != "null") {
+            toast(args.type!!)
+            if(args.type!! != InsuranceCategory.HOT_OFFERS.toString())
+                binding.filter.visibility = VISIBLE
+
+            viewModel.filterSelectState.value.forEachIndexed { index, model ->
+                if (model.category.toString() == args.type!!) {
+                    position = index
+                    return@forEachIndexed
+                }
+            }
+        }
+        viewModel.onFilterSelected(viewModel.filterSelectState.value[position])
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         bindRecyclers()
         viewModel.getData()
@@ -71,6 +87,7 @@ class PlanListFragment : BaseFragment<FragmentPlanListBinding>(FragmentPlanListB
                     it.error?.let {
                         toast("please check connection and try again")
                     }
+                    binding.filter.isClickable = it.data!![0].id != -2 &&  it.data[0].id != -1
                     delay(300)
                     binding.plansList.smoothScrollToPosition(0)
                 }
@@ -102,25 +119,29 @@ class PlanListFragment : BaseFragment<FragmentPlanListBinding>(FragmentPlanListB
     override fun listener() {
         binding.root.setOnRefreshListener {
             viewModel.getData(true)
+            binding.drawerLayout.closeDrawer(binding.filterView)
+            filterBinding!!.reset()
             binding.root.isRefreshing = false
         }
         binding.filter.setOnClickListener {
             binding.drawerLayout.openDrawer(binding.filterView)
         }
-        filterBinding!!.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View, position: Int, id: Long
-            ) {
-                type = viewModel.filterViewState.value[position]
+
+        filterBinding!!.spinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>,
+                    view: View, position: Int, id: Long
+                ) {
+                    type = viewModel.filterViewState.value[position]
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>) {
+                    // write code to perform some action
+                }
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                // write code to perform some action
-            }
-        }
-
-        filterBinding!!.filterButton.setOnClickListener{
+        filterBinding!!.filterButton.setOnClickListener {
             with(filterBinding!!) {
                 viewModel.onFilter(
                     monthlyPayFrom.text.toString(),
@@ -134,7 +155,9 @@ class PlanListFragment : BaseFragment<FragmentPlanListBinding>(FragmentPlanListB
             }
             binding.drawerLayout.closeDrawer(binding.filterView)
         }
-
+        filterBinding!!.resetButton.setOnClickListener {
+            filterBinding!!.reset()
+        }
     }
 
     override fun onDestroyView() {

@@ -45,6 +45,8 @@ interface Dao {
     suspend fun deleteAllVehicleInsurances()
 
 
+
+
     @Insert(onConflict = REPLACE)
     suspend fun insertAll(vararg plans: LifePlansEntity)
 
@@ -58,12 +60,21 @@ interface Dao {
     suspend fun insertAll(vararg plans: VehiclePlansEntity)
 
 
-//    @Insert(onConflict = REPLACE)
-//    suspend fun insertUnfinishedCheckout(vararg plans: UnfinishedCheckoutEntity)
-//
-//    @Query ("select * from unfinished_checkout")
-//    suspend fun getAllUnfinishedCheckout(): List<UnfinishedCheckoutEntity>
-//
-//    @Query("delete from unfinished_checkout where id = :id")
-//    suspend fun deleteUnfinishedCheckout(databaseId)
+    @Insert(onConflict = REPLACE)
+    suspend fun insertUnfinishedCheckout(vararg items: UnfinishedCheckoutEntity)
+
+    @Query("delete from unfinished_checkouts where id = :id")
+    suspend fun deleteUnfinishedCheckout(id: Int)
+
+    @Query("select * from unfinished_checkouts")
+    suspend fun getUnfinishedCheckouts(): List<UnfinishedCheckoutEntity>
+
+    @Query("select * from purchased_items where userToken = :token")
+    suspend fun getPurchasedItems(token: String): List<PurchasedItemsEntity>
+
+    @Insert
+    suspend fun insertNewPurchase(item: PurchasedItemsEntity)
+
+    @Query("select * from purchased_items where id = :id and userToken = :token")
+    suspend fun getPurchase(id: Int, token: String): List<PurchasedItemsEntity>
 }

@@ -1,4 +1,4 @@
-package com.insurance.assured.ui.home
+package com.insurance.assured.ui.pages.home
 
 sealed class HomeListItem(val viewType: ViewType) {
     enum class ViewType {

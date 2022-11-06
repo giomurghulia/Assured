@@ -1,12 +1,11 @@
 package com.insurance.assured.data.local.database
 
 import androidx.room.Entity
-import androidx.room.PrimaryKey
 
-@Entity(tableName = "unfinished_checkouts")
-data class UnfinishedCheckoutEntity(
-    @PrimaryKey
+@Entity(tableName = "purchased_items", primaryKeys = ["id", "userToken"])
+data class PurchasedItemsEntity(
     val id: Int,
+    val userToken: String,
     val title: String,
     val maxMoney: Float,
     val type: String,
@@ -16,5 +15,6 @@ data class UnfinishedCheckoutEntity(
     val feats: List<String>,
     val durationMonth: Int,
     val userId: String,
-    val idList: List<String>
+    val idList: List<String>,
+    val boughtTime: Long = System.currentTimeMillis()
 )

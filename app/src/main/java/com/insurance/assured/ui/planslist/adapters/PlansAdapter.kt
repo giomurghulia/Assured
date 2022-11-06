@@ -15,7 +15,8 @@ import com.insurance.assured.databinding.ShimmerPlanBanerBinding
 import com.insurance.assured.ui.presentationmodels.planlist.PlanListItemModel
 import kotlin.math.roundToInt
 
-class PlansAdapter : ListAdapter<PlanListItemModel, ViewHolder>(PlansDiffUtil()) {
+class PlansAdapter(private val onErrorBannerClickListener: (position: Int) -> Unit) :
+    ListAdapter<PlanListItemModel, ViewHolder>(PlansDiffUtil()) {
 
     companion object {
         const val ITEM = 0
@@ -48,6 +49,8 @@ class PlansAdapter : ListAdapter<PlanListItemModel, ViewHolder>(PlansDiffUtil())
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (holder is PlansViewHolder)
             holder.onBind(position)
+        else if (holder is ErrorViewHolder)
+            holder.onBind(position)
     }
 
     override fun getItemViewType(position: Int) =
@@ -76,7 +79,14 @@ class PlansAdapter : ListAdapter<PlanListItemModel, ViewHolder>(PlansDiffUtil())
     inner class ShimmerViewHolder(binding: ShimmerPlanBanerBinding) :
         ViewHolder(binding.root)
 
-    inner class ErrorViewHolder(binding: ErrorBannerBinding) : ViewHolder(binding.root)
+    inner class ErrorViewHolder(private val binding: ErrorBannerBinding) :
+        ViewHolder(binding.root) {
+        fun onBind(position: Int) {
+            binding.container.setOnClickListener {
+                onErrorBannerClickListener.invoke(position)
+            }
+        }
+    }
 }
 
 class PlansDiffUtil : DiffUtil.ItemCallback<PlanListItemModel>() {

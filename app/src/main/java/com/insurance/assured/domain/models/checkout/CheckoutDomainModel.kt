@@ -1,11 +1,6 @@
-package com.insurance.assured.data.local.database
+package com.insurance.assured.domain.models.checkout
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
-@Entity(tableName = "unfinished_checkouts")
-data class UnfinishedCheckoutEntity(
-    @PrimaryKey
+data class CheckoutDomainModel(
     val id: Int,
     val title: String,
     val maxMoney: Float,
@@ -16,5 +11,6 @@ data class UnfinishedCheckoutEntity(
     val feats: List<String>,
     val durationMonth: Int,
     val userId: String,
-    val idList: List<String>
+    val idList: List<String>,
+    val boughtTime: Long = System.currentTimeMillis()
 )

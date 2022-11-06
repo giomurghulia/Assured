@@ -1,4 +1,4 @@
-package com.insurance.assured.ui.home
+package com.insurance.assured.ui.pages.home
 
 import com.insurance.assured.domain.models.banner.BannersModel
 import com.insurance.assured.common.resource.Result

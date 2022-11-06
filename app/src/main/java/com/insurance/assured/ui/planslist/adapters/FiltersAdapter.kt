@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.insurance.assured.databinding.FilterItemBinding
 import com.insurance.assured.ui.presentationmodels.planlist.FilterItemModel
 
-class FiltersAdapter(private val onItemClicked: (position: Int) -> Unit) :
+class FiltersAdapter(private val onItemClicked: (model: FilterItemModel) -> Unit) :
     ListAdapter<FilterItemModel, FiltersAdapter.FilterViewHolder>(FilterItemDiffUtil()) {
 
 
@@ -28,7 +28,7 @@ class FiltersAdapter(private val onItemClicked: (position: Int) -> Unit) :
                 text = model.category.toString()
                 setBackgroundResource(model.selectState.color)
                 setOnClickListener{
-                    onItemClicked.invoke(position)
+                    onItemClicked.invoke(model)
                 }
             }
         }

@@ -1,4 +1,4 @@
-package com.insurance.assured.ui.home
+package com.insurance.assured.ui.pages.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -1,4 +1,4 @@
-package com.insurance.assured.ui.home
+package com.insurance.assured.ui.pages.home
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -45,7 +45,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 
             override fun onCategoryItemClick(type: InsuranceCategory) {
                 findNavController().navigate(
-                    HomeFragmentDirections.actionGlobalPlanListFragment(
+                    HomeFragmentDirections.actionHomeFragmentToPlanListFragment(
                         type.toString()
                     )
                 )

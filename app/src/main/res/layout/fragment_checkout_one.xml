@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/blue_background"
     android:orientation="vertical"
-    tools:context=".ui.checkout.CheckoutOneFragment">
+    tools:context=".ui.pages.checkout.CheckoutOneFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.insurance.assured.ui.checkout
+package com.insurance.assured.ui.pages.checkout
 
 import androidx.lifecycle.ViewModel
 

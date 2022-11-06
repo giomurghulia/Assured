@@ -48,11 +48,12 @@ class PlanListViewModel @Inject constructor(
     private var currentUnfilteredList: List<PlanListItemModel> = listOf()
 
 
-    fun onFilterSelected(position: Int) {
+    fun onFilterSelected(model: FilterItemModel) {
         if (isFiltering) return
         viewModelScope.launch {
             val listNow = _filterSelectState.value
-            categorySelected = listNow[position].category
+            categorySelected = model.category
+            val position = listNow.indexOf(model)
             if (listNow[position].selectState != SelectState.SELECTED) {
                 val newList = listNow.map { it.copy(selectState = SelectState.NOT_SELECTED) }
                 newList[position].selectState = SelectState.SELECTED

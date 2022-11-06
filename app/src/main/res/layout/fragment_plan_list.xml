@@ -70,12 +70,13 @@
 
                 <View
                     android:id="@+id/filter"
-                    android:layout_width="17dp"
-                    android:layout_height="16dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_gravity="end|center"
                     android:background="@drawable/filter"
-                    android:padding="15dp"
-                    android:visibility="gone" />
+                    android:visibility="gone"
+                    android:clickable="false"
+                    />
             </FrameLayout>
 
             <androidx.recyclerview.widget.RecyclerView

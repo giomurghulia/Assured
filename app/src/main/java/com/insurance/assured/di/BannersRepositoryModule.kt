@@ -2,8 +2,10 @@ package com.insurance.assured.di
 
 
 import com.insurance.assured.data.BannersRepositoryImpl
+import com.insurance.assured.data.repositorys.CheckoutRepositoryImpl
 import com.insurance.assured.data.repositorys.PlansRepositoryImpl
 import com.insurance.assured.domain.repositorys.BannersRepository
+import com.insurance.assured.domain.repositorys.CheckoutRepository
 import com.insurance.assured.domain.repositorys.PlansRepository
 import dagger.Binds
 import dagger.Module
@@ -23,4 +25,7 @@ abstract class BannersRepositoryModule {
     @Singleton
     abstract fun bindPlansRepository(plansRepositoryImpl: PlansRepositoryImpl): PlansRepository
 
+    @Binds
+    @Singleton
+    abstract fun bindsCheckoutRepository(checkoutRepositoryImpl: CheckoutRepositoryImpl): CheckoutRepository
 }

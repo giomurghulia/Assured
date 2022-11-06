@@ -9,7 +9,8 @@ import androidx.room.*
         PetPlansEntity::class,
         HousePlansEntity::class,
         VehiclePlansEntity::class,
-        UnfinishedCheckoutEntity::class
+        UnfinishedCheckoutEntity::class,
+        PurchasedItemsEntity::class
     ],
     version = 1
 )
