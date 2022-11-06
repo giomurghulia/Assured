@@ -78,8 +78,6 @@ class PlanListFragment : BaseFragment<FragmentPlanListBinding>(FragmentPlanListB
                         else
                             findNavController().navigate(PlanListFragmentDirections.actionGlobalNotSignedInFragment())
                     }
-
-
                 }
             }
         }

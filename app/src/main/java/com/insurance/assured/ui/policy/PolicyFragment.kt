@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.insurance.assured.R
 import com.insurance.assured.common.enums.AuthEnum
 import com.insurance.assured.databinding.FragmentPolicyBinding
 import com.insurance.assured.ui.basefragments.BaseFragment
@@ -34,10 +35,6 @@ class PolicyFragment : BaseFragment<FragmentPolicyBinding>(
         binding.mainRecycler.adapter = adapter
 
         adapter.setCallBack(object : PolicyAdapter.CallBack {
-            override fun onCategoryClick(item: PolicyListItem.ViewType) {
-                TODO("Not yet implemented")
-            }
-
             override fun onAuthClick(item: AuthEnum) {
                 when (item) {
                     AuthEnum.SIGNE_IN -> {
@@ -56,6 +53,24 @@ class PolicyFragment : BaseFragment<FragmentPolicyBinding>(
                         itemId
                     )
                 )
+            }
+
+            override fun onItemClick(item: PolicyListItem.ViewType) {
+                when(item){
+                    PolicyListItem.ViewType.ERROR_USER_DATA ->{
+                        viewModel.refreshUserData()
+                    }
+                    PolicyListItem.ViewType.ERROR_POLICY ->{
+                        viewModel.refreshUserPolicies()
+                    }
+                    PolicyListItem.ViewType.CASHLESS_BANNER ->{
+                        findNavController().navigate(PolicyFragmentDirections.actionGlobalCashlessFragment())
+                    }
+                    PolicyListItem.ViewType.NO_POLICY ->{
+//                        findNavController().navigate(R.id.planListFragment)
+                    }
+                    else -> {}
+                }
             }
         })
     }

@@ -46,13 +46,16 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController)
 
         binding.homeButton.setOnClickListener {
-
-            if (binding.bottomNavigationView.selectedItemId != R.id.homeFragment)
+            if (binding.bottomNavigationView.selectedItemId != R.id.homeFragment) {
                 onBackPressed()
+            }
+
             //navController.navigate(R.id.homeFragment)
         }
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
+            binding.homeButton.isSelected = false
+
             when (destination.id) {
                 R.id.cashlessFragment,
                 R.id.signInFragment,
@@ -64,12 +67,14 @@ class MainActivity : AppCompatActivity() {
                     binding.bottomAppBar.visibility = View.GONE
                     binding.homeButton.visibility = View.GONE
                 }
+                R.id.homeFragment -> {
+                    binding.homeButton.isSelected = true
+                }
                 else -> {
                     binding.bottomAppBar.visibility = View.VISIBLE
                     binding.homeButton.visibility = View.VISIBLE
                 }
             }
         }
-
     }
 }

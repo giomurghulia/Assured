@@ -52,26 +52,27 @@ class PolicyPageListBuilder @Inject constructor() {
         userPolicies.onSuccess { data ->
 
             if (data.isNotEmpty()) {
-
                 list.add(PolicyListItem.TitleItem("Your Policy", "Access your benefits now"))
-
                 list.addAll(
                     data.map {
                         PolicyListItem.PolicyItem(it.id, it.title, it.type, it.banner)
                     }
                 )
+            }else{
+                list.add(PolicyListItem.NoPolicyItem)
+                list.add(PolicyListItem.CashlessBannerItem)
             }
         }
 
         userPolicies.onError {
             list.add(PolicyListItem.TitleItem("Your Policy", "Access your benefits now"))
+
             list.add(PolicyListItem.ErrorPolicyItem)
         }
 
         userPolicies.onLoading {
-            list.add(PolicyListItem.ShimmerPolicyItem)
-            list.add(PolicyListItem.ShimmerPolicyItem)
-            list.add(PolicyListItem.ShimmerPolicyItem)
+            list.add(PolicyListItem.TitleItem("Your Policy", "Access your benefits now"))
+
             list.add(PolicyListItem.ShimmerPolicyItem)
             list.add(PolicyListItem.ShimmerPolicyItem)
         }

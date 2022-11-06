@@ -2,11 +2,14 @@ package com.insurance.assured.ui.pages.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.insurance.assured.common.extensions.toResult
-import com.insurance.assured.common.resource.Resource
-import com.insurance.assured.common.resource.Result.*
+import com.insurance.assured.common.resource.data
 import com.insurance.assured.common.utils.onInit
 import com.insurance.assured.domain.usecases.bannerusecases.GetBannersUseCase
+import com.insurance.assured.domain.usecases.checkoutsusecase.DeleteCheckoutUseCase
+import com.insurance.assured.domain.usecases.checkoutsusecase.GetUnfinishedCheckoutsUseCase
 import com.insurance.assured.domain.usecases.plansusecases.getdata.GetHotPlansUseCase
 import com.insurance.assured.ui.mappers.toPresenterModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,9 +23,10 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getBannersUseCase: GetBannersUseCase,
     private val getHotPlansUseCase: GetHotPlansUseCase,
-    private val homePageListBuilder: HomePageListBuilder
+    private val getUnfinishedCheckoutsUseCase: GetUnfinishedCheckoutsUseCase,
+    private val homePageListBuilder: HomePageListBuilder,
+    private val deleteCheckoutUseCase: DeleteCheckoutUseCase
 ) : ViewModel() {
-
     private val _payload = MutableStateFlow(HomePagePayload())
 
     private val _state = MutableStateFlow<List<HomeListItem>>(listOf())
@@ -54,32 +58,26 @@ class HomeViewModel @Inject constructor(
             }.collectLatest {
                 _payload.value = _payload.value.copy(mainBanners = it)
             }
-
         }
 
         viewModelScope.launch {
             merge(
                 onInit().map { false },
                 refreshData,
-                refreshCardBanners
             ).flatMapLatest { refresh ->
-                flow {
-                    val responce = getHotPlansUseCase.invoke()
-
-                    when (responce) {
-                        is Resource.Success -> {
-                            val data = responce.model.map {
-                                it.toPresenterModel()
-                            }
-                            emit(Success(data))
-                        }
-                        is Resource.Error -> {
-
-                        }
+                val pendingCheckouts = getUnfinishedCheckoutsUseCase.invoke()
+                val result = if (pendingCheckouts.isNotEmpty()) {
+                    pendingCheckouts.map { it.toPresenterModel() } to null
+                } else {
+                    null to getHotPlansUseCase.invoke().data?.map {
+                        it.toPresenterModel()
                     }
                 }
-            }.collectLatest {
-                _payload.value = _payload.value.copy(hotBanners = it)
+
+                flow { emit(result) }
+            }.collectLatest { (pendingCheckouts, hotPans) ->
+                _payload.value =
+                    _payload.value.copy(unfinishedCheckout = pendingCheckouts, hotBanners = hotPans)
             }
         }
 
@@ -99,8 +97,10 @@ class HomeViewModel @Inject constructor(
         refreshMainBanners.tryEmit(true)
     }
 
-    fun refreshCardBanners() {
-        refreshCardBanners.tryEmit(true)
+    fun deleteUnfinishedCheckout(id: Int) {
+        viewModelScope.launch {
+            deleteCheckoutUseCase.invoke(id)
+        }
+        refreshData.tryEmit(false)
     }
-
 }
