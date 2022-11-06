@@ -149,15 +149,18 @@ class HomeAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: HomeListItem.HotBannerItem) {
-//            val model = getItem(position)
-//            with(binding) {
-//                buyBtn.text = "${getItem(position).monthlyPayment.roundToInt()}$/month"
-//                categoryIcon.setBackgroundResource(model.category.icon)
-//                slogan.text = model.slogan
-//                icon.load(model.image)
-//                title.text = model.title
-//                maxMoney.text = model.totalMoney.toString()
-//                features.text = model.feats.joinToString(" | ")
+            with(binding){
+                buyBtn.text = "${item.monthlyPayment.roundToInt()}$/month"
+                categoryIcon.setBackgroundResource(item.category.icon)
+                slogan.text = item.slogan
+                icon.load(item.image)
+                title.text = item.title
+                maxMoney.text = item.totalMoney.toString()
+                features.text = item.feats.joinToString(" | ")
+
+                //model + boolean + shareViewModel
+
+            }
         }
     }
 
