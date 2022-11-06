@@ -87,8 +87,8 @@
         android:id="@+id/end_period_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
         android:textColor="@color/gray"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@id/policy_title_text"
         app:layout_constraintTop_toBottomOf="@id/policy_title_text"
         tools:text="lorem ipsum lorem" />
@@ -263,5 +263,88 @@
             </LinearLayout>
 
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/help_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/shape_rectangle"
+        android:orientation="vertical"
+        android:padding="20dp"
+        app:layout_constraintEnd_toStartOf="@id/spend_amount_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/policy_background">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cashless Hospitals"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="15dp"
+            android:alpha="0.5"
+            android:background="@drawable/shape_rectangle"
+            android:backgroundTint="#219653"
+            android:padding="5dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_plus_icon" />
+
+        <TextView
+            android:id="@+id/help_history_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            tools:text="3/5" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/spend_amount_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/shape_rectangle"
+        android:orientation="vertical"
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/help_layout"
+        app:layout_constraintTop_toBottomOf="@id/policy_background">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingEnd="40dp"
+            android:text="Payment History"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="15dp"
+            android:alpha="0.5"
+            android:background="@drawable/shape_rectangle"
+            android:backgroundTint="#034FA8"
+            android:padding="5dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_usd_icon" />
+
+        <TextView
+            android:id="@+id/payment_history_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            tools:text="3/5" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

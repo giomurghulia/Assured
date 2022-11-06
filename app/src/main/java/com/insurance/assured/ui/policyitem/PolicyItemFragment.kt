@@ -1,5 +1,6 @@
 package com.insurance.assured.ui.policyitem
 
+import android.annotation.SuppressLint
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -28,6 +29,7 @@ class PolicyItemFragment : BaseFragment<FragmentPolicyItemBinding>(
 
     }
 
+    @SuppressLint("SetTextI18n")
     override fun observe() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -43,6 +45,9 @@ class PolicyItemFragment : BaseFragment<FragmentPolicyItemBinding>(
                             binding.amountText.text = it.data.all_amount.toString()
                             binding.policyTypeText.text = it.data.type
                             binding.policyIdText.text = it.data.policy_number
+
+                            binding.helpHistoryText.text = it.data.paid.toString() + " / " + it.data.all
+                            binding.paymentHistoryText.text = it.data.paid_amount.toString() + " / " + it.data.all_amount
 
                         }
                         is Result.Loading -> {}
