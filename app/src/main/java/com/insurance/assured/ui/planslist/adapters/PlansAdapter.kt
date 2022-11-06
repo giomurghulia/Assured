@@ -28,6 +28,7 @@ class PlansAdapter(
         const val ITEM = 0
         const val SHIMMER = 1
         const val ERROR = 2
+        const val EMPTY = 3
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =

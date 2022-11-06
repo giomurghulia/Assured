@@ -78,8 +78,6 @@ class PlanListFragment : BaseFragment<FragmentPlanListBinding>(FragmentPlanListB
                         else
                             findNavController().navigate(PlanListFragmentDirections.actionGlobalNotSignedInFragment())
                     }
-
-
                 }
             }
         }
@@ -199,7 +197,7 @@ class PlanListFragment : BaseFragment<FragmentPlanListBinding>(FragmentPlanListB
                     it.error?.let {
                         toast("please check connection and try again")
                     }
-                    binding.filter.isClickable = it.data!![0].id != -2 && it.data[0].id != -1
+                    binding.filter.isClickable = it.data!!.isEmpty() || (it.data[0].id != -2 && it.data[0].id != -1)
                     delay(300)
                     binding.plansList.smoothScrollToPosition(0)
                 }

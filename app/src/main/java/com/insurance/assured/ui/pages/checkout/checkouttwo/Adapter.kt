@@ -32,12 +32,14 @@ class Adapter(private val onTextChangedListener: (id: Int, text: String) -> Unit
             } else {
                 binding.id.inputType = InputType.TYPE_CLASS_TEXT
             }
+            if (binding.id.text.toString().isEmpty())
+                binding.id.setText(model.text)
         }
     }
 
 }
 
-data class Item(val id: Int, val hint: String, val type: InsuranceCategory)
+data class Item(val id: Int, val hint: String, val type: InsuranceCategory, var text: String = "")
 
 class DiffUtil1 : DiffUtil.ItemCallback<Item>() {
     override fun areItemsTheSame(oldItem: Item, newItem: Item) = oldItem.id == newItem.id

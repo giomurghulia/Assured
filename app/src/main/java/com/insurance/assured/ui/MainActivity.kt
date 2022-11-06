@@ -60,7 +60,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.checkoutTwoFragment,
                 R.id.checkoutOneFragment,
                 R.id.policyItemFragment,
-                R.id.questionFragment -> {
+                R.id.questionFragment,
+                R.id.lastCheckoutFragment-> {
                     binding.bottomAppBar.visibility = View.GONE
                     binding.homeButton.visibility = View.GONE
                 }

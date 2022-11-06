@@ -111,8 +111,8 @@ fun PlansDto.toLifeEntity(): LifePlansEntity = LifePlansEntity(
     title,
     maxAmount,
     monthPrice,
-    personCount ?: 0,
     periodMonth,
+    personCount ?: 0,
     rating,
     features,
     icon

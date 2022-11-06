@@ -36,7 +36,7 @@ class CheckoutTwoFragment :
         setBackListener()
     }
 
-    private fun setOnBtnClickListener(){
+    private fun setOnBtnClickListener() {
         binding.checkoutBtn.setOnClickListener {
             if (binding.buyerId.text.toString().length < 11) {
                 toast("please enter valid id")
@@ -61,6 +61,7 @@ class CheckoutTwoFragment :
             findNavController().navigate(CheckoutTwoFragmentDirections.actionCheckoutTwoFragmentToCheckoutOneFragment())
         }
     }
+
     private fun bindRecycler() {
         with(binding.recycler) {
             adapter = this@CheckoutTwoFragment.adapter
@@ -69,6 +70,9 @@ class CheckoutTwoFragment :
     }
 
     private fun initRecyclerList() {
+        sharedViewModel.checkOutState.value.userId?.let {
+            binding.buyerId.setText(it)
+        }
         val model = sharedViewModel.checkOutState.value.insurancePacket!!
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -78,8 +82,17 @@ class CheckoutTwoFragment :
                     } catch (e: Exception) {
                         1
                     }
-                ).collect {
-                    adapter.submitList(it)
+                ).collect { list ->
+                    sharedViewModel.checkOutState.value.idList?.let { ids ->
+                        list.forEachIndexed { index, _ ->
+                            list[index].text = try {
+                                ids[index]
+                            } catch (e: Exception) {
+                                ""
+                            }
+                        }
+                    }
+                    adapter.submitList(list)
                 }
 
             }
@@ -98,7 +111,7 @@ class CheckoutTwoFragment :
         }
     }
 
-    private fun setBackListener(){
+    private fun setBackListener() {
         binding.backImage.setOnClickListener {
             requireActivity().onBackPressed()
         }

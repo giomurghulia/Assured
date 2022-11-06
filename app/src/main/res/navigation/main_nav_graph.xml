@@ -94,7 +94,11 @@
         android:id="@+id/checkoutOneFragment"
         android:name="com.insurance.assured.ui.pages.checkout.checkoutone.CheckoutOneFragment"
         android:label="fragment_checkout_one"
-        tools:layout="@layout/fragment_checkout_one" />
+        tools:layout="@layout/fragment_checkout_one" >
+        <action
+            android:id="@+id/action_checkoutOneFragment_to_lastCheckoutFragment"
+            app:destination="@id/lastCheckoutFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/policyItemFragment"
@@ -109,5 +113,16 @@
     <action
         android:id="@+id/action_global_policyItemFragment"
         app:destination="@id/policyItemFragment" />
+    <fragment
+        android:id="@+id/lastCheckoutFragment"
+        android:name="com.insurance.assured.ui.pages.checkout.lastcheckout.LastCheckoutFragment"
+        android:label="fragment_last_checkout"
+        tools:layout="@layout/fragment_last_checkout" >
+        <action
+            android:id="@+id/action_lastCheckoutFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/main_nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 </navigation>

@@ -58,19 +58,24 @@ class PlanListViewModel @Inject constructor(
             val listNow = _filterSelectState.value
             categorySelected = model.category
             val position = listNow.indexOf(model)
-            if (listNow[position].selectState != SelectState.SELECTED) {
-                val newList = listNow.map { it.copy(selectState = SelectState.NOT_SELECTED) }
-                newList[position].selectState = SelectState.SELECTED
-                _filterSelectState.value = newList
+            if (position != -1) {
+                if (listNow[position].selectState != SelectState.SELECTED) {
+                    val newList = listNow.map { it.copy(selectState = SelectState.NOT_SELECTED) }
+                    newList[position].selectState = SelectState.SELECTED
+                    _filterSelectState.value = newList
+                }
+                when (categorySelected) {
+                    InsuranceCategory.VEHICLE -> _filterViewState.value =
+                        listsProvider.getVehicleItems()
+                    InsuranceCategory.PET -> _filterViewState.value = listsProvider.getPetItems()
+                    InsuranceCategory.HEALTH -> _filterViewState.value =
+                        listsProvider.getLifeItems()
+                    InsuranceCategory.HOUSE -> _filterViewState.value =
+                        listsProvider.getHouseItems()
+                    else -> {}
+                }
+                getData(category = categorySelected)
             }
-            when(categorySelected){
-                InsuranceCategory.VEHICLE -> _filterViewState.value = listsProvider.getVehicleItems()
-                InsuranceCategory.PET -> _filterViewState.value = listsProvider.getPetItems()
-                InsuranceCategory.HEALTH -> _filterViewState.value = listsProvider.getLifeItems()
-                InsuranceCategory.HOUSE -> _filterViewState.value = listsProvider.getHouseItems()
-                else -> {}
-            }
-            getData(category = categorySelected)
         }
     }
 
@@ -195,7 +200,7 @@ class PlanListViewModel @Inject constructor(
         fromPeriod: String?,
         toPeriod: String?
     ) {
-        viewModelScope.launch(Dispatchers.Default){
+        viewModelScope.launch(Dispatchers.Default) {
             val fromPriceF = if (!fromPrice.isNullOrEmpty()) fromPrice.toFloat() else 0.0f
             val toPriceF = if (!toPrice.isNullOrEmpty()) toPrice.toFloat() else Float.MAX_VALUE
             val fromMaxMoneyF = if (!fromMaxMoney.isNullOrEmpty()) fromMaxMoney.toFloat() else 0.0f
