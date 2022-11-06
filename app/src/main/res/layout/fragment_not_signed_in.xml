@@ -1,17 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_background"
+    android:layout_marginHorizontal="30dp"
     android:orientation="vertical"
-    android:padding="30dp"
     tools:context=".ui.pages.checkout.notsignedup.NotSignedInFragment">
 
+    <LinearLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/back_image"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="start"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_back_icon"
+            app:tint="@color/selector_bottom_nav_bar" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:src="@drawable/ic_header_logo" />
+
+        <View
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="end" />
+    </LinearLayout>
+
     <TextView
-        android:layout_marginTop="100dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
         android:gravity="center"
         android:text="Access Your Account"
         android:textColor="@color/white"
@@ -31,20 +60,7 @@
         android:background="@drawable/shape_button_background"
         android:gravity="center"
         android:letterSpacing="0.05"
-        android:text="@string/sign_in_with_email"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="16sp" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/sign_up_button"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="19dp"
-        android:background="@drawable/shape_button_background"
-        android:gravity="center"
-        android:letterSpacing="0.05"
-        android:text="@string/sign_up_with_email"
+        android:text="Sign In or Register"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="16sp" />

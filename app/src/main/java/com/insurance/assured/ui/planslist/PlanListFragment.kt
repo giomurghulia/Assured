@@ -89,6 +89,7 @@ class PlanListFragment : BaseFragment<FragmentPlanListBinding>(FragmentPlanListB
     override fun listener() {
         onRefreshListener()
         filterListener()
+        questionListener()
     }
 
 
@@ -220,4 +221,11 @@ class PlanListFragment : BaseFragment<FragmentPlanListBinding>(FragmentPlanListB
             }
         }
     }
+
+    private fun questionListener() {
+        binding.questionImage.setOnClickListener {
+            findNavController().navigate(PlanListFragmentDirections.actionGlobalQuestionFragment())
+        }
+    }
+
 }

@@ -33,6 +33,7 @@ class CheckoutTwoFragment :
 
     override fun listener() {
         setOnBtnClickListener()
+        setBackListener()
     }
 
     private fun setOnBtnClickListener(){
@@ -94,6 +95,12 @@ class CheckoutTwoFragment :
             InsuranceCategory.HOUSE -> "House Code"
             InsuranceCategory.VEHICLE -> "Vehicle Serial Number"
             else -> "Pet ID"
+        }
+    }
+
+    private fun setBackListener(){
+        binding.backImage.setOnClickListener {
+            requireActivity().onBackPressed()
         }
     }
 }

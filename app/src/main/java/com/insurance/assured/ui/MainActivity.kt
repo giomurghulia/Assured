@@ -54,14 +54,12 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.cashlessFragment, R.id.signInFragment, R.id.signUpFragment, R.id.notSignedInFragment, R.id.checkoutTwoFragment, R.id.checkoutOneFragment -> {
-                    binding.bottomAppBar.visibility = View.GONE
-                    binding.homeButton.visibility = View.GONE
-                }
-                R.id.policyItemFragment -> {
-                    binding.bottomAppBar.visibility = View.GONE
-                    binding.homeButton.visibility = View.GONE
-                }
+                R.id.cashlessFragment,
+                R.id.signInFragment,
+                R.id.notSignedInFragment,
+                R.id.checkoutTwoFragment,
+                R.id.checkoutOneFragment,
+                R.id.policyItemFragment,
                 R.id.questionFragment -> {
                     binding.bottomAppBar.visibility = View.GONE
                     binding.homeButton.visibility = View.GONE

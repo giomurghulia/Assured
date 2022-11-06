@@ -11,12 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.insurance.assured.common.enums.AuthEnum
 import com.insurance.assured.databinding.FragmentPolicyBinding
 import com.insurance.assured.ui.basefragments.BaseFragment
-import com.insurance.assured.ui.home.HomeFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.*
-import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class PolicyFragment : BaseFragment<FragmentPolicyBinding>(

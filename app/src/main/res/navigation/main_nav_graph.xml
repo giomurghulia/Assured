@@ -69,9 +69,7 @@
         android:label="CashlessFragment" />
     <action
         android:id="@+id/action_global_cashlessFragment"
-        app:destination="@id/cashlessFragment"
-        app:popUpTo="@id/main_nav_graph"
-        app:popUpToInclusive="true" />
+        app:destination="@id/cashlessFragment"/>
     <fragment
         android:id="@+id/checkoutTwoFragment"
         android:name="com.insurance.assured.ui.pages.checkout.checkouttwo.CheckoutTwoFragment"

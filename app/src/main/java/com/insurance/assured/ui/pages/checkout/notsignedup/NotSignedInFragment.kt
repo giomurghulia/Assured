@@ -28,6 +28,9 @@ class NotSignedInFragment :
         binding.cancelButton.setOnClickListener {
             requireActivity().onBackPressed()
         }
+        binding.backImage.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
         binding.signIpnButton.setOnClickListener {
             findNavController().navigate(NotSignedInFragmentDirections.actionGlobalSignInFragment())
         }
