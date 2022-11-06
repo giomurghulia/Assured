@@ -9,6 +9,7 @@ import com.insurance.assured.ui.mappers.toDomainModel
 import com.insurance.assured.ui.presentationmodels.planlist.PlanListItemModel
 import com.insurance.assured.ui.presentationmodels.sharedmodel.CheckoutModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -23,6 +24,7 @@ class CheckoutViewModel @Inject constructor(private val checkoutUseCase: Checkou
     val checkOutState = _checkoutState.asStateFlow()
     private val _purchaseSuccessSharedFlow = MutableSharedFlow<Boolean>()
     val purchaseSuccessSharedFlow = _purchaseSuccessSharedFlow.asSharedFlow()
+    var signedAndBack = false
     fun onItemChoose(plan: PlanListItemModel) {
         viewModelScope.launch {
             _checkoutState.value = _checkoutState.value.copy(insurancePacket = plan)
@@ -30,14 +32,14 @@ class CheckoutViewModel @Inject constructor(private val checkoutUseCase: Checkou
     }
 
     fun onUserInfoInserted(userId: String, idList: List<String>) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             _checkoutState.value = _checkoutState.value.copy(userId = userId, idList = idList)
             checkoutUseCase.insertUnfinishedCheckoutUseCase(_checkoutState.value.toDomainModel())
         }
     }
 
     fun onCheckout(token: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             Firebase.auth.currentUser?.let {
                 _purchaseSuccessSharedFlow.emit(
                     checkoutUseCase.insertUserPurchasedItemsUseCase(
@@ -52,7 +54,7 @@ class CheckoutViewModel @Inject constructor(private val checkoutUseCase: Checkou
     }
 
     fun deleteUnfinishedCheckout(id: Int) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             checkoutUseCase.deleteCheckoutUseCase(id)
         }
     }

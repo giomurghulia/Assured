@@ -1,5 +1,7 @@
 package com.insurance.assured.ui.planslist
 
+import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.insurance.assured.common.enums.HouseInsuranceType
@@ -15,8 +17,10 @@ import com.insurance.assured.ui.enums.SelectState
 import com.insurance.assured.ui.mappers.*
 import com.insurance.assured.ui.presentationmodels.planlist.FilterItemModel
 import com.insurance.assured.ui.presentationmodels.planlist.PlanListItemModel
-import com.insurance.assured.ui.vuewstate.ViewState
+import com.insurance.assured.ui.viewstate.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -50,7 +54,7 @@ class PlanListViewModel @Inject constructor(
 
     fun onFilterSelected(model: FilterItemModel) {
         if (isFiltering) return
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.Default) {
             val listNow = _filterSelectState.value
             categorySelected = model.category
             val position = listNow.indexOf(model)
@@ -71,7 +75,7 @@ class PlanListViewModel @Inject constructor(
     }
 
     fun getData(forceReset: Boolean = false, category: InsuranceCategory = categorySelected) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             _plansListState.value = _plansListState.value.copy(
                 load = true,
                 data = listsProvider.getShimmerList(),
@@ -191,7 +195,7 @@ class PlanListViewModel @Inject constructor(
         fromPeriod: String?,
         toPeriod: String?
     ) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.Default){
             val fromPriceF = if (!fromPrice.isNullOrEmpty()) fromPrice.toFloat() else 0.0f
             val toPriceF = if (!toPrice.isNullOrEmpty()) toPrice.toFloat() else Float.MAX_VALUE
             val fromMaxMoneyF = if (!fromMaxMoney.isNullOrEmpty()) fromMaxMoney.toFloat() else 0.0f

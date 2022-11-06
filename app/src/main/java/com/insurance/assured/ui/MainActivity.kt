@@ -20,6 +20,10 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
+    companion object {
+        private var bul: Boolean = false
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -42,16 +46,15 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(binding.bottomNavigationView, navController)
 
         binding.homeButton.setOnClickListener {
-            navController.navigate(R.id.homeFragment)
+
+            if (binding.bottomNavigationView.selectedItemId != R.id.homeFragment)
+                onBackPressed()
+            //navController.navigate(R.id.homeFragment)
         }
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.cashlessFragment -> {
-                    binding.bottomAppBar.visibility = View.GONE
-                    binding.homeButton.visibility = View.GONE
-                }
-                R.id.signInFragment -> {
+                R.id.cashlessFragment, R.id.signInFragment, R.id.signUpFragment, R.id.notSignedInFragment, R.id.checkoutTwoFragment, R.id.checkoutOneFragment -> {
                     binding.bottomAppBar.visibility = View.GONE
                     binding.homeButton.visibility = View.GONE
                 }

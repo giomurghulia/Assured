@@ -12,7 +12,7 @@
             android:id="@+id/action_homeFragment_to_planListFragment"
             app:destination="@id/planListFragment"
             app:popUpTo="@id/homeFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/userPolicyFragment"
@@ -68,5 +68,30 @@
         app:destination="@id/cashlessFragment"
         app:popUpTo="@id/main_nav_graph"
         app:popUpToInclusive="true" />
+    <fragment
+        android:id="@+id/checkoutTwoFragment"
+        android:name="com.insurance.assured.ui.pages.checkout.checkouttwo.CheckoutTwoFragment"
+        android:label="fragment_checkout_two"
+        tools:layout="@layout/fragment_checkout_two" >
+        <action
+            android:id="@+id/action_checkoutTwoFragment_to_checkoutOneFragment"
+            app:destination="@id/checkoutOneFragment" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_checkoutTwoFragment"
+        app:destination="@id/checkoutTwoFragment" />
+    <fragment
+        android:id="@+id/notSignedInFragment"
+        android:name="com.insurance.assured.ui.pages.checkout.notsignedup.NotSignedInFragment"
+        android:label="fragment_not_signed_in"
+        tools:layout="@layout/fragment_not_signed_in" />
+    <action
+        android:id="@+id/action_global_notSignedInFragment"
+        app:destination="@id/notSignedInFragment" />
+    <fragment
+        android:id="@+id/checkoutOneFragment"
+        android:name="com.insurance.assured.ui.pages.checkout.checkoutone.CheckoutOneFragment"
+        android:label="fragment_checkout_one"
+        tools:layout="@layout/fragment_checkout_one" />
 
 </navigation>
