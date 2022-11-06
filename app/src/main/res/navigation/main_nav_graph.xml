@@ -17,6 +17,10 @@
         android:id="@+id/questionFragment"
         android:name="com.insurance.assured.ui.question.QuestionFragment"
         android:label="QuestionFragment" />
+    <action
+        android:id="@+id/action_global_questionFragment"
+        app:destination="@id/questionFragment" />
+
     <fragment
         android:id="@+id/planListFragment"
         android:name="com.insurance.assured.ui.planslist.PlanListFragment"

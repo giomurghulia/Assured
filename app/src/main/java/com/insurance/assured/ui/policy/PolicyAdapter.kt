@@ -113,12 +113,6 @@ class PolicyAdapter :
             binding.signIpnButton.setOnClickListener {
                 callBack?.onAuthClick(AuthEnum.SIGNE_IN)
             }
-            binding.signUpButton.setOnClickListener {
-                callBack?.onAuthClick(AuthEnum.SIGNE_UP)
-            }
-            binding.cancelButton.setOnClickListener {
-                callBack?.onAuthClick(AuthEnum.CANCEL)
-            }
         }
 
     }

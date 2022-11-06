@@ -36,4 +36,22 @@ class SignInViewModel : ViewModel() {
         }
     }
 
+    fun register(task: com.google.android.gms.tasks.Task<AuthResult>) {
+        if (task.isSuccessful) {
+            // Sign in success, update UI with the signed-in user's information
+
+            Log.d(ContentValues.TAG, "createUserWithEmail:success")
+            _state.tryEmit(Resource.Success(Unit))
+        } else {
+            // If sign in fails, display a message to the user.
+            Log.w(ContentValues.TAG, "createUserWithEmail:failure", task.exception)
+
+            try {
+                throw task.exception!!
+            } catch (e: Exception) {
+                _state.tryEmit(Resource.Error(e.message!!))
+            }
+        }
+    }
+
 }

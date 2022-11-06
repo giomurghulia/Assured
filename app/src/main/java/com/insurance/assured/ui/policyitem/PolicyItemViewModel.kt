@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.insurance.assured.common.extensions.toResult
 import com.insurance.assured.common.resource.Result
 import com.insurance.assured.domain.models.userpolicy.UserPolicyModel
+import com.insurance.assured.domain.usecases.policyusecases.GetPolicyByIdUseCase
 import com.insurance.assured.domain.usecases.policyusecases.GetUserPoliciesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
@@ -16,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PolicyItemViewModel @Inject constructor(
-    private val getUserPoliciesUseCase: GetUserPoliciesUseCase,
+    private val getPolicyByIdUseCase: GetPolicyByIdUseCase,
 ) : ViewModel() {
 
     private val _state = MutableSharedFlow<Result<UserPolicyModel>>(
@@ -27,9 +28,9 @@ class PolicyItemViewModel @Inject constructor(
     val state get() = _state.asSharedFlow()
 
 
-    fun getItemData(itemId:String){
+    fun getItemData(itemId: String) {
         viewModelScope.launch {
-            getUserPoliciesUseCase.getPolicyById(itemId).toResult().collect{
+            getPolicyByIdUseCase.invoke(itemId).toResult().collect {
                 when (it) {
                     is Result.Success -> {
                         _state.tryEmit(it)

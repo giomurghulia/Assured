@@ -70,5 +70,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
             viewModel.refresh()
             binding.root.isRefreshing = false
         }
+
+        binding.questionImage.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionGlobalQuestionFragment())
+        }
     }
 }
