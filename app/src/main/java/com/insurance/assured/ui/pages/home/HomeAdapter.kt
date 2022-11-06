@@ -1,5 +1,6 @@
 package com.insurance.assured.ui.pages.home
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,6 +47,12 @@ class HomeAdapter :
                 )
             }
 
+            HomeListItem.ViewType.TITLE.ordinal -> {
+                TitleViewHolder(
+                    LayoutTitlteItemBinding.inflate(layoutInflater, parent, false)
+                )
+            }
+
             HomeListItem.ViewType.SHIMMER_BANNER.ordinal -> {
                 ShimmerBannerViewHolder(
                     ShimmerBannerBinding.inflate(layoutInflater, parent, false)
@@ -61,6 +68,16 @@ class HomeAdapter :
             HomeListItem.ViewType.ERROR_CAR_BANNER.ordinal -> {
                 ErrorCarBannerViewHolder(
                     ErrorBannerBinding.inflate(layoutInflater, parent, false)
+                )
+            }
+            HomeListItem.ViewType.UNFINISHED_CHECKOUT.ordinal -> {
+                UnfinishedItemViewHolder(
+                    LayoutUnfinishedItemBinding.inflate(layoutInflater, parent, false)
+                )
+            }
+            HomeListItem.ViewType.SPACE.ordinal -> {
+                SpaceItemViewHolder(
+                    LayoutSpaceItemBinding.inflate(layoutInflater, parent, false)
                 )
             }
 
@@ -85,9 +102,12 @@ class HomeAdapter :
             is CategoriesViewHolder -> holder.bind()
             is HotBannerViewHolder -> holder.bind(item as HomeListItem.HotBannerItem)
             is CashlessBannerViewHolder -> holder.bind(item as HomeListItem.CashlessItem)
+            is TitleViewHolder -> holder.bind(item as HomeListItem.TitleItem)
             is ShimmerBannerViewHolder -> holder.bind(item as HomeListItem.ShimmerBannerItem)
             is ErrorMainBannerViewHolder -> holder.bind(item as HomeListItem.ErrorMainBannerItem)
             is ErrorCarBannerViewHolder -> holder.bind(item as HomeListItem.ErrorCarBannerItem)
+            is UnfinishedItemViewHolder -> holder.bind(item as HomeListItem.UnfinishedCheckoutItem)
+            is SpaceItemViewHolder -> holder.bind(item as HomeListItem.SpaceItem)
         }
     }
 
@@ -148,8 +168,19 @@ class HomeAdapter :
     inner class HotBannerViewHolder(private val binding: PlanItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("SetTextI18n")
         fun bind(item: HomeListItem.HotBannerItem) {
-            with(binding){
+            binding.root.layoutParams =
+                (binding.root.layoutParams as ViewGroup.MarginLayoutParams).apply {
+                    setMargins(
+                        binding.root.context.resources.getDimensionPixelSize(R.dimen.margin_horizontal),
+                        binding.root.context.resources.getDimensionPixelSize(R.dimen.margin_horizontal),
+                        binding.root.context.resources.getDimensionPixelSize(R.dimen.margin_horizontal),
+                        0
+                    )
+                }
+
+            with(binding) {
                 buyBtn.text = "${item.monthlyPayment.roundToInt()}$/month"
                 categoryIcon.setBackgroundResource(item.category.icon)
                 slogan.text = item.slogan
@@ -160,6 +191,9 @@ class HomeAdapter :
 
                 //model + boolean + shareViewModel
 
+                binding.root.setOnClickListener {
+                    callBack?.onPolicyBuyClick(item)
+                }
             }
         }
     }
@@ -170,6 +204,15 @@ class HomeAdapter :
             binding.root.setOnClickListener {
                 callBack?.onItemClick(item.viewType)
             }
+        }
+    }
+
+    inner class TitleViewHolder(private val binding: LayoutTitlteItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: HomeListItem.TitleItem) {
+            binding.titleText.text = item.title
+            binding.subTitleText.text = item.subTitle
         }
     }
 
@@ -197,9 +240,34 @@ class HomeAdapter :
         }
     }
 
+    inner class UnfinishedItemViewHolder(private val binding: LayoutUnfinishedItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: HomeListItem.UnfinishedCheckoutItem) {
+            binding.iconImage.load(item.insurancePacket!!.image)
+            binding.titleText.text = item.insurancePacket.title
+
+            binding.policyLayout.setOnClickListener {
+                callBack?.onUnfinishedItemClick(item)
+            }
+
+            binding.deleteImage.setOnClickListener {
+                callBack?.onDeleteItemClick(item.insurancePacket.id)
+            }
+        }
+    }
+
+    inner class SpaceItemViewHolder(private val binding: LayoutSpaceItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: HomeListItem.SpaceItem) {
+        }
+    }
+
 
     interface CallBack {
         fun onItemClick(item: HomeListItem.ViewType)
         fun onCategoryItemClick(type: InsuranceCategory)
+        fun onPolicyBuyClick(item: HomeListItem.HotBannerItem)
+        fun onUnfinishedItemClick(item: HomeListItem.UnfinishedCheckoutItem)
+        fun onDeleteItemClick(id:Int)
     }
 }

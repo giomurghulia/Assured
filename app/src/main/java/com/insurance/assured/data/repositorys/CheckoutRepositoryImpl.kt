@@ -1,5 +1,7 @@
 package com.insurance.assured.data.repositorys
 
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.insurance.assured.data.local.database.Dao
 import com.insurance.assured.data.mappers.toDomainModel
 import com.insurance.assured.data.mappers.toPurchasedCheckout
@@ -10,7 +12,12 @@ import javax.inject.Inject
 
 class CheckoutRepositoryImpl @Inject constructor(private val dao: Dao) : CheckoutRepository {
     override suspend fun getUnfinishedCheckouts(): List<CheckoutDomainModel> =
-        dao.getUnfinishedCheckouts().map { it.toDomainModel() }
+        if (Firebase.auth.currentUser != null) {
+
+            dao.getUnfinishedCheckouts().map { it.toDomainModel() }
+        } else {
+            emptyList()
+        }
 
 
     override suspend fun insertUnfinishedCheckoutModel(model: CheckoutDomainModel) {
@@ -31,7 +38,7 @@ class CheckoutRepositoryImpl @Inject constructor(private val dao: Dao) : Checkou
         false
     }
 
-
     override suspend fun getMyInsurances(token: String): List<CheckoutDomainModel> =
         dao.getPurchasedItems(token).map { it.toDomainModel() }
+
 }

@@ -6,6 +6,7 @@ import com.insurance.assured.common.resource.onError
 import com.insurance.assured.common.resource.onLoading
 import com.insurance.assured.common.resource.onSuccess
 import com.insurance.assured.ui.presentationmodels.planlist.PlanListItemModel
+import com.insurance.assured.ui.presentationmodels.sharedmodel.CheckoutModel
 
 import javax.inject.Inject
 
@@ -15,7 +16,9 @@ class HomePageListBuilder @Inject constructor() {
         return buildMainBannersList(payload.mainBanners)
             .plus(listOf(HomeListItem.CategoriesItem))
             .plus(HomeListItem.CashlessItem)
-            .plus(buildCardBannersList(payload.hotBanners))
+            .plus(buildRemainderList(payload.unfinishedCheckout, payload.hotBanners))
+            .plus(HomeListItem.SpaceItem)
+
     }
 
     private fun buildMainBannersList(banners: Result<List<BannersModel>>): List<HomeListItem> {
@@ -41,31 +44,47 @@ class HomePageListBuilder @Inject constructor() {
         return list
     }
 
-    private fun buildCardBannersList(banners: Result<List<PlanListItemModel>>): List<HomeListItem> {
+    private fun buildHotBannersList(banners: List<PlanListItemModel>?): List<HomeListItem> {
         val list = mutableListOf<HomeListItem>()
 
-        banners.onSuccess { data ->
-            list.addAll(listOfNotNull(data.firstOrNull()?.let { banner ->
-                HomeListItem.HotBannerItem(
-                    banner.id,
-                    banner.title,
-                    banner.totalMoney,
-                    banner.slogan,
-                    banner.image,
-                    banner.monthlyPayment,
-                    banner.feats,
-                    banner.category,
-                    banner.durationMonth
+        if (banners != null) {
+            list.add(HomeListItem.TitleItem("Special Offer", "find your"))
+        }
+        list.addAll(listOfNotNull(banners?.firstOrNull()?.let { banner ->
+            HomeListItem.HotBannerItem(
+                banner.id,
+                banner.title,
+                banner.totalMoney,
+                banner.slogan,
+                banner.image,
+                banner.monthlyPayment,
+                banner.feats,
+                banner.category,
+                banner.durationMonth
+            )
+        }))
+
+        return list
+    }
+
+    private fun buildRemainderList(
+        unfinishedCheckout: List<CheckoutModel>?,
+        hotBanners: List<PlanListItemModel>?
+    ): List<HomeListItem> {
+        val list = mutableListOf<HomeListItem>()
+
+        if (unfinishedCheckout != null) {
+            list.add(HomeListItem.TitleItem("Continue Checkout", "don't forgot"))
+            list.addAll(unfinishedCheckout.map { item ->
+                HomeListItem.UnfinishedCheckoutItem(
+                    item.insurancePacket,
+                    item.userId,
+                    item.idList
                 )
-            }))
-        }
+            })
 
-        banners.onError {
-            list.addAll(listOf(HomeListItem.ErrorCarBannerItem))
-        }
-
-        banners.onLoading {
-            list.addAll(listOf(HomeListItem.ShimmerBannerItem))
+        } else {
+            list.addAll(buildHotBannersList(hotBanners))
         }
 
         return list

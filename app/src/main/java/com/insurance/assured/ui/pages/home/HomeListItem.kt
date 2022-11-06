@@ -1,6 +1,8 @@
 package com.insurance.assured.ui.pages.home
 
 import com.insurance.assured.common.enums.InsuranceCategory
+import com.insurance.assured.ui.policy.PolicyListItem
+import com.insurance.assured.ui.presentationmodels.planlist.PlanListItemModel
 
 sealed class HomeListItem(val viewType: ViewType) {
     enum class ViewType {
@@ -8,9 +10,12 @@ sealed class HomeListItem(val viewType: ViewType) {
         CATEGORIES,
         HOT_BANNER,
         CASHLESS_BANNER,
+        TITLE,
         SHIMMER_BANNER,
         ERROR_MAIN_BANNER,
-        ERROR_CAR_BANNER
+        ERROR_CAR_BANNER,
+        UNFINISHED_CHECKOUT,
+        SPACE
     }
 
     data class MainBannersItem(
@@ -33,10 +38,23 @@ sealed class HomeListItem(val viewType: ViewType) {
 
     object CashlessItem : HomeListItem(ViewType.CASHLESS_BANNER)
 
+    data class TitleItem(
+        val title: String,
+        val subTitle: String
+    ) : HomeListItem(ViewType.TITLE)
+
     object ShimmerBannerItem : HomeListItem(ViewType.SHIMMER_BANNER)
 
     object ErrorCarBannerItem : HomeListItem(ViewType.ERROR_CAR_BANNER)
 
     object ErrorMainBannerItem : HomeListItem(ViewType.ERROR_MAIN_BANNER)
+
+    data class UnfinishedCheckoutItem(
+        val insurancePacket: PlanListItemModel? = null,
+        val userId: String? = null,
+        val idList: List<String>? = null
+    ) : HomeListItem(ViewType.UNFINISHED_CHECKOUT)
+
+    object SpaceItem : HomeListItem(ViewType.SPACE)
 
 }

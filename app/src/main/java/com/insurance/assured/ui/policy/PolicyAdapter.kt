@@ -120,13 +120,21 @@ class PolicyAdapter :
     inner class NoPolicyViewHolder(private val binding: LayoutNoPolicyBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: PolicyListItem.NoPolicyItem) {}
+        fun bind(item: PolicyListItem.NoPolicyItem) {
+            binding.findText.setOnClickListener {
+                callBack?.onItemClick(PolicyListItem.ViewType.NO_POLICY)
+            }
+        }
     }
 
     inner class CashlessViewHolder(private val binding: LayoutCashlessBannerBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: PolicyListItem.CashlessBannerItem) {}
+        fun bind(item: PolicyListItem.CashlessBannerItem) {
+            binding.root.setOnClickListener {
+                callBack?.onItemClick(PolicyListItem.ViewType.CASHLESS_BANNER)
+            }
+        }
     }
 
     inner class AccountDataViewHolder(private val binding: LayoutUserDataBinding) :
@@ -183,13 +191,21 @@ class PolicyAdapter :
     inner class ErrorUserDataViewHolder(private val binding: ErrorBannerBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: PolicyListItem.ErrorUserDataItem) {}
+        fun bind(item: PolicyListItem.ErrorUserDataItem) {
+            binding.root.setOnClickListener {
+                callBack?.onItemClick(PolicyListItem.ViewType.ERROR_USER_DATA)
+            }
+        }
     }
 
     inner class ErrorPolicyViewHolder(private val binding: ErrorBannerBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: PolicyListItem.ErrorPolicyItem) {}
+        fun bind(item: PolicyListItem.ErrorPolicyItem) {
+            binding.root.setOnClickListener {
+                callBack?.onItemClick(PolicyListItem.ViewType.ERROR_POLICY)
+            }
+        }
     }
 
     inner class SpaceViewHolder(private val binding: LayoutSpaceItemBinding) :
@@ -200,8 +216,8 @@ class PolicyAdapter :
 
 
     interface CallBack {
-        fun onCategoryClick(item: PolicyListItem.ViewType)
         fun onAuthClick(item: AuthEnum)
         fun onPolicyClick(itemId: String)
+        fun onItemClick(item:PolicyListItem.ViewType)
     }
 }

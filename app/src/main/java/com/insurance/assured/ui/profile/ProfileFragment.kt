@@ -1,52 +1,71 @@
 package com.insurance.assured.ui.profile
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import android.os.Handler
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import com.insurance.assured.R
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.insurance.assured.databinding.FragmentProfileBinding
+import com.insurance.assured.ui.basefragments.BaseFragment
+import com.insurance.assured.ui.policy.PolicyAdapter
+import com.insurance.assured.ui.policy.PolicyFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
-class ProfileFragment : Fragment() {
-    private lateinit var binding: FragmentProfileBinding
-
+class ProfileFragment : BaseFragment<FragmentProfileBinding>(
+    FragmentProfileBinding::inflate
+) {
     private val viewModel: ProfileViewModel by viewModels()
+    private val adapter = ProfileAdapter()
 
-    private val currentUser get() = Firebase.auth.currentUser
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        super.onCreateView(inflater, container, savedInstanceState)
-
-        binding = FragmentProfileBinding.inflate(inflater, container, false)
-        return binding.root
+    private val handler = Handler()
+    private val recyclerScrollRunnable = Runnable {
+        binding.mainRecycler.smoothScrollToPosition(0)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun init() {
+        viewModel.refresh()
 
+        binding.mainRecycler.layoutManager = LinearLayoutManager(requireContext())
+        binding.mainRecycler.adapter = adapter
 
-        binding.logoutButton.setOnClickListener {
-            Firebase.auth.signOut()
-            viewModel.longOut()
-            findNavController().navigate(R.id.homeFragment)
+        adapter.setCallBack(object : ProfileAdapter.CallBack {
+        })
+    }
+
+    override fun observe() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.state.collect {
+                    adapter.submitList(it)
+                    scrollToTop()
+                }
+            }
         }
-        binding.savePassCodeButton.setOnClickListener {
-            val passCode = binding.passCodeEdiText.text.toString()
-            viewModel.setPassCode(passCode)
+    }
+
+    override fun listener() {
+        binding.root.setOnRefreshListener {
+            viewModel.refresh()
+            binding.root.isRefreshing = false
         }
 
+        binding.questionImage.setOnClickListener {
+            findNavController().navigate(PolicyFragmentDirections.actionGlobalQuestionFragment())
+        }
+    }
 
+    private fun scrollToTop() {
+        handler.postDelayed(recyclerScrollRunnable, 300)
+    }
 
+    override fun onDestroyView() {
+        handler.removeCallbacks(recyclerScrollRunnable)
+        super.onDestroyView()
     }
 
 }
