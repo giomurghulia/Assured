@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.insurance.assured.common.extensions.toResult
+import com.insurance.assured.common.resource.Result
 import com.insurance.assured.common.utils.onInit
 import com.insurance.assured.domain.usecases.policyusecases.GetUserDataUseCase
 import com.insurance.assured.domain.usecases.policyusecases.GetUserPoliciesUseCase
@@ -50,7 +51,11 @@ class PolicyViewModel @Inject constructor(
                 refreshData,
                 refreshUserData
             ).flatMapLatest { refresh ->
-                getUserDataUseCase.invoke(refresh).toResult()
+                if (checkUser()) {
+                    getUserDataUseCase.invoke(refresh).toResult()
+                } else {
+                    flow { emit(Result.Loading) }
+                }
             }.collectLatest {
                 _payload.value = _payload.value.copy(userData = it)
             }
@@ -61,7 +66,11 @@ class PolicyViewModel @Inject constructor(
                 refreshData,
                 refreshUserPolicies
             ).flatMapLatest { refresh ->
-                getUserPoliciesUseCase.invoke(refresh).toResult()
+                if (checkUser()) {
+                    getUserPoliciesUseCase.invoke(refresh).toResult()
+                } else {
+                    flow { emit(Result.Loading) }
+                }
             }.collectLatest {
                 _payload.value = _payload.value.copy(userPolicies = it)
             }
@@ -88,28 +97,20 @@ class PolicyViewModel @Inject constructor(
         return listOf(PolicyListItem.NoUserItem)
     }
 
+    fun getUserData() {
+        refreshData.tryEmit(false)
+    }
+
     fun refresh() {
-        if (checkUser()) {
-            refreshData.tryEmit(true)
-        } else {
-            _payload.value = PolicyPagePayload()
-        }
+        refreshData.tryEmit(true)
     }
 
     fun refreshUserData() {
-        if (checkUser()) {
-            refreshUserData.tryEmit(true)
-        } else {
-            _payload.value = PolicyPagePayload()
-        }
+        refreshUserData.tryEmit(true)
     }
 
     fun refreshUserPolicies() {
-        if (checkUser()) {
-            refreshUserPolicies.tryEmit(true)
-        } else {
-            _payload.value = PolicyPagePayload()
-        }
+        refreshUserPolicies.tryEmit(true)
     }
 
 }

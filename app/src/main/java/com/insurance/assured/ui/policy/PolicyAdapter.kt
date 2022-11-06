@@ -113,12 +113,6 @@ class PolicyAdapter :
             binding.signIpnButton.setOnClickListener {
                 callBack?.onAuthClick(AuthEnum.SIGNE_IN)
             }
-            binding.signUpButton.setOnClickListener {
-                callBack?.onAuthClick(AuthEnum.SIGNE_UP)
-            }
-            binding.cancelButton.setOnClickListener {
-                callBack?.onAuthClick(AuthEnum.CANCEL)
-            }
         }
 
     }
@@ -158,6 +152,10 @@ class PolicyAdapter :
             binding.typeText.text = item.type
 
             binding.iconImage.load(item.banner)
+            binding.root.setOnClickListener {
+                callBack?.onPolicyClick(item.id)
+            }
+
         }
     }
 
@@ -202,7 +200,8 @@ class PolicyAdapter :
 
 
     interface CallBack {
-        fun onItemClick(item: PolicyListItem.ViewType)
+        fun onCategoryClick(item: PolicyListItem.ViewType)
         fun onAuthClick(item: AuthEnum)
+        fun onPolicyClick(itemId: String)
     }
 }

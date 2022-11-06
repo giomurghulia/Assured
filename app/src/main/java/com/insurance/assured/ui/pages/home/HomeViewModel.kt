@@ -3,9 +3,12 @@ package com.insurance.assured.ui.pages.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.insurance.assured.common.extensions.toResult
+import com.insurance.assured.common.resource.Resource
+import com.insurance.assured.common.resource.Result.*
 import com.insurance.assured.common.utils.onInit
 import com.insurance.assured.domain.usecases.bannerusecases.GetBannersUseCase
 import com.insurance.assured.domain.usecases.plansusecases.getdata.GetHotPlansUseCase
+import com.insurance.assured.ui.mappers.toPresenterModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.*
@@ -60,9 +63,23 @@ class HomeViewModel @Inject constructor(
                 refreshData,
                 refreshCardBanners
             ).flatMapLatest { refresh ->
-                getBannersUseCase.invoke(refresh).toResult()
+                flow {
+                    val responce = getHotPlansUseCase.invoke()
+
+                    when (responce) {
+                        is Resource.Success -> {
+                            val data = responce.model.map {
+                                it.toPresenterModel()
+                            }
+                            emit(Success(data))
+                        }
+                        is Resource.Error -> {
+
+                        }
+                    }
+                }
             }.collectLatest {
-                _payload.value = _payload.value.copy(carBanners = it)
+                _payload.value = _payload.value.copy(hotBanners = it)
             }
         }
 

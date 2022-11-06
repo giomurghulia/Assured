@@ -8,4 +8,10 @@ class QuestionFragment : BaseFragment<FragmentQuestionBinding>(
 ) {
     override fun init() {
     }
+
+    override fun listener() {
+        binding.backImageImage.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
+    }
 }

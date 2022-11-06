@@ -45,12 +45,20 @@ class SignInFragment : Fragment() {
 
         updateErrorStates()
 
-        binding.signIpButton.setOnClickListener {
+        binding.signInButton.setOnClickListener {
             if (submitForm()) {
                 val email = binding.emailInput.text.toString()
                 val password = binding.passInput.text.toString()
 
                 logIn(email, password)
+            }
+        }
+        binding.signUpButton.setOnClickListener {
+            if (submitForm()) {
+                val email = binding.emailInput.text.toString()
+                val password = binding.passInput.text.toString()
+
+                register(email, password)
             }
         }
 
@@ -91,6 +99,12 @@ class SignInFragment : Fragment() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(requireActivity()) { task ->
                 viewModel.login(task)
+            }
+    }
+    private fun register(email: String, password: String) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(requireActivity()) { task ->
+                viewModel.register(task)
             }
     }
 
