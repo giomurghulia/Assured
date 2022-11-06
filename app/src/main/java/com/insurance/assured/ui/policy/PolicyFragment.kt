@@ -8,7 +8,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.insurance.assured.R
 import com.insurance.assured.common.enums.AuthEnum
 import com.insurance.assured.databinding.FragmentPolicyBinding
 import com.insurance.assured.ui.basefragments.BaseFragment
@@ -106,7 +105,6 @@ class PolicyFragment : BaseFragment<FragmentPolicyBinding>(
     private fun scrollToTop() {
         handler.postDelayed(recyclerScrollRunnable, 300)
     }
-
 
     override fun onDestroyView() {
         handler.removeCallbacks(recyclerScrollRunnable)

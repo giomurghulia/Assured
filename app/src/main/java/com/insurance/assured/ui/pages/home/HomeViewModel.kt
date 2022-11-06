@@ -42,10 +42,6 @@ class HomeViewModel @Inject constructor(
         onBufferOverflow = BufferOverflow.DROP_OLDEST
     )
 
-    private val refreshCardBanners = MutableSharedFlow<Boolean>(
-        extraBufferCapacity = 1,
-        onBufferOverflow = BufferOverflow.DROP_OLDEST
-    )
 
     init {
         viewModelScope.launch {

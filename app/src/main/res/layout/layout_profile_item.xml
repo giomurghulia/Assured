@@ -10,6 +10,7 @@
     <LinearLayout
         android:id="@+id/policy_layout"
         android:layout_width="0dp"
+        android:backgroundTint="#1E2332"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@drawable/shape_button_background"
@@ -20,9 +21,11 @@
         <ImageView
             android:id="@+id/icon_image"
             android:layout_width="40dp"
-            android:layout_height="44dp"
+            android:layout_height="40dp"
+            android:padding="10dp"
+            android:background="@drawable/shape_circle"
             android:scaleType="centerInside"
-            android:src="@drawable/img" />
+            android:src="@drawable/ic_user_icon" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -32,10 +35,9 @@
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/finished_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Finish Checkout"
+                android:text="Change your information"
                 android:textColor="@color/gray"
                 android:textSize="12sp" />
 
@@ -57,16 +59,5 @@
             android:src="@drawable/ic_right_svg" />
 
     </LinearLayout>
-
-
-    <ImageView
-        android:id="@+id/delete_image"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="20dp"
-        android:gravity="end"
-        android:scaleType="centerInside"
-        android:src="@drawable/ic_trash_icon" />
-
 
 </LinearLayout>

@@ -1,4 +1,5 @@
 package com.insurance.assured.data.local.database
+
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
@@ -45,8 +46,6 @@ interface Dao {
     suspend fun deleteAllVehicleInsurances()
 
 
-
-
     @Insert(onConflict = REPLACE)
     suspend fun insertAll(vararg plans: LifePlansEntity)
 
@@ -77,4 +76,16 @@ interface Dao {
 
     @Query("select * from purchased_items where id = :id and userToken = :token")
     suspend fun getPurchase(id: Int, token: String): List<PurchasedItemsEntity>
+
+
+
+    @Query("select * from card where userId = :userId")
+    suspend fun getCard(userId: String): List<CardEntity>
+
+    @Query("delete from card where userId = :userId and cardToken = :cardToken")
+    suspend fun deleteCard(userId: String, cardToken: String)
+
+    @Insert(onConflict = REPLACE)
+    suspend fun insertCard(card: CardEntity)
+
 }
