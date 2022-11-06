@@ -69,6 +69,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.homeFragment -> {
                     binding.homeButton.isSelected = true
+
+                    binding.bottomAppBar.visibility = View.VISIBLE
+                    binding.homeButton.visibility = View.VISIBLE
+
                 }
                 else -> {
                     binding.bottomAppBar.visibility = View.VISIBLE
