@@ -6,7 +6,4 @@ import javax.inject.Inject
 class GetUserDataUseCase @Inject constructor(private val userDataRepository: UserDataRepository) {
 
     fun invoke(refresh: Boolean = false) = userDataRepository.getUserData(refresh)
-
-    fun clearUserData() = userDataRepository.clearUserData()
-
 }

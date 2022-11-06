@@ -30,7 +30,7 @@ class PolicyFragment : BaseFragment<FragmentPolicyBinding>(
     }
 
     override fun init() {
-        viewModel.refresh()
+        viewModel.getUserData()
 
         binding.mainRecycler.layoutManager = LinearLayoutManager(requireContext())
         binding.mainRecycler.adapter = adapter

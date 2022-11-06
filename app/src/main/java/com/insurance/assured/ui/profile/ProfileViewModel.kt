@@ -3,6 +3,7 @@ package com.insurance.assured.ui.profile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.insurance.assured.data.local.AppConfigDataStore
+import com.insurance.assured.domain.usecases.CleanCash
 import com.insurance.assured.domain.usecases.policyusecases.GetUserDataUseCase
 import com.insurance.assured.domain.usecases.policyusecases.GetUserPoliciesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,8 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
     private val appConfigDataStore: AppConfigDataStore,
-    private val userPoliciesUseCase: GetUserPoliciesUseCase,
-    private val userDataUseCase: GetUserDataUseCase
+    private val cleanCash: CleanCash
 ) : ViewModel() {
 
 
@@ -23,7 +23,7 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    fun longOut(){
-        userDataUseCase.clearUserData()
+    fun longOut() {
+        cleanCash.invoke()
     }
 }
