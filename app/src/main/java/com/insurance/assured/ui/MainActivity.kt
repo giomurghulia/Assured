@@ -65,6 +65,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.policyItemFragment,
                 R.id.questionFragment,
                 R.id.addCardFragment,
+                R.id.changeEmailFragment,
+                R.id.changePasswordFragment,
                 R.id.lastCheckoutFragment -> {
                     binding.bottomAppBar.visibility = View.GONE
                     binding.homeButton.visibility = View.GONE
