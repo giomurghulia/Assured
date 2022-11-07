@@ -9,4 +9,5 @@ interface PlansRepository {
     suspend fun getHotInsurances(): Resource<List<PlansModel<*>>>
     suspend fun getPetInsurances(forceReset: Boolean): Resource<List<PlansModel<PetSpec>>>
     suspend fun getVehicleInsurances(forceReset: Boolean): Resource<List<PlansModel<VehicleSpecs>>>
+    suspend fun checkConnection(): Boolean
 }

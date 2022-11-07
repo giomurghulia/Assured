@@ -17,6 +17,7 @@ interface ApiService {
 
     @GET("3f6c578b-9264-4032-b850-17aa23d71363")
     suspend fun getUserPolicies(): Response<List<UserPolicyModel>>
+
     @GET("9017af9a-b937-489b-89bb-c6d79d837ae1")
     suspend fun getEmptyList(): Response<List<UserPolicyModel>>
 }
