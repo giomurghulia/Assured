@@ -43,19 +43,19 @@ class CheckoutViewModel @Inject constructor(private val checkoutUseCase: Checkou
     }
 
     fun onCheckout() {
-        viewModelScope.launch(Dispatchers.IO) {
-            Firebase.auth.currentUser?.let {
-                _purchaseSuccessSharedFlow.emit(
-                    checkConnectionUseCase() &&
-                            checkoutUseCase.insertUserPurchasedItemsUseCase(
-                                _checkoutState.value.toDomainModel(),
-                                it.email!!
-                            )
-                )
-                return@launch
-            }
-            _purchaseSuccessSharedFlow.emit(false)
-        }
+//        viewModelScope.launch(Dispatchers.IO) {
+//            Firebase.auth.currentUser?.let {
+//                _purchaseSuccessSharedFlow.emit(
+//                    checkConnectionUseCase() &&
+//                            checkoutUseCase.insertUserPurchasedItemsUseCase(
+//                                _checkoutState.value.toDomainModel(),
+//                                it.email!!
+//                            )
+//                )
+//                return@launch
+//            }
+//            _purchaseSuccessSharedFlow.emit(false)
+//        }
     }
 
     fun deleteUnfinishedCheckout(id: Int = _checkoutState.value.insurancePacket?.id ?: 0) {
