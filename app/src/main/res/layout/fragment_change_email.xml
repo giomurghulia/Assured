@@ -44,6 +44,7 @@
             android:background="@android:color/transparent"
             android:drawablePadding="20dp"
             android:hint=""
+            android:textColor="@color/white"
             android:textColorHint="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
