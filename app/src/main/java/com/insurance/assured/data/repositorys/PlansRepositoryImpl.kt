@@ -130,4 +130,13 @@ class PlansRepositoryImpl @Inject constructor(
                 e.toString(),
                 dao.getVehicleInsurances().map { it.toDomain() })
         }
+
+    override suspend fun checkConnection(): Boolean {
+        try{
+            api.checkConnection()
+            return true
+        }catch (e: Exception){
+            return false
+        }
+    }
 }

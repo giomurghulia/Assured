@@ -19,4 +19,7 @@ interface InsurancePacketsApi {
 
     @GET("b0acc54d-9835-4f61-a871-1d7634e09a80")
     suspend fun getPetPlans(): Response<List<PlansDto>>
+
+    @GET("91004b5f-9420-4281-b35d-66176bb61c44")
+    suspend fun checkConnection()
 }

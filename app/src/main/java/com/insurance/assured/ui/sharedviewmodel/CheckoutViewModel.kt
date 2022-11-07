@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.insurance.assured.domain.usecases.checkoutsusecase.CheckConnectionUseCase
 import com.insurance.assured.domain.usecases.checkoutsusecase.CheckoutUseCase
 import com.insurance.assured.ui.mappers.toDomainModel
 import com.insurance.assured.ui.presentationmodels.planlist.PlanListItemModel
@@ -25,6 +26,9 @@ class CheckoutViewModel @Inject constructor(private val checkoutUseCase: Checkou
     private val _purchaseSuccessSharedFlow = MutableSharedFlow<Boolean>()
     val purchaseSuccessSharedFlow = _purchaseSuccessSharedFlow.asSharedFlow()
     var signedAndBack = false
+
+    @Inject
+    lateinit var checkConnectionUseCase: CheckConnectionUseCase
     fun onItemChoose(plan: PlanListItemModel) {
         viewModelScope.launch {
             _checkoutState.value = _checkoutState.value.copy(insurancePacket = plan, null, null)
@@ -42,10 +46,11 @@ class CheckoutViewModel @Inject constructor(private val checkoutUseCase: Checkou
         viewModelScope.launch(Dispatchers.IO) {
             Firebase.auth.currentUser?.let {
                 _purchaseSuccessSharedFlow.emit(
-                    checkoutUseCase.insertUserPurchasedItemsUseCase(
-                        _checkoutState.value.toDomainModel(),
-                        it.email!!
-                    )
+                    checkConnectionUseCase() &&
+                            checkoutUseCase.insertUserPurchasedItemsUseCase(
+                                _checkoutState.value.toDomainModel(),
+                                it.email!!
+                            )
                 )
                 return@launch
             }

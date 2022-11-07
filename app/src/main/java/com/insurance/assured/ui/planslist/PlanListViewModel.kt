@@ -1,7 +1,5 @@
 package com.insurance.assured.ui.planslist
 
-import android.content.Context
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.insurance.assured.common.enums.HouseInsuranceType
@@ -19,7 +17,6 @@ import com.insurance.assured.ui.presentationmodels.planlist.FilterItemModel
 import com.insurance.assured.ui.presentationmodels.planlist.PlanListItemModel
 import com.insurance.assured.ui.viewstate.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -31,7 +28,7 @@ import javax.inject.Inject
 class PlanListViewModel @Inject constructor(
     private val listsProvider: InitialListsProvider,
     private val useCase: GetDataUseCase,
-    private val filterDataUseCase: FilterDataUseCase
+    private val filterDataUseCase: FilterDataUseCase,
 ) :
     ViewModel() {
     private val _filterViewState: MutableStateFlow<List<String>> by lazy {
@@ -76,6 +73,7 @@ class PlanListViewModel @Inject constructor(
                 }
                 getData(category = categorySelected)
             }
+
         }
     }
 

@@ -8,17 +8,20 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.insurance.assured.common.extensions.load
 import com.insurance.assured.databinding.FragmentLastCheckoutBinding
+import com.insurance.assured.domain.usecases.checkoutsusecase.CheckConnectionUseCase
 import com.insurance.assured.ui.basefragments.BaseFragment
 import com.insurance.assured.ui.sharedviewmodel.CheckoutViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LastCheckoutFragment :
     BaseFragment<FragmentLastCheckoutBinding>(FragmentLastCheckoutBinding::inflate) {
 
     private val sharedViewModel: CheckoutViewModel by activityViewModels()
+    private var clickable = true
 
     @SuppressLint("SetTextI18n")
     override fun init() {
@@ -34,9 +37,11 @@ class LastCheckoutFragment :
 
     override fun listener() {
         binding.checkoutBtn.setOnClickListener {
-            sharedViewModel.onCheckout()
-            toast("purchasing")
-            it.isClickable = false
+            if (clickable) {
+                clickable = false
+                sharedViewModel.onCheckout()
+                toast("purchasing")
+            }
         }
         binding.backImage.setOnClickListener {
             requireActivity().onBackPressed()
@@ -52,6 +57,7 @@ class LastCheckoutFragment :
                         sharedViewModel.deleteUnfinishedCheckout()
                         findNavController().navigate(LastCheckoutFragmentDirections.actionLastCheckoutFragmentToHomeFragment())
                     } else {
+                        clickable = true
                         binding.checkoutBtn.isClickable = true
                         toast("there was a problem purchase was not successful")
                     }
