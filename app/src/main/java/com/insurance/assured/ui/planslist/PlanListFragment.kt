@@ -22,6 +22,7 @@ import com.insurance.assured.databinding.FragmentPlanListBinding
 import com.insurance.assured.ui.basefragments.BaseFragment
 import com.insurance.assured.ui.planslist.adapters.FiltersAdapter
 import com.insurance.assured.ui.planslist.adapters.PlansAdapter
+import com.insurance.assured.ui.presentationmodels.planlist.PlanListItemModel
 import com.insurance.assured.ui.sharedviewmodel.CheckoutViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -193,11 +194,13 @@ class PlanListFragment : BaseFragment<FragmentPlanListBinding>(FragmentPlanListB
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.plansListState.collect {
-                    plansListAdapter.submitList(it.data)
+                    plansListAdapter.submitList(
+                        it.data!!.toMutableList().apply { add(PlanListItemModel(-3)) })
                     it.error?.let {
                         toast("please check connection and try again")
                     }
-                    binding.filter.isClickable = it.data!!.isEmpty() || (it.data[0].id != -2 && it.data[0].id != -1)
+                    binding.filter.isClickable =
+                        it.data!!.isEmpty() || (it.data[0].id != -2 && it.data[0].id != -1)
                     delay(300)
                     binding.plansList.smoothScrollToPosition(0)
                 }

@@ -46,5 +46,8 @@ class CheckoutOneFragment :
         binding.checkoutBtn.setOnClickListener {
             findNavController().navigate(CheckoutOneFragmentDirections.actionCheckoutOneFragmentToLastCheckoutFragment())
         }
+        binding.backImage.setOnClickListener{
+            requireActivity().onBackPressed()
+        }
     }
 }

@@ -8,12 +8,14 @@
     android:orientation="vertical"
     tools:context=".ui.pages.checkout.checkoutone.CheckoutOneFragment">
 
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:paddingBottom="30dp"
         app:layout_constraintBottom_toTopOf="@+id/checkout_btn"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_layout"
         app:layout_constraintVertical_bias="1.0"
         tools:layout_editor_absoluteX="0dp">
 
@@ -330,15 +332,46 @@
             </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
+    <LinearLayout
+        android:background="@color/blue_background"
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/back_image"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="start"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_back_icon"
+            app:tint="@color/selector_bottom_nav_bar" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:src="@drawable/ic_header_logo" />
+
+        <View
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="end" />
+    </LinearLayout>
     <Button
         android:id="@+id/checkout_btn"
         android:layout_width="match_parent"
         android:layout_height="58dp"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginBottom="20dp"
         android:backgroundTint="#0F49A3"
         android:text="Checkout"
-        android:layout_marginHorizontal="10dp"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

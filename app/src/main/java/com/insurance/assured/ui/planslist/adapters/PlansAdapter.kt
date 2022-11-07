@@ -9,9 +9,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import androidx.recyclerview.widget.RecyclerView.getDefaultSize
 import com.insurance.assured.common.enums.InsuranceCategory
 import com.insurance.assured.common.extensions.load
 import com.insurance.assured.databinding.ErrorBannerBinding
+import com.insurance.assured.databinding.LayoutSpaceItemBinding
 import com.insurance.assured.databinding.PlanItemBinding
 import com.insurance.assured.databinding.ShimmerBannerBinding
 import com.insurance.assured.databinding.ShimmerPlanBanerBinding
@@ -44,6 +46,13 @@ class PlansAdapter(
                         LayoutInflater.from(parent.context), parent, false
                     )
             )
+            EMPTY -> SpaceViewHolder(
+                LayoutSpaceItemBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
             else -> ErrorViewHolder(
                 ErrorBannerBinding.inflate(
                     LayoutInflater.from(parent.context),
@@ -64,6 +73,7 @@ class PlansAdapter(
         when (getItem(position).id) {
             -1 -> SHIMMER
             -2 -> ERROR
+            -3 -> EMPTY
             else -> ITEM
         }
 
@@ -104,6 +114,9 @@ class PlansAdapter(
     }
 
     inner class ShimmerViewHolder(binding: ShimmerPlanBanerBinding) :
+        ViewHolder(binding.root)
+
+    inner class SpaceViewHolder(binding: LayoutSpaceItemBinding) :
         ViewHolder(binding.root)
 
     inner class ErrorViewHolder(private val binding: ErrorBannerBinding) :

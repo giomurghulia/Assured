@@ -97,4 +97,13 @@ dependencies {
     // facebook Shimmer
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
+
+
+
+
+    // TODO: Add the dependencies for Firebase products you want to use
+    // When using the BoM, don't specify versions in Firebase dependencies
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    implementation 'com.google.firebase:firebase-database-ktx'
 }
