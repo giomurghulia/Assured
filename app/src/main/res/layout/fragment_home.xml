@@ -17,7 +17,7 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-            <ImageView
+            <View
                 android:id="@+id/back_image"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
@@ -33,7 +33,7 @@
                 android:layout_weight="1"
                 android:src="@drawable/ic_header_logo" />
 
-            <ImageView
+            <View
                 android:id="@+id/question_image"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
