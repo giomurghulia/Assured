@@ -191,7 +191,7 @@ class HomeAdapter :
 
                 //model + boolean + shareViewModel
 
-                binding.root.setOnClickListener {
+                binding.buyBtn.setOnClickListener {
                     callBack?.onPolicyBuyClick(item)
                 }
             }
@@ -268,6 +268,6 @@ class HomeAdapter :
         fun onCategoryItemClick(type: InsuranceCategory)
         fun onPolicyBuyClick(item: HomeListItem.HotBannerItem)
         fun onUnfinishedItemClick(item: HomeListItem.UnfinishedCheckoutItem)
-        fun onDeleteItemClick(id:Int)
+        fun onDeleteItemClick(id: Int)
     }
 }
