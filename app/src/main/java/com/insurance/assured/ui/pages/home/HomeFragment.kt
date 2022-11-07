@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.insurance.assured.R
 import com.insurance.assured.common.enums.InsuranceCategory
 import com.insurance.assured.databinding.FragmentHomeBinding
 import com.insurance.assured.ui.basefragments.BaseFragment
@@ -29,6 +30,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     private val recyclerScrollRunnable = Runnable {
         binding.mainRecycler.smoothScrollToPosition(0)
     }
+
     override fun init() {
         viewModel.refresh()
         binding.mainRecycler.layoutManager = LinearLayoutManager(requireContext())
@@ -114,7 +116,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         binding.questionImage.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionGlobalQuestionFragment())
         }
+
+        binding.backImage.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionGlobalChatFragment())
+        }
     }
+
     private fun scrollToTop() {
         handler.postDelayed(recyclerScrollRunnable, 300)
     }

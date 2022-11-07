@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.questionFragment,
                 R.id.addCardFragment,
                 R.id.changeEmailFragment,
+                R.id.chatFragment,
                 R.id.changePasswordFragment,
                 R.id.lastCheckoutFragment -> {
                     binding.bottomAppBar.visibility = View.GONE
