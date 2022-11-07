@@ -15,7 +15,7 @@ class CardRepositoryImpl @Inject constructor(private val dao: Dao) : CardReposit
         cardToken: String,
         cardNum: String
     ): Boolean {
-        dao.insertCard(CardEntity(userId, cardToken, "visa", cardNum))
+        dao.insertCard(CardEntity(userId, cardNum, "visa", cardToken))
 
         val card = dao.getCard(userId).firstOrNull {
             it.cardToken == cardToken

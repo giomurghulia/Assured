@@ -6,9 +6,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "card")
 data class CardEntity(
-    @PrimaryKey
     val userId: String,
     val cardLastNum: String,
     val cardType: String,
+    @PrimaryKey
     val cardToken: String
 )

@@ -1,5 +1,6 @@
 package com.insurance.assured.ui.pages.home
 
+import android.os.Handler
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -24,8 +25,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 
     private val homeAdapter = HomeAdapter()
 
+    private val handler = Handler()
+    private val recyclerScrollRunnable = Runnable {
+        binding.mainRecycler.smoothScrollToPosition(0)
+    }
     override fun init() {
-
+        viewModel.refresh()
         binding.mainRecycler.layoutManager = LinearLayoutManager(requireContext())
         binding.mainRecycler.adapter = homeAdapter
 
@@ -94,6 +99,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.state.collect {
                     homeAdapter.submitList(it.toList())
+                    scrollToTop()
                 }
             }
         }
@@ -108,5 +114,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
         binding.questionImage.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionGlobalQuestionFragment())
         }
+    }
+    private fun scrollToTop() {
+        handler.postDelayed(recyclerScrollRunnable, 300)
+    }
+
+    override fun onDestroyView() {
+        handler.removeCallbacks(recyclerScrollRunnable)
+        super.onDestroyView()
     }
 }

@@ -67,19 +67,11 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    fun insertCard(userId: String, cardToken: String, cardNum: String) {
-        viewModelScope.launch {
-            insertUserCardUseCase.invoke(userId, cardToken, cardNum)
-        }
-        refresh()
-    }
-
-
     fun deleteCard(userId: String, cardToken: String) {
         viewModelScope.launch {
             deleteUserCardUseCase.invoke(userId, cardToken)
+            refresh()
         }
-        refresh()
     }
 
     private fun checkUser(): Boolean {
@@ -87,10 +79,19 @@ class ProfileViewModel @Inject constructor(
     }
 
     private fun buildList(data: ProfilePageLoad): List<ProfileListItem> {
+        if (currentUser == null) {
+            return buildNonUserData()
+        }
+
         val list = mutableListOf<ProfileListItem>()
+
+        list.add(ProfileListItem.UserItem(currentUser?.email!!))
+
+        list.add(ProfileListItem.TitleItem("Change personal data", "security your account"))
 
         list.add(ProfileListItem.ChangeEmailItem)
         list.add(ProfileListItem.ChangePassItem)
+
         list.add(ProfileListItem.TitleItem("Payment Method", "your card"))
 
         if (data.card != null) {
@@ -111,6 +112,7 @@ class ProfileViewModel @Inject constructor(
         list.add(ProfileListItem.AddCardItem)
         list.add(ProfileListItem.LogOutItem)
 
+        list.add(ProfileListItem.SpaceItem)
         return list
     }
 

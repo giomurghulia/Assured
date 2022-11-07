@@ -1,16 +1,23 @@
 package com.insurance.assured.ui.profile
 
+import android.annotation.SuppressLint
+import android.opengl.Visibility
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.insurance.assured.R
 import com.insurance.assured.common.MainDiffUtil
+import com.insurance.assured.common.extensions.load
 import com.insurance.assured.databinding.LayoutLogOutBinding
+import com.insurance.assured.databinding.LayoutProfileDataBinding
 import com.insurance.assured.databinding.LayoutProfileItemBinding
 import com.insurance.assured.databinding.LayoutRequireAuthBinding
 import com.insurance.assured.databinding.LayoutSpaceItemBinding
 import com.insurance.assured.databinding.LayoutTitlteItemBinding
 import com.insurance.assured.databinding.LayoutUnfinishedItemBinding
+import com.insurance.assured.databinding.LayoutUserDataBinding
 
 class ProfileAdapter : ListAdapter<ProfileListItem, RecyclerView.ViewHolder>(MainDiffUtil()) {
 
@@ -60,6 +67,11 @@ class ProfileAdapter : ListAdapter<ProfileListItem, RecyclerView.ViewHolder>(Mai
                     LayoutTitlteItemBinding.inflate(layoutInflater, parent, false)
                 )
             }
+            ProfileListItem.ViewType.USER.ordinal -> {
+                ProfileViewHolder(
+                    LayoutProfileDataBinding.inflate(layoutInflater, parent, false)
+                )
+            }
             else -> throw IllegalStateException()
         }
 
@@ -77,9 +89,11 @@ class ProfileAdapter : ListAdapter<ProfileListItem, RecyclerView.ViewHolder>(Mai
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = getItem(position)
         when (holder) {
+            is ProfileViewHolder -> holder.bind(item as ProfileListItem.UserItem)
             is NoUserViewHolder -> holder.bind(item as ProfileListItem.NoUserItem)
             is ChangeEmailViewHolder -> holder.bind(item as ProfileListItem.ChangeEmailItem)
             is ChangePassViewHolder -> holder.bind(item as ProfileListItem.ChangePassItem)
+            is CardViewHolder -> holder.bind(item as ProfileListItem.CardItem)
             is AddCardViewHolder -> holder.bind(item as ProfileListItem.AddCardItem)
             is SpaceViewHolder -> holder.bind(item as ProfileListItem.SpaceItem)
             is LogOutViewHolder -> holder.bind(item as ProfileListItem.LogOutItem)
@@ -99,7 +113,7 @@ class ProfileAdapter : ListAdapter<ProfileListItem, RecyclerView.ViewHolder>(Mai
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ProfileListItem.ChangeEmailItem) {
-
+            binding.titleText.text = "Change Email"
         }
     }
 
@@ -107,7 +121,8 @@ class ProfileAdapter : ListAdapter<ProfileListItem, RecyclerView.ViewHolder>(Mai
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ProfileListItem.ChangePassItem) {
-
+            binding.iconImage.setImageResource(R.drawable.ic_lock_svg)
+            binding.titleText.text = "Change Password"
         }
     }
 
@@ -115,15 +130,30 @@ class ProfileAdapter : ListAdapter<ProfileListItem, RecyclerView.ViewHolder>(Mai
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ProfileListItem.AddCardItem) {
+            binding.iconImage.setImageResource(R.drawable.ic_card_icon)
+            binding.rightImage.setImageResource(R.drawable.ic_plus_icon)
+            binding.titleText.text = "Add new card"
 
+            binding.root.setOnClickListener {
+                callBack?.onAddCardClick()
+            }
         }
     }
 
     inner class CardViewHolder(private val binding: LayoutUnfinishedItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("SetTextI18n")
         fun bind(item: ProfileListItem.CardItem) {
+            binding.iconImage.setImageResource(R.drawable.ic_mastercard_icon)
+            binding.rightImage.visibility = View.GONE
 
+            binding.finishedText.text = item.cardType
+            binding.titleText.text = "****" + item.cardLastNum
+
+            binding.deleteImage.setOnClickListener {
+                callBack?.onCardDeleteClick(item.cardToken)
+            }
         }
     }
 
@@ -145,9 +175,24 @@ class ProfileAdapter : ListAdapter<ProfileListItem, RecyclerView.ViewHolder>(Mai
     inner class LogOutViewHolder(private val binding: LayoutLogOutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: ProfileListItem.LogOutItem) {}
+        fun bind(item: ProfileListItem.LogOutItem) {
+            binding.logOutButton.setOnClickListener {
+                callBack?.onLogOutClick()
+            }
+        }
+    }
+
+    inner class ProfileViewHolder(private val binding: LayoutProfileDataBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: ProfileListItem.UserItem) {
+            binding.emailText.text = item.email
+        }
     }
 
     interface CallBack {
+        fun onAddCardClick()
+        fun onLogOutClick()
+        fun onCardDeleteClick(CardToken: String)
     }
 }

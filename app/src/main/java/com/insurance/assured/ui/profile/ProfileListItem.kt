@@ -2,6 +2,7 @@ package com.insurance.assured.ui.profile
 
 sealed class ProfileListItem(val viewType: ViewType) {
     enum class ViewType {
+        USER,
         NO_USER,
         CHANGE_EMAIL,
         CHANGE_PASS,
@@ -18,6 +19,10 @@ sealed class ProfileListItem(val viewType: ViewType) {
     object AddCardItem : ProfileListItem(ViewType.ADD_CARD)
     object SpaceItem : ProfileListItem(ViewType.SPACE)
     object LogOutItem : ProfileListItem(ViewType.LOG_OUT)
+
+    data class UserItem(
+        val email: String
+    ) : ProfileListItem(ViewType.USER)
 
     data class TitleItem(
         val title: String,

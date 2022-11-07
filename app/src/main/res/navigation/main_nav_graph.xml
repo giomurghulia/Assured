@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.insurance.assured.ui.pages.home.HomeFragment"
-        android:label="HomeFragment" >
+        android:label="HomeFragment">
         <action
             android:id="@+id/action_homeFragment_to_planListFragment"
             app:destination="@id/planListFragment"
@@ -30,12 +30,12 @@
         android:id="@+id/planListFragment"
         android:name="com.insurance.assured.ui.planslist.PlanListFragment"
         android:label="fragment_plan_list"
-        tools:layout="@layout/fragment_plan_list" >
+        tools:layout="@layout/fragment_plan_list">
         <argument
             android:name="type"
+            android:defaultValue="nulll"
             app:argType="string"
-            app:nullable="true"
-            android:defaultValue="nulll" />
+            app:nullable="true" />
     </fragment>
 
     <fragment
@@ -69,12 +69,12 @@
         android:label="CashlessFragment" />
     <action
         android:id="@+id/action_global_cashlessFragment"
-        app:destination="@id/cashlessFragment"/>
+        app:destination="@id/cashlessFragment" />
     <fragment
         android:id="@+id/checkoutTwoFragment"
         android:name="com.insurance.assured.ui.pages.checkout.checkouttwo.CheckoutTwoFragment"
         android:label="fragment_checkout_two"
-        tools:layout="@layout/fragment_checkout_two" >
+        tools:layout="@layout/fragment_checkout_two">
         <action
             android:id="@+id/action_checkoutTwoFragment_to_checkoutOneFragment"
             app:destination="@id/checkoutOneFragment" />
@@ -94,7 +94,7 @@
         android:id="@+id/checkoutOneFragment"
         android:name="com.insurance.assured.ui.pages.checkout.checkoutone.CheckoutOneFragment"
         android:label="fragment_checkout_one"
-        tools:layout="@layout/fragment_checkout_one" >
+        tools:layout="@layout/fragment_checkout_one">
         <action
             android:id="@+id/action_checkoutOneFragment_to_lastCheckoutFragment"
             app:destination="@id/lastCheckoutFragment" />
@@ -103,12 +103,12 @@
     <fragment
         android:id="@+id/policyItemFragment"
         android:name="com.insurance.assured.ui.policyitem.PolicyItemFragment"
-        android:label="PolicyItemFragment" >
+        android:label="PolicyItemFragment">
         <argument
             android:name="policyId"
+            android:defaultValue="@null"
             app:argType="string"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            app:nullable="true" />
     </fragment>
     <action
         android:id="@+id/action_global_policyItemFragment"
@@ -117,12 +117,19 @@
         android:id="@+id/lastCheckoutFragment"
         android:name="com.insurance.assured.ui.pages.checkout.lastcheckout.LastCheckoutFragment"
         android:label="fragment_last_checkout"
-        tools:layout="@layout/fragment_last_checkout" >
+        tools:layout="@layout/fragment_last_checkout">
         <action
             android:id="@+id/action_lastCheckoutFragment_to_homeFragment"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/main_nav_graph"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/addCardFragment"
+        android:name="com.insurance.assured.ui.addcard.AddCardFragment"
+        android:label="AddCardFragment" />
+    <action
+        android:id="@+id/action_global_addCardFragment"
+        app:destination="@id/addCardFragment" />
 
 </navigation>
