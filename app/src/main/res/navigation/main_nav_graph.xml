@@ -124,6 +124,7 @@
             app:popUpTo="@id/main_nav_graph"
             app:popUpToInclusive="true" />
     </fragment>
+
     <fragment
         android:id="@+id/addCardFragment"
         android:name="com.insurance.assured.ui.addcard.AddCardFragment"
@@ -131,5 +132,20 @@
     <action
         android:id="@+id/action_global_addCardFragment"
         app:destination="@id/addCardFragment" />
+
+    <fragment
+        android:id="@+id/changeEmailFragment"
+        android:name="com.insurance.assured.ui.changeuserdata.ChangeEmailFragment"
+        android:label="ChangeEmailFragment" />
+    <action
+        android:id="@+id/action_global_changeEmailFragment"
+        app:destination="@id/changeEmailFragment" />
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.insurance.assured.ui.changeuserdata.ChangePasswordFragment"
+        android:label="ChangePasswordFragment" />
+    <action
+        android:id="@+id/action_global_changePasswordFragment"
+        app:destination="@id/changePasswordFragment" />
 
 </navigation>

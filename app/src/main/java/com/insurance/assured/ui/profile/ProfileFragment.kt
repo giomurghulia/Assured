@@ -38,13 +38,26 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(
         binding.mainRecycler.adapter = adapter
 
         adapter.setCallBack(object : ProfileAdapter.CallBack {
-            override fun onAddCardClick() {
-                findNavController().navigate(ProfileFragmentDirections.actionGlobalAddCardFragment())
-            }
-
-            override fun onLogOutClick() {
-                viewModel.longOut()
-                findNavController().navigate(R.id.homeFragment)
+            override fun onItemClick(item: ProfileListItem.ViewType) {
+                when (item) {
+                    ProfileListItem.ViewType.NO_USER -> {
+                        findNavController().navigate(ProfileFragmentDirections.actionGlobalSignInFragment())
+                    }
+                    ProfileListItem.ViewType.LOG_OUT -> {
+                        viewModel.longOut()
+                        findNavController().navigate(R.id.homeFragment)
+                    }
+                    ProfileListItem.ViewType.ADD_CARD -> {
+                        findNavController().navigate(ProfileFragmentDirections.actionGlobalAddCardFragment())
+                    }
+                    ProfileListItem.ViewType.CHANGE_PASS -> {
+                        findNavController().navigate(ProfileFragmentDirections.actionGlobalChangePasswordFragment())
+                    }
+                    ProfileListItem.ViewType.CHANGE_EMAIL -> {
+                        findNavController().navigate(ProfileFragmentDirections.actionGlobalChangeEmailFragment())
+                    }
+                    else -> {}
+                }
             }
 
             override fun onCardDeleteClick(cardToken: String) {

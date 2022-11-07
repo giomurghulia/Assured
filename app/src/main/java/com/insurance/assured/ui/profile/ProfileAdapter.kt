@@ -105,7 +105,9 @@ class ProfileAdapter : ListAdapter<ProfileListItem, RecyclerView.ViewHolder>(Mai
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ProfileListItem.NoUserItem) {
-
+            binding.signIpnButton.setOnClickListener {
+                callBack?.onItemClick(ProfileListItem.ViewType.NO_USER)
+            }
         }
     }
 
@@ -114,6 +116,10 @@ class ProfileAdapter : ListAdapter<ProfileListItem, RecyclerView.ViewHolder>(Mai
 
         fun bind(item: ProfileListItem.ChangeEmailItem) {
             binding.titleText.text = "Change Email"
+
+            binding.root.setOnClickListener {
+                callBack?.onItemClick(ProfileListItem.ViewType.CHANGE_EMAIL)
+            }
         }
     }
 
@@ -123,6 +129,10 @@ class ProfileAdapter : ListAdapter<ProfileListItem, RecyclerView.ViewHolder>(Mai
         fun bind(item: ProfileListItem.ChangePassItem) {
             binding.iconImage.setImageResource(R.drawable.ic_lock_svg)
             binding.titleText.text = "Change Password"
+
+            binding.root.setOnClickListener {
+                callBack?.onItemClick(ProfileListItem.ViewType.CHANGE_PASS)
+            }
         }
     }
 
@@ -135,7 +145,7 @@ class ProfileAdapter : ListAdapter<ProfileListItem, RecyclerView.ViewHolder>(Mai
             binding.titleText.text = "Add new card"
 
             binding.root.setOnClickListener {
-                callBack?.onAddCardClick()
+                callBack?.onItemClick(ProfileListItem.ViewType.ADD_CARD)
             }
         }
     }
@@ -177,7 +187,7 @@ class ProfileAdapter : ListAdapter<ProfileListItem, RecyclerView.ViewHolder>(Mai
 
         fun bind(item: ProfileListItem.LogOutItem) {
             binding.logOutButton.setOnClickListener {
-                callBack?.onLogOutClick()
+                callBack?.onItemClick(ProfileListItem.ViewType.LOG_OUT)
             }
         }
     }
@@ -191,8 +201,7 @@ class ProfileAdapter : ListAdapter<ProfileListItem, RecyclerView.ViewHolder>(Mai
     }
 
     interface CallBack {
-        fun onAddCardClick()
-        fun onLogOutClick()
-        fun onCardDeleteClick(CardToken: String)
+        fun onItemClick(item: ProfileListItem.ViewType)
+        fun onCardDeleteClick(cardToken: String)
     }
 }
