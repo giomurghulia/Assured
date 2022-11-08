@@ -13,7 +13,7 @@
         android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
-        <ImageView
+        <View
             android:id="@+id/back_image_image"
             android:layout_width="25dp"
             android:layout_height="25dp"
@@ -33,7 +33,7 @@
             android:id="@+id/question_image"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_gravity="end"/>
+            android:layout_gravity="end" />
     </LinearLayout>
 
     <ScrollView
