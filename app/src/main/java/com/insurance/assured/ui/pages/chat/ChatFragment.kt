@@ -33,7 +33,7 @@ class ChatFragment : BaseFragment<FragmentChatBinding>(
                         adapter.submitList(it)
 
                     delay(300)
-                    binding.mainRecycler.scrollToPosition(adapter.itemCount - 1)
+                    binding.mainRecycler.scrollToPosition(adapter.itemCount)
 
                 }
             }

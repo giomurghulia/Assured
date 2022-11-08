@@ -1,6 +1,7 @@
 package com.insurance.assured.ui.pages.home
 
 import android.os.Handler
+import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -8,10 +9,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.insurance.assured.R
 import com.insurance.assured.common.enums.InsuranceCategory
 import com.insurance.assured.databinding.FragmentHomeBinding
 import com.insurance.assured.ui.basefragments.BaseFragment
@@ -36,7 +35,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
 
     override fun init() {
         if(Firebase.auth.currentUser == null){
-            binding.backImage.visibility = RecyclerView.GONE
+            binding.backImage.visibility = View.GONE
         }
         viewModel.refresh()
         binding.mainRecycler.layoutManager = LinearLayoutManager(requireContext())
