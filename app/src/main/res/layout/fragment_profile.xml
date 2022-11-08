@@ -17,7 +17,7 @@
             android:layout_marginTop="15dp"
             android:orientation="horizontal">
 
-            <View
+            <ImageView
                 android:id="@+id/back_image"
                 app:tint="@color/selector_bottom_nav_bar"
                 android:layout_width="25dp"
@@ -33,14 +33,6 @@
                 android:layout_weight="1"
                 android:src="@drawable/ic_header_logo" />
 
-            <View
-                android:id="@+id/question_image"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="end"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_question_icon"
-                app:tint="@color/selector_bottom_nav_bar" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView

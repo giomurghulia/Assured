@@ -92,7 +92,6 @@ class PlanListFragment : BaseFragment<FragmentPlanListBinding>(FragmentPlanListB
     override fun listener() {
         onRefreshListener()
         filterListener()
-        questionListener()
         binding.chatImage.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionGlobalChatFragment())
         }
@@ -230,10 +229,5 @@ class PlanListFragment : BaseFragment<FragmentPlanListBinding>(FragmentPlanListB
         }
     }
 
-    private fun questionListener() {
-        binding.questionImage.setOnClickListener {
-            findNavController().navigate(PlanListFragmentDirections.actionGlobalQuestionFragment())
-        }
-    }
 
 }

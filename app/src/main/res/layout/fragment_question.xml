@@ -13,15 +13,6 @@
         android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
-        <View
-            android:id="@+id/back_image_image"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_gravity="start"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_back_icon"
-            app:tint="@color/selector_bottom_nav_bar" />
-
         <ImageView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -33,7 +24,7 @@
             android:id="@+id/question_image"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_gravity="end" />
+            android:layout_gravity="end"/>
     </LinearLayout>
 
     <ScrollView

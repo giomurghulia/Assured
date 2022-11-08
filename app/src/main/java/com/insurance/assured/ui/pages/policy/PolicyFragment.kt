@@ -104,9 +104,6 @@ class PolicyFragment : BaseFragment<FragmentPolicyBinding>(
             binding.root.isRefreshing = false
         }
 
-        binding.questionImage.setOnClickListener {
-            findNavController().navigate(PolicyFragmentDirections.actionGlobalQuestionFragment())
-        }
         binding.backImage.setOnClickListener {
             findNavController().navigate(HomeFragmentDirections.actionGlobalChatFragment())
         }
