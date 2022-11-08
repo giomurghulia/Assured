@@ -1,7 +1,7 @@
 package com.insurance.assured.di
 
 
-import com.insurance.assured.data.UserPoliciesRepositoryImpl
+import com.insurance.assured.data.repositorys.UserPoliciesRepositoryImpl
 import com.insurance.assured.domain.repositorys.UserPoliciesRepository
 import dagger.Binds
 import dagger.Module

@@ -8,6 +8,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.insurance.assured.R
 import com.insurance.assured.common.enums.InsuranceCategory
 import com.insurance.assured.databinding.FragmentHomeBinding
@@ -32,6 +35,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(
     }
 
     override fun init() {
+        if(Firebase.auth.currentUser == null){
+            binding.backImage.visibility = RecyclerView.GONE
+        }
         viewModel.refresh()
         binding.mainRecycler.layoutManager = LinearLayoutManager(requireContext())
         binding.mainRecycler.adapter = homeAdapter

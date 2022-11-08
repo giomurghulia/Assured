@@ -24,13 +24,13 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cashless health insurance"
+            android:text="@string/cashless_health_insurance"
             android:textColor="@color/white"
             android:textSize="14sp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Access your benefits now"
+            android:text="@string/access_your_benefits_now"
             android:textColor="@color/gray"
             android:textSize="14sp" />
     </LinearLayout>

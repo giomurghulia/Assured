@@ -16,8 +16,8 @@
         android:icon="@drawable/ic_user_icon"
         android:title="" />
     <item
-        android:id="@+id/NotificationFragment"
-        android:icon="@drawable/ic_bell_icon"
+        android:id="@id/questionFragment"
+        android:icon="@drawable/ic_question_icon"
         android:title="" />
 
 </menu>

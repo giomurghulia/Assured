@@ -63,7 +63,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.checkoutTwoFragment,
                 R.id.checkoutOneFragment,
                 R.id.policyItemFragment,
-                R.id.questionFragment,
                 R.id.addCardFragment,
                 R.id.changeEmailFragment,
                 R.id.chatFragment,

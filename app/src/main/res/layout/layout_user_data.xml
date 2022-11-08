@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Total annual premium insurance"
+            android:text="@string/total_annual_premium_insurance"
             android:textColor="@color/gray"
             android:textSize="16sp" />
 
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:alpha="0.6"
             android:gravity="center"
-            android:text="policies"
+            android:text="@string/policies"
             android:textColor="@color/gray"
             android:textSize="16sp" />
     </LinearLayout>
@@ -94,7 +94,7 @@
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
-        android:text="House Insurance"
+        android:text="@string/house_insurance"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@id/house_num_text"
         app:layout_constraintStart_toEndOf="@id/house_num_text"
@@ -118,7 +118,7 @@
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
-        android:text="Health Insurance"
+        android:text="@string/health_insurance"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@id/health_num_text"
         app:layout_constraintStart_toEndOf="@id/health_num_text"
@@ -142,7 +142,7 @@
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
-        android:text="Car Insurance"
+        android:text="@string/car_insurance"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@id/car_num_text"
         app:layout_constraintStart_toEndOf="@id/car_num_text"
@@ -166,7 +166,7 @@
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
-        android:text="Pet Insurance"
+        android:text="@string/pet_insurance"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@id/pet_num_text"
         app:layout_constraintStart_toEndOf="@id/pet_num_text"

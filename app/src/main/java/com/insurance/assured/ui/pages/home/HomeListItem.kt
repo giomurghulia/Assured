@@ -1,7 +1,6 @@
 package com.insurance.assured.ui.pages.home
 
 import com.insurance.assured.common.enums.InsuranceCategory
-import com.insurance.assured.ui.policy.PolicyListItem
 import com.insurance.assured.ui.presentationmodels.planlist.PlanListItemModel
 
 sealed class HomeListItem(val viewType: ViewType) {

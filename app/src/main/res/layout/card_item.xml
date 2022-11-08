@@ -24,14 +24,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="visa"
+            android:text="@string/visa"
             android:textColor="@color/gray"
             android:textSize="14sp" />
         <TextView
             android:id="@+id/last_digits"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="****4444"
+            android:text="@string/_4444"
             android:textColor="@color/white"
             android:textSize="17sp" />
     </LinearLayout>

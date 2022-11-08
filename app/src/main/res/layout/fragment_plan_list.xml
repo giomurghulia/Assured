@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/blue_background"
-            tools:context=".ui.planslist.PlanListFragment">
+            tools:context=".ui.pages.planslist.PlanListFragment">
 
             <LinearLayout
                 android:id="@+id/header_layout"

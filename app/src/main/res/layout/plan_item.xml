@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="79dp"
                 android:layout_marginTop="10dp"
-                android:text="Pro Health Protect"
+                android:text="@string/pro_health_protect"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
@@ -55,7 +55,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="79dp"
                 android:layout_marginTop="31dp"
-                android:text="₹ 5.5 L"
                 android:textColor="@color/white"
                 android:textSize="17sp" />
 
@@ -65,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="79dp"
                 android:layout_marginTop="55dp"
-                android:text="Term Insurance Calculator"
+                android:text="@string/term_insurance_calculator"
                 android:textColor="#808191"
                 android:textSize="10sp" />
 
@@ -78,7 +77,6 @@
                 android:layout_marginEnd="21dp"
                 android:background="#0F49A3"
                 android:gravity="center"
-                android:text="₹ 575/month*"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="10sp" />
@@ -114,7 +112,6 @@
             android:layout_height="35dp"
             android:layout_gravity="bottom|center"
             android:gravity="center"
-            android:text="Multiple Restoration | Free Health Checkup | Day Care"
             android:textColor="#808191"
             android:textSize="10sp" />
 

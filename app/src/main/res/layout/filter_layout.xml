@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
-        android:text="Max money"
+        android:text="@string/max_money"
         android:textColor="@color/white" />
 
     <LinearLayout
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:drawableEnd="@drawable/ic_baseline_attach_money_24"
-            android:hint="from"
+            android:hint="@string/from"
             android:inputType="numberDecimal"
             android:maxLength="8"
             android:textColorHint="#808080" />
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
-        android:text="Monthly payment"
+        android:text="@string/monthly_payment"
         android:textColor="@color/white" />
 
     <LinearLayout
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:drawableEnd="@drawable/ic_baseline_attach_money_24"
-            android:hint="from"
+            android:hint="@string/from"
             android:inputType="numberDecimal"
             android:maxLength="8"
             android:textColorHint="#808080" />
@@ -76,7 +76,7 @@
             android:layout_marginStart="30dp"
             android:background="@color/white"
             android:drawableEnd="@drawable/ic_baseline_attach_money_24"
-            android:hint="to"
+            android:hint="@string/to"
             android:inputType="numberDecimal"
             android:maxLength="8"
             android:textColorHint="#808080" />
@@ -87,7 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
-        android:text="Duration month"
+        android:text="@string/duration_month"
         android:textColor="@color/white" />
 
     <LinearLayout
@@ -101,7 +101,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:hint="from"
+            android:hint="@string/from"
             android:inputType="number"
             android:maxLength="8"
             android:textColorHint="#808080" />
@@ -112,7 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:background="@color/white"
-            android:hint="to"
+            android:hint="@string/to"
             android:inputType="number"
             android:maxLength="8"
             android:textColorHint="#808080" />
@@ -134,7 +134,7 @@
         android:layout_gravity="start"
         android:layout_marginStart="150dp"
         android:layout_marginTop="50dp"
-        android:text="Filter"
+        android:text="@string/filter"
         android:textAllCaps="false" />
 
     <Button
@@ -145,6 +145,6 @@
         android:layout_marginStart="150dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="#FF0000"
-        android:text="Reset"
+        android:text="@string/reset"
         android:textAllCaps="false" />
 </LinearLayout>

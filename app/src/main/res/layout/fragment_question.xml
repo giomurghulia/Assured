@@ -51,7 +51,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Have any question?"
+                android:text="@string/have_any_question"
                 android:textColor="@color/white"
                 android:textSize="22sp"
                 android:textStyle="bold" />
@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Lets us help you."
+                android:text="@string/lets_us_help_you"
                 android:textColor="@color/gray"
                 android:textSize="18sp" />
 
@@ -83,7 +83,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="Lets us help you."
+                    android:text="@string/lets_us_help_you"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -107,7 +107,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="Contact to insurance"
+                    android:text="@string/contact_to_insurance"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -131,7 +131,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="Help buying new policy"
+                    android:text="@string/help_buying_new_policy"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -140,7 +140,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="60dp"
-                android:text="Key Features"
+                android:text="@string/key_features"
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -164,7 +164,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Health plans"
+                        android:text="@string/health_plans"
                         android:textColor="@color/dark_text_color"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -173,7 +173,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingEnd="20dp"
-                        android:text="Be ready for your child’s future needs"
+                        android:text="@string/be_ready_for_your_child_s_future_needs"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
 
@@ -197,7 +197,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="House plans"
+                        android:text="@string/house_plans"
                         android:textColor="@color/dark_text_color"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -206,7 +206,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingEnd="20dp"
-                        android:text="Now you can insure your Spouseas well"
+                        android:text="@string/now_you_can_insure_your_spouseas_well"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
 

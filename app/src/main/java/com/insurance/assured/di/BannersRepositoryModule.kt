@@ -1,7 +1,7 @@
 package com.insurance.assured.di
 
 
-import com.insurance.assured.data.BannersRepositoryImpl
+import com.insurance.assured.data.repositorys.BannersRepositoryImpl
 import com.insurance.assured.data.repositorys.CheckoutRepositoryImpl
 import com.insurance.assured.data.repositorys.PlansRepositoryImpl
 import com.insurance.assured.domain.repositorys.BannersRepository

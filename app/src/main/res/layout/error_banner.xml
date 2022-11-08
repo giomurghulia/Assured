@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:text="Connection Problem"
+        android:text="@string/connection_problem"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold" />
@@ -25,7 +25,7 @@
         android:layout_marginTop="5dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Tap To Refresh"
+        android:text="@string/tap_to_refresh"
         android:textColor="@color/white"
         android:textSize="16sp" />
 </LinearLayout>

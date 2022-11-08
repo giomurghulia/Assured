@@ -35,7 +35,7 @@
                 android:id="@+id/finished_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Finish Checkout"
+                android:text="@string/finish_checkout"
                 android:textColor="@color/gray"
                 android:textSize="12sp" />
 

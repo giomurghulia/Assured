@@ -16,11 +16,11 @@
     </fragment>
     <fragment
         android:id="@+id/userPolicyFragment"
-        android:name="com.insurance.assured.ui.policy.PolicyFragment"
+        android:name="com.insurance.assured.ui.pages.policy.PolicyFragment"
         android:label="PolicyFragment" />
     <fragment
         android:id="@+id/questionFragment"
-        android:name="com.insurance.assured.ui.question.QuestionFragment"
+        android:name="com.insurance.assured.ui.pages.question.QuestionFragment"
         android:label="QuestionFragment" />
     <action
         android:id="@+id/action_global_questionFragment"
@@ -28,7 +28,7 @@
 
     <fragment
         android:id="@+id/planListFragment"
-        android:name="com.insurance.assured.ui.planslist.PlanListFragment"
+        android:name="com.insurance.assured.ui.pages.planslist.PlanListFragment"
         android:label="fragment_plan_list"
         tools:layout="@layout/fragment_plan_list">
         <argument
@@ -39,33 +39,21 @@
     </fragment>
 
     <fragment
-        android:id="@+id/passCodeFragment"
-        android:name="com.insurance.assured.ui.passcode.PassCodeFragment"
-        android:label="PassCodeFragment" />
-    <fragment
         android:id="@+id/signInFragment"
-        android:name="com.insurance.assured.ui.signIn.SignInFragment"
+        android:name="com.insurance.assured.ui.pages.signIn.SignInFragment"
         android:label="SignInFragment" />
     <action
         android:id="@+id/action_global_signInFragment"
         app:destination="@id/signInFragment" />
 
     <fragment
-        android:id="@+id/signUpFragment"
-        android:name="com.insurance.assured.ui.signUp.SignUpFragment"
-        android:label="SignUpFragment" />
-    <action
-        android:id="@+id/action_global_signUpFragment"
-        app:destination="@id/signUpFragment" />
-
-    <fragment
         android:id="@+id/profileFragment"
-        android:name="com.insurance.assured.ui.profile.ProfileFragment"
+        android:name="com.insurance.assured.ui.pages.profile.ProfileFragment"
         android:label="ProfileFragment" />
 
     <fragment
         android:id="@+id/cashlessFragment"
-        android:name="com.insurance.assured.ui.cashless.CashlessFragment"
+        android:name="com.insurance.assured.ui.pages.cashless.CashlessFragment"
         android:label="CashlessFragment" />
     <action
         android:id="@+id/action_global_cashlessFragment"
@@ -102,7 +90,7 @@
 
     <fragment
         android:id="@+id/policyItemFragment"
-        android:name="com.insurance.assured.ui.policyitem.PolicyItemFragment"
+        android:name="com.insurance.assured.ui.pages.policyitem.PolicyItemFragment"
         android:label="PolicyItemFragment">
         <argument
             android:name="policyId"
@@ -127,7 +115,7 @@
 
     <fragment
         android:id="@+id/addCardFragment"
-        android:name="com.insurance.assured.ui.addcard.AddCardFragment"
+        android:name="com.insurance.assured.ui.pages.addcard.AddCardFragment"
         android:label="AddCardFragment" />
     <action
         android:id="@+id/action_global_addCardFragment"
@@ -135,21 +123,21 @@
 
     <fragment
         android:id="@+id/changeEmailFragment"
-        android:name="com.insurance.assured.ui.changeuserdata.ChangeEmailFragment"
+        android:name="com.insurance.assured.ui.pages.changeuserdata.ChangeEmailFragment"
         android:label="ChangeEmailFragment" />
     <action
         android:id="@+id/action_global_changeEmailFragment"
         app:destination="@id/changeEmailFragment" />
     <fragment
         android:id="@+id/changePasswordFragment"
-        android:name="com.insurance.assured.ui.changeuserdata.ChangePasswordFragment"
+        android:name="com.insurance.assured.ui.pages.changeuserdata.ChangePasswordFragment"
         android:label="ChangePasswordFragment" />
     <action
         android:id="@+id/action_global_changePasswordFragment"
         app:destination="@id/changePasswordFragment" />
     <fragment
         android:id="@+id/chatFragment"
-        android:name="com.insurance.assured.ui.chat.ChatFragment"
+        android:name="com.insurance.assured.ui.pages.chat.ChatFragment"
         android:label="ChatFragment" />
     <action
         android:id="@+id/action_global_chatFragment"

@@ -11,7 +11,7 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/shape_rectangle"
         android:gravity="center"
-        android:text="Log Out"
+        android:text="@string/log_out"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="22sp" />
