@@ -20,7 +20,7 @@ Application is useable without internet conecten due to data save in local datab
 
 -Users policys page
 
-<img src="https://user-images.githubusercontent.com/107510454/200556551-3012d8c5-f501-4ed5-8c02-5e6f0ff36268.png" width="200">
+<img src="https://user-images.githubusercontent.com/107510454/200556551-3012d8c5-f501-4ed5-8c02-5e6f0ff36268.png" width="200">  <img src="https://user-images.githubusercontent.com/107510454/200560224-ca743289-2b10-416f-bf6f-94a5cfe3e864.png" width="200">
 
 -Profile page
 
@@ -42,6 +42,7 @@ Application is useable without internet conecten due to data save in local datab
 ## When user is not authorised
 
 -Profile and users policys pages
+
 <img src="https://user-images.githubusercontent.com/107510454/200559416-e6fcda85-43bd-4f71-b118-0e58e4e7a4d9.png" width="200">
 
 -Page when user tries to purchase
